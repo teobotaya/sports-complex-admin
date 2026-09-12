@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore
+        run: dotnet restore backend/SportsComplex.Api.Tests/SportsComplex.Api.Tests.csproj
+      - name: Build
+        run: dotnet build backend/SportsComplex.Api/SportsComplex.Api.csproj --no-restore -c Release
+      - name: Test
+        run: dotnet test backend/SportsComplex.Api.Tests/SportsComplex.Api.Tests.csproj --no-restore
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx tsc --noEmit -p tsconfig.json
+      - run: npm run test
+      - run: npm run build

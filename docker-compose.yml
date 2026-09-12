@@ -1,0 +1,40 @@
+services:
+  db:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "1433:1433"
+    volumes:
+      - sports_complex_db:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "exit 0"]
+      interval: 10s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend/SportsComplex.Api
+    depends_on:
+      - db
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=ComplejoDeportivoDB;User Id=sa;Password=${DB_PASSWORD};TrustServerCertificate=true;"
+      Jwt__Key: ${JWT_KEY}
+      BootstrapAdmin__Username: ${BOOTSTRAP_ADMIN_USER}
+      BootstrapAdmin__Password: ${BOOTSTRAP_ADMIN_PASSWORD}
+      FrontendOrigins__0: "http://localhost:8080"
+    ports:
+      - "5080:5080"
+
+  web:
+    build:
+      context: .
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+
+volumes:
+  sports_complex_db:

@@ -1,0 +1,427 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
+import StatusBadge from '../components/StatusBadge';
+import Modal from '../components/Modal';
+import EmptyState from '../components/EmptyState';
+import { IconPlus } from '../components/Icons';
+import { isoDate } from '../../data/mock';
+import { reservasApi, Reserva } from '../api/reservas';
+import { canchasApi, Cancha } from '../api/canchas';
+import { ApiError } from '../api/client';
+
+const HORAS = Array.from({ length: 14 }, (_, i) => 8 + i); // 08 a 21 hs
+const POR_PAGINA = 10;
+
+type ModalMode = 'ver' | 'editar' | null;
+
+function addDias(fechaIso: string, dias: number): string {
+  const d = new Date(`${fechaIso}T00:00:00`);
+  d.setDate(d.getDate() + dias);
+  return d.toISOString().slice(0, 10);
+}
+
+function lunesDeLaSemana(fechaIso: string): string[] {
+  const base = new Date(`${fechaIso}T00:00:00`);
+  const dia = base.getDay();
+  const diffALunes = dia === 0 ? -6 : 1 - dia;
+  const lunes = new Date(base);
+  lunes.setDate(base.getDate() + diffALunes);
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(lunes);
+    d.setDate(lunes.getDate() + i);
+    return d.toISOString().slice(0, 10);
+  });
+}
+
+const NOMBRES_DIA = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+
+const Reservas: React.FC = () => {
+  const history = useHistory();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const [items, setItems] = useState<Reserva[]>([]);
+  const [canchas, setCanchas] = useState<Cancha[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [vista, setVista] = useState<'tabla' | 'agenda' | 'semana'>('tabla');
+  const [fecha, setFecha] = useState(isoDate(0));
+  const [canchaFiltro, setCanchaFiltro] = useState<string>(params.get('cancha') ?? 'todas');
+  const [estadoFiltro, setEstadoFiltro] = useState<string>('todos');
+  const [busqueda, setBusqueda] = useState('');
+  const [modalMode, setModalMode] = useState<ModalMode>(null);
+  const [seleccion, setSeleccion] = useState<Reserva | null>(null);
+  const [pagina, setPagina] = useState(1);
+  const [semanaItems, setSemanaItems] = useState<Reserva[]>([]);
+  const [cargandoSemana, setCargandoSemana] = useState(false);
+  const [mensajeExito, setMensajeExito] = useState<string | null>(
+    () => (history.location.state as { successMessage?: string } | undefined)?.successMessage ?? null
+  );
+
+  useEffect(() => {
+    if (!mensajeExito) return;
+    history.replace({ pathname: location.pathname, search: location.search });
+    const t = setTimeout(() => setMensajeExito(null), 4000);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const cargar = () => {
+    setLoading(true);
+    Promise.all([reservasApi.getAll({ fecha }), canchasApi.getAll()])
+      .then(([r, c]) => { setItems(r); setCanchas(c); })
+      .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar reservas.'))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(cargar, [fecha]);
+
+  useEffect(() => setPagina(1), [canchaFiltro, estadoFiltro, busqueda, fecha]);
+
+  const diasSemana = useMemo(() => lunesDeLaSemana(fecha), [fecha]);
+
+  useEffect(() => {
+    if (vista !== 'semana') return;
+    setCargandoSemana(true);
+    Promise.all(diasSemana.map((d) => reservasApi.getAll({ fecha: d })))
+      .then((porDia) => setSemanaItems(porDia.flat()))
+      .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar la semana.'))
+      .finally(() => setCargandoSemana(false));
+  }, [vista, diasSemana]);
+
+  const aplicarFiltros = (lista: Reserva[]) =>
+    lista
+      .filter((r) => canchaFiltro === 'todas' || r.idCancha === Number(canchaFiltro))
+      .filter((r) => estadoFiltro === 'todos' || r.estadoReserva === estadoFiltro)
+      .filter((r) => r.clienteNombre.toLowerCase().includes(busqueda.toLowerCase()));
+
+  const filtradas = useMemo(
+    () => aplicarFiltros(items).sort((a, b) => a.horaInicio.localeCompare(b.horaInicio)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [items, canchaFiltro, estadoFiltro, busqueda]
+  );
+
+  const semanaFiltradas = useMemo(
+    () => aplicarFiltros(semanaItems),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [semanaItems, canchaFiltro, estadoFiltro, busqueda]
+  );
+
+  const totalPaginas = Math.max(1, Math.ceil(filtradas.length / POR_PAGINA));
+  const paginaActual = Math.min(pagina, totalPaginas);
+  const paginadas = filtradas.slice((paginaActual - 1) * POR_PAGINA, paginaActual * POR_PAGINA);
+
+  const abrirVer = (r: Reserva) => { setSeleccion(r); setModalMode('ver'); };
+  const abrirEditar = (r: Reserva) => { setSeleccion({ ...r }); setModalMode('editar'); };
+  const cerrarModal = () => { setModalMode(null); setSeleccion(null); };
+
+  const guardarEdicion = async () => {
+    if (!seleccion) return;
+    setError(null);
+    try {
+      await reservasApi.update(seleccion.idReserva, {
+        idCancha: seleccion.idCancha,
+        fecha: seleccion.fecha,
+        horaInicio: seleccion.horaInicio,
+        horaFin: seleccion.horaFin,
+        observaciones: seleccion.observaciones,
+      });
+      cerrarModal();
+      cargar();
+    } catch (e) {
+      setError(e instanceof ApiError ? e.message : 'Error al guardar la reserva.');
+    }
+  };
+
+  const cancelarReserva = async (r: Reserva) => {
+    if (!window.confirm(`¿Confirma cancelar la reserva de ${r.clienteNombre}?`)) return;
+    setError(null);
+    try {
+      await reservasApi.cancelar(r.idReserva, null);
+      cargar();
+    } catch (e) {
+      setError(e instanceof ApiError ? e.message : 'Error al cancelar la reserva.');
+    }
+  };
+
+  return (
+    <div>
+      <PageHeader
+        title="Reservas"
+        subtitle="Visualización y gestión de turnos del complejo"
+        action={
+          <div className="d-flex gap-2">
+            <button type="button" className="btn btn-outline-secondary no-print" onClick={() => window.print()}>
+              Imprimir
+            </button>
+            <button type="button" className="btn btn-sc-primary text-white d-flex align-items-center gap-2" onClick={() => history.push('/nueva-reserva')}>
+              <IconPlus /> Nueva Reserva
+            </button>
+          </div>
+        }
+      />
+
+      {mensajeExito && <div className="availability-msg availability-ok mb-3">{mensajeExito}</div>}
+      {error && <div className="availability-msg availability-fail mb-3">{error}</div>}
+
+      <div className="sc-card mb-3 no-print">
+        <div className="sc-card-body">
+          <div className="row g-2 align-items-end">
+            <div className="col-6 col-md-2">
+              <label className="form-label small text-muted-sc mb-1">Fecha</label>
+              <input type="date" className="form-control form-control-sm" value={fecha} onChange={(e) => setFecha(e.target.value)} />
+            </div>
+            <div className="col-6 col-md-2">
+              <label className="form-label small text-muted-sc mb-1">Cancha</label>
+              <select className="form-select form-select-sm" value={canchaFiltro} onChange={(e) => setCanchaFiltro(e.target.value)}>
+                <option value="todas">Todas</option>
+                {canchas.map((c) => (
+                  <option key={c.idCancha} value={c.idCancha}>{c.nombre}</option>
+                ))}
+              </select>
+            </div>
+            <div className="col-6 col-md-2">
+              <label className="form-label small text-muted-sc mb-1">Estado</label>
+              <select className="form-select form-select-sm" value={estadoFiltro} onChange={(e) => setEstadoFiltro(e.target.value)}>
+                <option value="todos">Todos</option>
+                <option value="Confirmada">Confirmada</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Cancelada">Cancelada</option>
+              </select>
+            </div>
+            <div className="col-6 col-md-3">
+              <label className="form-label small text-muted-sc mb-1">Buscar cliente</label>
+              <input type="text" className="form-control form-control-sm" placeholder="Nombre del cliente" value={busqueda} onChange={(e) => setBusqueda(e.target.value)} />
+            </div>
+            <div className="col-12 col-md-3 d-flex justify-content-md-end gap-2 mt-2 mt-md-0">
+              <div className="btn-group btn-group-sm" role="group">
+                <button type="button" className={`btn btn-outline-secondary ${vista === 'tabla' ? 'active' : ''}`} onClick={() => setVista('tabla')}>Tabla</button>
+                <button type="button" className={`btn btn-outline-secondary ${vista === 'agenda' ? 'active' : ''}`} onClick={() => setVista('agenda')}>Agenda</button>
+                <button type="button" className={`btn btn-outline-secondary ${vista === 'semana' ? 'active' : ''}`} onClick={() => setVista('semana')}>Semana</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {loading ? (
+        <div className="text-muted-sc p-3">Cargando reservas…</div>
+      ) : vista === 'tabla' ? (
+        <div className="sc-card">
+          <div className="table-responsive-sc">
+            <table className="table-sc mb-0">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Cancha</th>
+                  <th>Fecha</th>
+                  <th>Inicio</th>
+                  <th>Fin</th>
+                  <th>Estado</th>
+                  <th>Pago</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtradas.length === 0 && (
+                  <tr>
+                    <td colSpan={8}>
+                      <EmptyState
+                        title="No hay reservas"
+                        message="No se encontraron reservas con los filtros aplicados."
+                        actionLabel="Limpiar filtros"
+                        onAction={() => { setCanchaFiltro('todas'); setEstadoFiltro('todos'); setBusqueda(''); }}
+                      />
+                    </td>
+                  </tr>
+                )}
+                {paginadas.map((r) => (
+                  <tr key={r.idReserva}>
+                    <td>{r.clienteNombre}</td>
+                    <td>{r.canchaNombre}</td>
+                    <td>{r.fecha}</td>
+                    <td>{r.horaInicio}</td>
+                    <td>{r.horaFin}</td>
+                    <td><StatusBadge label={r.estadoReserva} /></td>
+                    <td><StatusBadge label={r.estadoPago} /></td>
+                    <td>
+                      <div className="d-flex gap-1">
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => abrirVer(r)}>Ver</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => abrirEditar(r)} disabled={r.estadoReserva === 'Cancelada'}>Editar</button>
+                        <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => cancelarReserva(r)} disabled={r.estadoReserva === 'Cancelada'}>Cancelar</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {filtradas.length > POR_PAGINA && (
+            <div className="d-flex justify-content-between align-items-center p-2 no-print" style={{ borderTop: '1px solid var(--sc-border)' }}>
+              <span className="text-muted-sc" style={{ fontSize: 12.5 }}>Página {paginaActual} de {totalPaginas} · {filtradas.length} reservas</span>
+              <div className="d-flex gap-1">
+                <button type="button" className="btn btn-sm btn-outline-secondary" disabled={paginaActual <= 1} onClick={() => setPagina((p) => p - 1)}>Anterior</button>
+                <button type="button" className="btn btn-sm btn-outline-secondary" disabled={paginaActual >= totalPaginas} onClick={() => setPagina((p) => p + 1)}>Siguiente</button>
+              </div>
+            </div>
+          )}
+        </div>
+      ) : vista === 'agenda' ? (
+        <div className="sc-card">
+          <div className="sc-card-body">
+            <div className="table-responsive-sc">
+              <table className="table-sc mb-0">
+                <thead>
+                  <tr>
+                    <th>Hora</th>
+                    {canchas.map((c) => <th key={c.idCancha}>{c.nombre}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {HORAS.map((h) => {
+                    const hora = `${String(h).padStart(2, '0')}:00`;
+                    return (
+                      <tr key={h}>
+                        <td className="text-muted-sc">{hora}</td>
+                        {canchas.map((c) => {
+                          const r = filtradas.find((x) => x.idCancha === c.idCancha && x.horaInicio <= hora && x.horaFin > hora);
+                          return (
+                            <td key={c.idCancha}>
+                              {r ? (
+                                <button type="button" className="btn btn-sm w-100 text-start btn-outline-secondary" onClick={() => abrirVer(r)} style={{ opacity: r.estadoReserva === 'Cancelada' ? 0.5 : 1 }}>
+                                  {r.clienteNombre}
+                                </button>
+                              ) : (
+                                <span className="text-muted-sc" style={{ fontSize: 12 }}>—</span>
+                              )}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="sc-card">
+          <div className="sc-card-header d-flex justify-content-between align-items-center">
+            <h2>Semana del {diasSemana[0]} al {diasSemana[6]}</h2>
+            <div className="d-flex gap-2">
+              <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => setFecha(addDias(fecha, -7))}>◀ Semana anterior</button>
+              <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => setFecha(addDias(fecha, 7))}>Semana siguiente ▶</button>
+            </div>
+          </div>
+          <div className="table-responsive-sc">
+            {cargandoSemana ? (
+              <div className="text-muted-sc p-3">Cargando semana…</div>
+            ) : (
+              <table className="table-sc mb-0">
+                <thead>
+                  <tr>
+                    <th>Hora</th>
+                    {diasSemana.map((d, i) => <th key={d}>{NOMBRES_DIA[i]} {d.slice(8, 10)}/{d.slice(5, 7)}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {HORAS.map((h) => {
+                    const hora = `${String(h).padStart(2, '0')}:00`;
+                    return (
+                      <tr key={h}>
+                        <td className="text-muted-sc">{hora}</td>
+                        {diasSemana.map((d) => {
+                          const delDia = semanaFiltradas.filter((x) => x.fecha === d && x.horaInicio <= hora && x.horaFin > hora);
+                          return (
+                            <td key={d}>
+                              {delDia.length === 0 ? (
+                                <span className="text-muted-sc" style={{ fontSize: 12 }}>—</span>
+                              ) : (
+                                <div className="d-flex flex-column gap-1">
+                                  {delDia.map((r) => (
+                                    <button
+                                      key={r.idReserva}
+                                      type="button"
+                                      className="btn btn-sm w-100 text-start btn-outline-secondary"
+                                      onClick={() => abrirVer(r)}
+                                      style={{ opacity: r.estadoReserva === 'Cancelada' ? 0.5 : 1, fontSize: 12 }}
+                                    >
+                                      {r.clienteNombre} · {r.canchaNombre}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+      )}
+
+      {modalMode === 'ver' && seleccion && (
+        <Modal
+          title="Detalle de la reserva"
+          onClose={cerrarModal}
+          footer={
+            <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => window.print()}>Imprimir</button>
+          }
+        >
+          <div className="detail-row"><span className="detail-row-label">Cliente</span><span className="detail-row-value">{seleccion.clienteNombre}</span></div>
+          <div className="detail-row"><span className="detail-row-label">Cancha</span><span className="detail-row-value">{seleccion.canchaNombre}</span></div>
+          <div className="detail-row"><span className="detail-row-label">Fecha</span><span className="detail-row-value">{seleccion.fecha}</span></div>
+          <div className="detail-row"><span className="detail-row-label">Horario</span><span className="detail-row-value">{seleccion.horaInicio} - {seleccion.horaFin}</span></div>
+          <div className="detail-row"><span className="detail-row-label">Estado</span><span className="detail-row-value"><StatusBadge label={seleccion.estadoReserva} /></span></div>
+          <div className="detail-row"><span className="detail-row-label">Pago</span><span className="detail-row-value"><StatusBadge label={seleccion.estadoPago} /></span></div>
+          {seleccion.observaciones && (
+            <div className="detail-row"><span className="detail-row-label">Observaciones</span><span className="detail-row-value">{seleccion.observaciones}</span></div>
+          )}
+        </Modal>
+      )}
+
+      {modalMode === 'editar' && seleccion && (
+        <Modal
+          title="Editar reserva"
+          onClose={cerrarModal}
+          footer={
+            <>
+              <button type="button" className="btn btn-sm btn-outline-secondary" onClick={cerrarModal}>Cancelar</button>
+              <button type="button" className="btn btn-sm btn-sc-primary text-white" onClick={guardarEdicion}>Guardar cambios</button>
+            </>
+          }
+        >
+          <div className="mb-2">
+            <label className="form-label small text-muted-sc mb-1">Cancha</label>
+            <select className="form-select form-select-sm" value={seleccion.idCancha} onChange={(e) => setSeleccion({ ...seleccion, idCancha: Number(e.target.value) })}>
+              {canchas.map((c) => <option key={c.idCancha} value={c.idCancha}>{c.nombre}</option>)}
+            </select>
+          </div>
+          <div className="mb-2">
+            <label className="form-label small text-muted-sc mb-1">Fecha</label>
+            <input type="date" className="form-control form-control-sm" value={seleccion.fecha} onChange={(e) => setSeleccion({ ...seleccion, fecha: e.target.value })} />
+          </div>
+          <div className="mb-2">
+            <label className="form-label small text-muted-sc mb-1">Hora inicio</label>
+            <input type="time" className="form-control form-control-sm" value={seleccion.horaInicio} onChange={(e) => setSeleccion({ ...seleccion, horaInicio: e.target.value })} />
+          </div>
+          <div className="mb-2">
+            <label className="form-label small text-muted-sc mb-1">Hora fin</label>
+            <input type="time" className="form-control form-control-sm" value={seleccion.horaFin} onChange={(e) => setSeleccion({ ...seleccion, horaFin: e.target.value })} />
+          </div>
+          <div className="mb-2">
+            <label className="form-label small text-muted-sc mb-1">Observaciones</label>
+            <textarea className="form-control form-control-sm" rows={3} value={seleccion.observaciones ?? ''} onChange={(e) => setSeleccion({ ...seleccion, observaciones: e.target.value })} />
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+};
+
+export default Reservas;

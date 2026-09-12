@@ -1,0 +1,76 @@
+erDiagram
+    CLIENTE {
+        int id_cliente PK
+        varchar nombre_completo
+        varchar telefono UK
+        nvarchar observaciones
+        date fecha_alta
+    }
+    USUARIO {
+        int id_usuario PK
+        varchar nombre_completo
+        varchar username UK
+        varchar password_hash
+        varchar rol
+        bit activo
+        datetime2 fecha_creacion
+    }
+    CANCHA {
+        int id_cancha PK
+        varchar nombre UK
+        varchar tipo_superficie
+        decimal precio_por_hora
+        bit activa
+    }
+    RESERVA {
+        int id_reserva PK
+        int id_cliente FK
+        int id_cancha FK
+        int id_usuario FK
+        date fecha
+        time hora_inicio
+        time hora_fin
+        varchar estado_reserva
+        varchar estado_pago
+        nvarchar observaciones
+        datetime2 fecha_creacion
+    }
+    PAGO {
+        int id_pago PK
+        int id_reserva FK
+        decimal monto
+        varchar metodo_pago
+        date fecha_pago
+        nvarchar observaciones
+    }
+    CANCELACION {
+        int id_cancelacion PK
+        int id_reserva FK
+        int id_usuario FK
+        nvarchar motivo
+        datetime2 fecha_cancelacion
+    }
+    DEVOLUCION {
+        int id_devolucion PK
+        int id_cancelacion FK
+        decimal monto_devuelto
+        varchar metodo
+        date fecha
+        nvarchar observaciones
+    }
+    NOTIFICACION {
+        int id_notificacion PK
+        int id_usuario FK
+        varchar tipo
+        nvarchar mensaje
+        bit leida
+        datetime2 fecha_creacion
+    }
+    CLIENTE     ||--o{ RESERVA     : "realiza"
+    USUARIO     ||--o{ RESERVA     : "registra"
+    CANCHA      ||--o{ RESERVA     : "se reserva en"
+    RESERVA     ||--o{ PAGO        : "recibe"
+    RESERVA     ||--o| CANCELACION : "origina"
+    USUARIO     ||--o{ CANCELACION : "ejecuta"
+    CANCELACION ||--o| DEVOLUCION  : "genera"
+    USUARIO     ||--o{ NOTIFICACION: "recibe"

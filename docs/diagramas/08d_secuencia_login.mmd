@@ -1,0 +1,24 @@
+sequenceDiagram
+    actor U as Usuario (Admin / Empleado)
+    participant FE as Frontend (React)
+    participant API as AuthController
+    participant SVC as UsuarioService
+    participant DB as Base de datos
+
+    U->>FE: Ingresa usuario y contraseña
+    FE->>API: POST /api/auth/login
+    API->>SVC: ValidarCredenciales(username, password)
+    SVC->>DB: SELECT Usuario WHERE Username = ?
+    DB-->>SVC: Usuario (hash almacenado)
+    SVC->>SVC: Verificar hash de contraseña
+    alt Credenciales válidas
+        SVC-->>API: Usuario autenticado
+        API->>API: Generar token JWT (rol, expiración)
+        API-->>FE: 200 OK { token, usuario }
+        FE->>FE: Guardar token en localStorage
+        FE-->>U: Redirigir a Dashboard
+    else Credenciales inválidas
+        SVC-->>API: Error de autenticación
+        API-->>FE: 401 Unauthorized
+        FE-->>U: "Usuario o contraseña incorrectos"
+    end

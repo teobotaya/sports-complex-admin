@@ -1,0 +1,20 @@
+flowchart TD
+    J(["Reserva vigente<br/>viene del Diagrama A"]) --> K{"¿Qué ocurre en<br/>la fecha del turno?"}
+    K -- "Se juega" --> L["Registrar saldo pendiente<br/>si lo hubiera"]
+    L --> M(["Turno finalizado"])
+    K -- "Se cancela" --> N["Registrar cancelación<br/>motivo + usuario responsable"]
+    N --> O["El horario vuelve a<br/>quedar disponible"]
+    O --> P{"¿Existían pagos<br/>previos de la reserva?"}
+    P -- "Sí" --> R["Registrar devolución<br/>monto + método"]
+    R --> S(["Cierre con devolución"])
+    P -- "No" --> T(["Cierre sin devolución"])
+    N -. "mientras no se registre la devolución" .-> U[["🔔 Notificación automática:<br/>devolución pendiente"]]
+
+    classDef ini fill:#EEF3EC,stroke:#1F7A4F,stroke-width:2px,color:#16211C
+    classDef dec fill:#FBEDD1,stroke:#B9790C,stroke-width:1.5px,color:#5A3B02
+    classDef act fill:#FFFFFF,stroke:#4A5A50,stroke-width:1.5px,color:#16211C
+    classDef notif fill:#F7E2DF,stroke:#B23A30,stroke-width:1.5px,color:#7A241C
+    class J,M,S,T ini
+    class K,P dec
+    class L,N,O,R act
+    class U notif

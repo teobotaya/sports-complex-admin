@@ -1,0 +1,103 @@
+classDiagram
+  direction LR
+  class Cliente {
+    +int IdCliente
+    +string NombreCompleto
+    +string Telefono
+    +string Observaciones
+    +Date FechaAlta
+  }
+  class Usuario {
+    +int IdUsuario
+    +string NombreCompleto
+    +string Username
+    +string PasswordHash
+    +string Rol
+    +bool Activo
+    +DateTime FechaCreacion
+  }
+  class Cancha {
+    +int IdCancha
+    +string Nombre
+    +string TipoSuperficie
+    +decimal PrecioPorHora
+    +bool Activa
+  }
+  class Reserva {
+    +int IdReserva
+    +Date Fecha
+    +Time HoraInicio
+    +Time HoraFin
+    +string EstadoReserva
+    +string EstadoPago
+    +string Observaciones
+    +DateTime FechaCreacion
+  }
+  class Pago {
+    +int IdPago
+    +decimal Monto
+    +string MetodoPago
+    +Date FechaPago
+    +string Observaciones
+  }
+  class Cancelacion {
+    +int IdCancelacion
+    +string Motivo
+    +DateTime FechaCancelacion
+  }
+  class Devolucion {
+    +int IdDevolucion
+    +decimal MontoDevuelto
+    +string Metodo
+    +Date Fecha
+    +string Observaciones
+  }
+  class Notificacion {
+    +int IdNotificacion
+    +string Tipo
+    +string Mensaje
+    +bool Leida
+    +DateTime FechaCreacion
+  }
+  class Torneo {
+    +int IdTorneo
+    +string Nombre
+    +Date FechaInicio
+    +Date FechaFin
+    +string Categoria
+    +string Estado
+  }
+  class Equipo {
+    +int IdEquipo
+    +string Nombre
+    +string ContactoNombre
+    +string ContactoTelefono
+  }
+  class Integrante {
+    +int IdIntegrante
+    +string NombreCompleto
+    +string Dni
+  }
+  class Partido {
+    +int IdPartido
+    +Date Fecha
+    +Time HoraInicio
+    +int GolesLocal
+    +int GolesVisitante
+    +string Estado
+  }
+
+  Cliente "1" --> "0..*" Reserva : realiza
+  Usuario "1" --> "0..*" Reserva : registra
+  Cancha "1" --> "0..*" Reserva : es reservada
+  Reserva "1" --> "0..*" Pago : recibe
+  Reserva "1" --> "0..1" Cancelacion : origina
+  Usuario "1" --> "0..*" Cancelacion : ejecuta
+  Cancelacion "1" --> "0..1" Devolucion : genera
+  Usuario "1" --> "0..*" Notificacion : recibe
+  Torneo "1" --> "0..*" Equipo : inscribe
+  Torneo "1" --> "0..*" Partido : programa
+  Equipo "1" --> "0..*" Integrante : compone
+  Cancha "1" --> "0..*" Partido : aloja
+  Equipo "1" --> "0..*" Partido : local
+  Equipo "1" --> "0..*" Partido : visitante

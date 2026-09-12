@@ -1,0 +1,29 @@
+# Node / frontend
+node_modules/
+dist/
+
+# .NET backend
+backend/**/bin/
+backend/**/obj/
+
+# Configuración con credenciales reales (usar appsettings.example.json como plantilla)
+backend/**/appsettings.json
+backend/**/appsettings.Development.json
+backend/**/appsettings.*.local.json
+
+# Material de trabajo y entregables del cursado (no forman parte del proyecto)
+Claude outputs/
+docs/*.pptx
+docs/*.xlsx
+docs/*.zip
+docs/*.docx
+docs/Trabajo_Acumulativo*.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Variables de entorno
+.env
+.env.local

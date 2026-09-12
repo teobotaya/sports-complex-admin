@@ -1,0 +1,53 @@
+flowchart LR
+  classDef actor fill:#FFFFFF,stroke:#16211C,stroke-width:2px,color:#16211C,font-weight:bold
+  classDef uc fill:#EEF3EC,stroke:#1F7A4F,stroke-width:1.5px,color:#16211C
+  classDef ucadm fill:#FBEDD1,stroke:#B9790C,stroke-width:1.5px,color:#5A3B02
+
+  Empleado["👤 Empleado /<br/>Recepcionista"]:::actor
+  Admin["👤 Administrador"]:::actor
+  Sistema["⚙️ Sistema<br/>(actor no humano)"]:::actor
+
+  subgraph SGD["Sistema de Gestión Integral · Complejo Deportivo"]
+    direction TB
+    subgraph OPER[" Operación diaria — Empleado y Administrador "]
+      direction TB
+      UC12(["CU-10 · Iniciar sesión"]):::uc
+      UC2(["Consultar disponibilidad"]):::uc
+      UC1(["CU-01 · Registrar reserva"]):::uc
+      UC3(["CU-02 · Cancelar reserva"]):::uc
+      UC4(["CU-03 · Registrar pago"]):::uc
+      UC5(["CU-04 · Registrar devolución"]):::uc
+      UC6(["CU-05 · Gestionar clientes"]):::uc
+      UC7(["CU-06 · Crear torneo e<br/>inscribir equipos"]):::uc
+      UC8(["CU-07 · Programar partido<br/>y cargar resultado"]):::uc
+      UC13(["CU-12 · Consultar<br/>notificaciones"]):::uc
+    end
+    subgraph ADM[" Exclusivo del Administrador "]
+      direction TB
+      UC9(["CU-08 · Consultar reportes<br/>administrativos"]):::ucadm
+      UC10(["CU-09 · Consultar estadísticas"]):::ucadm
+      UC11(["CU-11 · Gestionar canchas<br/>y usuarios"]):::ucadm
+    end
+  end
+
+  Empleado --- UC12
+  Empleado --- UC2
+  Empleado --- UC1
+  Empleado --- UC3
+  Empleado --- UC4
+  Empleado --- UC5
+  Empleado --- UC6
+  Empleado --- UC7
+  Empleado --- UC8
+  Empleado --- UC13
+  Admin -.->|"«generalización»<br/>hereda todos los casos de uso"| Empleado
+  Admin --- UC9
+  Admin --- UC10
+  Admin --- UC11
+  Sistema -.->|"genera automáticamente"| UC13
+  UC1 -.->|"«include»"| UC2
+  UC3 -.->|"«extend»"| UC5
+
+  style SGD fill:#FBFCFA,stroke:#7A8B94,stroke-width:2px
+  style OPER fill:#F5F7F3,stroke:#C6D3C9,stroke-dasharray: 4 4
+  style ADM fill:#FEF8EC,stroke:#E4C98A,stroke-dasharray: 4 4

@@ -1,0 +1,47 @@
+gantt
+    title Cronograma actualizado del proyecto — Sistema de Gestión Integral para Complejo Deportivo (2026)
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    tickInterval 2week
+    excludes    weekends
+
+    section 1 · Prefactibilidad
+    Estudio de prefactibilidad                  :done, a1, 2026-03-23, 1w
+    Preparación de entrevistas                  :done, a2, 2026-03-30, 2w
+    Relevamiento (observación)                  :done, a3, 2026-03-30, 3w
+    Redacción del informe de prefactibilidad    :done, a4, 2026-04-06, 4w
+
+    section 2 · Análisis y Propuesta Técnica
+    Análisis de requerimientos funcionales      :done, b1, 2026-05-04, 2w
+    Definición de módulos y alcance             :done, b2, 2026-05-18, 1w
+    Modelado de datos (DER · relacional · diccionario) :done, b3, 2026-05-25, 2w
+    Redacción de la Propuesta Técnica           :done, b4, 2026-06-01, 3w
+    Entrega del Trabajo Acumulativo             :milestone, m1, 2026-06-17, 0d
+
+    section 3 · Diseño
+    Diseño de arquitectura en tres capas        :done, c1, 2026-06-22, 1w
+    Diseño de interfaz y prototipo navegable    :done, c2, 2026-06-29, 3w
+
+    section 4 · Construcción
+    Script de BD y migraciones EF Core          :done, d1, 2026-07-20, 2w
+    Backend · entidades, DTOs y DbContext       :done, d2, 2026-07-27, 2w
+    Frontend · layout, ruteo y autenticación    :done, d3, 2026-07-27, 2w
+    Backend · servicios de dominio              :done, d4, 2026-08-03, 3w
+    Frontend · reservas, clientes y pagos       :done, d5, 2026-08-03, 3w
+    Backend · controladores REST y Swagger      :done, d6, 2026-08-10, 3w
+    Autenticación JWT y control de roles        :done, d7, 2026-08-10, 1w
+    Frontend · torneos, equipos y partidos      :done, d8, 2026-08-17, 2w
+    Frontend · reportes, estadísticas y notificaciones :done, d9, 2026-08-24, 2w
+    Integración frontend-API y pruebas manuales :active, d10, 2026-08-24, 2w
+
+    section 5 · Documentación de avance
+    Diagramas UML complementarios               :done, e1, 2026-08-31, 1w
+    Capturas y documentación de la entrega      :active, e2, 2026-09-01, 1w
+    Entrega complementaria de avance            :milestone, m2, 2026-09-07, 0d
+
+    section 6 · Pendiente
+    Suite de pruebas automatizadas              :f1, 2026-09-07, 3w
+    Refinamientos menores de módulos            :f2, 2026-09-28, 1w
+    Despliegue, contenedores y CI               :f3, 2026-09-28, 2w
+    Manual de usuario y cierre                  :f4, 2026-10-12, 2w
+    Cierre del proyecto                         :milestone, m3, 2026-10-26, 0d

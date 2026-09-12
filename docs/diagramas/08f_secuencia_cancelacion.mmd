@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor E as Empleado / Administrador
+    participant FE as Frontend (Cancelaciones)
+    participant RC as ReservasController
+    participant CS as CancelacionService
+    participant DV as DevolucionesController
+    participant DB as Base de datos
+
+    E->>FE: Selecciona reserva y motivo
+    FE->>RC: POST /api/reservas/{id}/cancelar
+    RC->>CS: CancelarReservaAsync(id, idUsuario, motivo)
+    CS->>DB: UPDATE Reserva SET EstadoReserva='Cancelada'
+    CS->>DB: INSERT Cancelacion
+    DB-->>CS: Cancelación registrada
+    CS-->>RC: CancelacionDto
+    RC-->>FE: 200 OK
+    FE-->>E: Reserva marcada como cancelada
+
+    opt Existían pagos previos
+        E->>FE: Registrar devolución
+        FE->>DV: POST /api/devoluciones
+        DV->>DB: Verificar pagos previos de la reserva
+        DB-->>DV: Total pagado > 0
+        DV->>DB: INSERT Devolucion
+        DB-->>DV: Devolución registrada
+        DV-->>FE: 200 OK
+        FE-->>E: Confirmar devolución al cliente
+    end

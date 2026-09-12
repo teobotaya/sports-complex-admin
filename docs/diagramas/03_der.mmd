@@ -1,0 +1,44 @@
+flowchart TB
+  classDef ent fill:#EEF3EC,stroke:#1F7A4F,stroke-width:2px,color:#16211C,font-weight:bold
+  classDef rel fill:#FBEDD1,stroke:#B9790C,stroke-width:1.5px,color:#5A3B02
+
+  CLI["CLIENTE"]:::ent
+  USU["USUARIO"]:::ent
+  CAN["CANCHA"]:::ent
+  RES["RESERVA"]:::ent
+  PAG["PAGO"]:::ent
+  CANC["CANCELACION"]:::ent
+  DEV["DEVOLUCION"]:::ent
+  NOT["NOTIFICACION"]:::ent
+  TOR["TORNEO"]:::ent
+  EQU["EQUIPO"]:::ent
+  INT["INTEGRANTE"]:::ent
+  PAR["PARTIDO"]:::ent
+
+  R1{{"realiza"}}:::rel
+  R2{{"registra"}}:::rel
+  R3{{"se reserva en"}}:::rel
+  R4{{"recibe"}}:::rel
+  R5{{"origina"}}:::rel
+  R6{{"ejecuta"}}:::rel
+  R7{{"genera"}}:::rel
+  R8{{"es alertado por"}}:::rel
+  R9{{"inscribe"}}:::rel
+  R10{{"integra"}}:::rel
+  R11{{"programa"}}:::rel
+  R12{{"aloja"}}:::rel
+  R13{{"disputa"}}:::rel
+
+  CLI ---|"1"| R1 ---|"N"| RES
+  USU ---|"1"| R2 ---|"N"| RES
+  CAN ---|"1"| R3 ---|"N"| RES
+  RES ---|"1"| R4 ---|"N"| PAG
+  RES ---|"1"| R5 ---|"0..1"| CANC
+  USU ---|"1"| R6 ---|"N"| CANC
+  CANC ---|"1"| R7 ---|"0..1"| DEV
+  USU ---|"1"| R8 ---|"N"| NOT
+  TOR ---|"1"| R9 ---|"N"| EQU
+  EQU ---|"1"| R10 ---|"N"| INT
+  TOR ---|"1"| R11 ---|"N"| PAR
+  CAN ---|"1"| R12 ---|"N"| PAR
+  EQU ---|"2 (local / visitante)"| R13 ---|"N"| PAR

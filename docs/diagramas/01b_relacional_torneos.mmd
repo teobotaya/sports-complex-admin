@@ -1,0 +1,47 @@
+erDiagram
+    CANCHA {
+        int id_cancha PK
+        varchar nombre UK
+        varchar tipo_superficie
+        decimal precio_por_hora
+        bit activa
+    }
+    TORNEO {
+        int id_torneo PK
+        varchar nombre
+        date fecha_inicio
+        date fecha_fin
+        varchar categoria
+        varchar estado
+    }
+    EQUIPO {
+        int id_equipo PK
+        int id_torneo FK
+        varchar nombre
+        varchar contacto_nombre
+        varchar contacto_telefono
+    }
+    INTEGRANTE {
+        int id_integrante PK
+        int id_equipo FK
+        varchar nombre_completo
+        varchar dni
+    }
+    PARTIDO {
+        int id_partido PK
+        int id_torneo FK
+        int id_equipo_local FK
+        int id_equipo_visitante FK
+        int id_cancha FK
+        date fecha
+        time hora_inicio
+        int goles_local
+        int goles_visitante
+        varchar estado
+    }
+    TORNEO      ||--o{ EQUIPO      : "inscribe"
+    TORNEO      ||--o{ PARTIDO     : "programa"
+    EQUIPO      ||--o{ INTEGRANTE  : "integra"
+    CANCHA      ||--o{ PARTIDO     : "aloja"
+    EQUIPO      ||--o{ PARTIDO     : "juega como local"
+    EQUIPO      ||--o{ PARTIDO     : "juega como visitante"

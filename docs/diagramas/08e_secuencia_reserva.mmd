@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor E as Empleado / Administrador
+    participant FE as Frontend (Nueva Reserva)
+    participant API as ReservasController
+    participant SVC as ReservaService
+    participant DB as Base de datos
+
+    E->>FE: Completa cliente, cancha, fecha y horario
+    FE->>API: POST /api/reservas
+    API->>SVC: CreateAsync(dto, idUsuario)
+    SVC->>DB: Buscar reservas activas<br/>misma cancha/fecha/horario
+    DB-->>SVC: Resultado de la búsqueda
+    alt Horario ocupado
+        SVC-->>API: Conflicto de horario
+        API-->>FE: 409 Conflict
+        FE-->>E: "El horario ya está reservado"
+    else Horario disponible
+        SVC->>DB: INSERT Reserva (Estado: Confirmada)
+        DB-->>SVC: Reserva creada
+        SVC-->>API: ReservaDto
+        API-->>FE: 200 OK
+        FE-->>E: Confirmar reserva en la agenda
+    end

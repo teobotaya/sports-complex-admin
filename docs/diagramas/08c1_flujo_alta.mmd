@@ -1,0 +1,23 @@
+flowchart TD
+    A(["Cliente solicita un turno"]) --> B["Empleado / Administrador<br/>consulta disponibilidad"]
+    B --> C{"¿Horario disponible<br/>en esa cancha?"}
+    C -- No --> D["Ofrecer horario<br/>alternativo"]
+    D --> B
+    C -- "Sí" --> E["Registrar reserva<br/>Estado: Confirmada"]
+    E --> F{"¿Se registra pago<br/>en el momento?"}
+    F -- "No" --> G["Estado de pago:<br/>Pendiente"]
+    F -- "Seña / parcial" --> H["Estado de pago:<br/>Parcialmente abonado"]
+    F -- "Pago total" --> I["Estado de pago:<br/>Abonado"]
+    G --> J(["Reserva vigente<br/>continúa en el Diagrama B"])
+    H --> J
+    I --> J
+    G -. "si vence la fecha sin abonar" .-> Q[["🔔 Notificación automática:<br/>pago vencido"]]
+
+    classDef ini fill:#EEF3EC,stroke:#1F7A4F,stroke-width:2px,color:#16211C
+    classDef dec fill:#FBEDD1,stroke:#B9790C,stroke-width:1.5px,color:#5A3B02
+    classDef act fill:#FFFFFF,stroke:#4A5A50,stroke-width:1.5px,color:#16211C
+    classDef notif fill:#F7E2DF,stroke:#B23A30,stroke-width:1.5px,color:#7A241C
+    class A,J ini
+    class C,F dec
+    class B,D,E,G,H,I act
+    class Q notif
