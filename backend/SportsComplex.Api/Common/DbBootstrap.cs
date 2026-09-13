@@ -15,7 +15,10 @@ public static class DbBootstrap
         if (await db.Usuarios.AnyAsync()) return;
 
         var username = config["BootstrapAdmin:Username"] ?? "admin";
-        var password = config["BootstrapAdmin:Password"] ?? "Admin123!";
+        var password = config["BootstrapAdmin:Password"]
+            ?? throw new InvalidOperationException(
+                "Falta BootstrapAdmin:Password. Configuralo en appsettings.json o como variable de entorno; " +
+                "no existe una contraseña por defecto.");
 
         var usuario = new Usuario
         {

@@ -55,7 +55,7 @@ se garantiza en la base** mediante constraints e índices.
 | API | 12 controllers · 48 endpoints REST · autenticación JWT · CORS · Swagger |
 | Dominio | 16 servicios (reservas, disponibilidad, pagos, cancelaciones, devoluciones, torneos, estadísticas, reportes…) |
 | Datos | 12 entidades EF Core · 12 tablas · migraciones versionadas · scripts de schema y seed |
-| Frontend | 17 páginas · layout con sidebar por rol · sistema de diseño propio en CSS |
+| Frontend | 19 páginas · layout con sidebar por rol · sistema de diseño propio en CSS |
 | Calidad | 24 pruebas unitarias xUnit sobre los servicios · pruebas de componentes con Vitest · integración continua en GitHub Actions |
 
 ## Reglas de negocio destacadas
@@ -167,7 +167,7 @@ sports-complex-admin
         ├── components/
         ├── context/   # AuthContext (JWT)
         ├── layouts/
-        ├── pages/     # 17 páginas
+        ├── pages/     # 19 páginas
         └── styles/    # sistema de diseño (tokens CSS)
 ```
 
