@@ -68,7 +68,7 @@ const Notificaciones: React.FC = () => {
                 <div className="text-muted-sc pt-1"><IconBell size={16} /></div>
                 <div className="flex-fill">
                   <div style={{ fontSize: 13 }}>{n.mensaje}</div>
-                  <div className="text-muted-sc" style={{ fontSize: 11.5 }}>{n.tipo} · {new Date(n.fechaCreacion).toLocaleString('es-AR')}</div>
+                  <div className="text-muted-sc" style={{ fontSize: 11.5 }}>{n.tipo} · {new Date(n.fechaCreacion).toLocaleString('es-AR', { hourCycle: 'h23' })}</div>
                 </div>
                 {!n.leida && (
                   <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => marcarLeida(n.idNotificacion)}>

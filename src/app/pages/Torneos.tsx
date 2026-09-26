@@ -5,10 +5,13 @@ import StatusBadge from '../components/StatusBadge';
 import Modal from '../components/Modal';
 import { torneosApi, Torneo } from '../api/torneos';
 import { ApiError } from '../api/client';
+import { useAuth } from '../context/AuthContext';
 
 const vacio = { nombre: '', fechaInicio: '', fechaFin: '', categoria: '' };
 
 const Torneos: React.FC = () => {
+  const { usuario } = useAuth();
+  const esAdmin = usuario?.rol === 'administrador';
   const history = useHistory();
   const [torneos, setTorneos] = useState<Torneo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -48,9 +51,11 @@ const Torneos: React.FC = () => {
         title="Torneos"
         subtitle="Torneos organizados por el complejo"
         action={
-          <button type="button" className="btn btn-sc-primary text-white" onClick={() => setCreando(true)}>
-            Crear torneo
-          </button>
+          esAdmin ? (
+            <button type="button" className="btn btn-sc-primary text-white" onClick={() => setCreando(true)}>
+              Crear torneo
+            </button>
+          ) : undefined
         }
       />
 

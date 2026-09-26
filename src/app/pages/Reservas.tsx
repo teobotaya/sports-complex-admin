@@ -5,21 +5,22 @@ import StatusBadge from '../components/StatusBadge';
 import Modal from '../components/Modal';
 import EmptyState from '../components/EmptyState';
 import { IconPlus } from '../components/Icons';
-import { isoDate } from '../../data/mock';
+import { isoDate, fechaLocalIso } from '../../data/mock';
 import { reservasApi, Reserva } from '../api/reservas';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
+import { pagosApi, Pago } from '../api/pagos';
 import { HORAS_GRILLA, opcionesInicio, opcionesFin, ajustarFin } from '../components/horarios';
 
 const HORAS = HORAS_GRILLA;
 const POR_PAGINA = 10;
 
-type ModalMode = 'ver' | 'editar' | null;
+type ModalMode = 'ver' | 'editar' | 'cancelar' | null;
 
 function addDias(fechaIso: string, dias: number): string {
   const d = new Date(`${fechaIso}T00:00:00`);
   d.setDate(d.getDate() + dias);
-  return d.toISOString().slice(0, 10);
+  return fechaLocalIso(d);
 }
 
 function lunesDeLaSemana(fechaIso: string): string[] {
@@ -31,7 +32,7 @@ function lunesDeLaSemana(fechaIso: string): string[] {
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date(lunes);
     d.setDate(lunes.getDate() + i);
-    return d.toISOString().slice(0, 10);
+    return fechaLocalIso(d);
   });
 }
 
@@ -52,6 +53,9 @@ const Reservas: React.FC = () => {
   const [busqueda, setBusqueda] = useState('');
   const [modalMode, setModalMode] = useState<ModalMode>(null);
   const [seleccion, setSeleccion] = useState<Reserva | null>(null);
+  const [pagosSeleccion, setPagosSeleccion] = useState<Pago[] | null>(null);
+  const [motivo, setMotivo] = useState('');
+  const [errorModal, setErrorModal] = useState<string | null>(null);
   const [pagina, setPagina] = useState(1);
   const [semanaItems, setSemanaItems] = useState<Reserva[]>([]);
   const [cargandoSemana, setCargandoSemana] = useState(false);
@@ -112,13 +116,17 @@ const Reservas: React.FC = () => {
   const paginaActual = Math.min(pagina, totalPaginas);
   const paginadas = filtradas.slice((paginaActual - 1) * POR_PAGINA, paginaActual * POR_PAGINA);
 
-  const abrirVer = (r: Reserva) => { setSeleccion(r); setModalMode('ver'); };
-  const abrirEditar = (r: Reserva) => { setSeleccion({ ...r }); setModalMode('editar'); };
-  const cerrarModal = () => { setModalMode(null); setSeleccion(null); };
+  const abrirVer = (r: Reserva) => {
+    setSeleccion(r); setModalMode('ver'); setPagosSeleccion(null);
+    pagosApi.getByReserva(r.idReserva).then(setPagosSeleccion).catch(() => setPagosSeleccion([]));
+  };
+  const abrirEditar = (r: Reserva) => { setSeleccion({ ...r }); setErrorModal(null); setModalMode('editar'); };
+  const abrirCancelar = (r: Reserva) => { setSeleccion(r); setMotivo(''); setErrorModal(null); setModalMode('cancelar'); };
+  const cerrarModal = () => { setModalMode(null); setSeleccion(null); setErrorModal(null); };
 
   const guardarEdicion = async () => {
     if (!seleccion) return;
-    setError(null);
+    setErrorModal(null);
     try {
       await reservasApi.update(seleccion.idReserva, {
         idCancha: seleccion.idCancha,
@@ -130,18 +138,19 @@ const Reservas: React.FC = () => {
       cerrarModal();
       cargar();
     } catch (e) {
-      setError(e instanceof ApiError ? e.message : 'Error al guardar la reserva.');
+      setErrorModal(e instanceof ApiError ? e.message : 'Error al guardar la reserva.');
     }
   };
 
-  const cancelarReserva = async (r: Reserva) => {
-    if (!window.confirm(`¿Confirma cancelar la reserva de ${r.clienteNombre}?`)) return;
-    setError(null);
+  const confirmarCancelacion = async () => {
+    if (!seleccion) return;
+    setErrorModal(null);
     try {
-      await reservasApi.cancelar(r.idReserva, null);
+      await reservasApi.cancelar(seleccion.idReserva, motivo.trim() || null);
+      cerrarModal();
       cargar();
     } catch (e) {
-      setError(e instanceof ApiError ? e.message : 'Error al cancelar la reserva.');
+      setErrorModal(e instanceof ApiError ? e.message : 'Error al cancelar la reserva.');
     }
   };
 
@@ -249,7 +258,7 @@ const Reservas: React.FC = () => {
                       <div className="d-flex gap-1">
                         <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => abrirVer(r)}>Ver</button>
                         <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => abrirEditar(r)} disabled={r.estadoReserva === 'Cancelada'}>Editar</button>
-                        <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => cancelarReserva(r)} disabled={r.estadoReserva === 'Cancelada'}>Cancelar</button>
+                        <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => abrirCancelar(r)} disabled={r.estadoReserva === 'Cancelada'}>Cancelar</button>
                       </div>
                     </td>
                   </tr>
@@ -383,6 +392,36 @@ const Reservas: React.FC = () => {
           {seleccion.observaciones && (
             <div className="detail-row"><span className="detail-row-label">Observaciones</span><span className="detail-row-value">{seleccion.observaciones}</span></div>
           )}
+          <div className="detail-row"><span className="detail-row-label">Registrada el</span><span className="detail-row-value">{seleccion.fechaCreacion.slice(0, 16).replace('T', ' ')}</span></div>
+          <h4 className="mt-3 mb-2" style={{ fontSize: 14 }}>Pagos registrados</h4>
+          {pagosSeleccion === null && <div className="text-muted-sc" style={{ fontSize: 13 }}>Cargando pagos…</div>}
+          {pagosSeleccion && pagosSeleccion.length === 0 && <div className="text-muted-sc" style={{ fontSize: 13 }}>Todavía no se registraron pagos.</div>}
+          {pagosSeleccion && pagosSeleccion.map((p) => (
+            <div className="detail-row" key={p.idPago}>
+              <span className="detail-row-label">{p.fechaPago} · {p.metodoPago}</span>
+              <span className="detail-row-value">${p.monto.toLocaleString('es-AR')}</span>
+            </div>
+          ))}
+        </Modal>
+      )}
+
+      {modalMode === 'cancelar' && seleccion && (
+        <Modal
+          title="Cancelar reserva"
+          onClose={cerrarModal}
+          footer={
+            <>
+              <button type="button" className="btn btn-sm btn-outline-secondary" onClick={cerrarModal}>Volver</button>
+              <button type="button" className="btn btn-sm btn-danger" onClick={confirmarCancelacion}>Confirmar cancelación</button>
+            </>
+          }
+        >
+          {errorModal && <div className="availability-msg availability-fail mb-2">{errorModal}</div>}
+          <p style={{ fontSize: 13.5 }}>
+            Vas a cancelar la reserva de <strong>{seleccion.clienteNombre}</strong> en {seleccion.canchaNombre}, el {seleccion.fecha} de {seleccion.horaInicio} a {seleccion.horaFin}. El horario queda libre y la cancelación no se puede deshacer.
+          </p>
+          <label className="form-label small text-muted-sc mb-1">Motivo (opcional)</label>
+          <textarea className="form-control form-control-sm" rows={3} placeholder="Ej: lluvia, el cliente avisó que no viene" value={motivo} onChange={(e) => setMotivo(e.target.value)} />
         </Modal>
       )}
 
@@ -397,6 +436,7 @@ const Reservas: React.FC = () => {
             </>
           }
         >
+          {errorModal && <div className="availability-msg availability-fail mb-2">{errorModal}</div>}
           <div className="mb-2">
             <label className="form-label small text-muted-sc mb-1">Cancha</label>
             <select className="form-select form-select-sm" value={seleccion.idCancha} onChange={(e) => setSeleccion({ ...seleccion, idCancha: Number(e.target.value) })}>

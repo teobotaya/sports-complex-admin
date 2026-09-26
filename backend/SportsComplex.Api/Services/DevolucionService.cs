@@ -44,7 +44,7 @@ public class DevolucionService
             IdCancelacion = dto.IdCancelacion,
             MontoDevuelto = dto.MontoDevuelto,
             Metodo = dto.Metodo,
-            Fecha = DateOnly.FromDateTime(DateTime.UtcNow),
+            Fecha = Reloj.Hoy,
             Observaciones = dto.Observaciones
         };
         _db.Devoluciones.Add(devolucion);

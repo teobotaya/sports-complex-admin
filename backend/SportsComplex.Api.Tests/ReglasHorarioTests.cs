@@ -55,3 +55,29 @@ public class ReglasHorarioTests
         Assert.Equal(new TimeOnly(19, 0), siguiente.HoraInicio);
     }
 }
+
+public class RelojYPagosTests
+{
+    [Fact]
+    public void Reloj_Usa_Hora_De_Argentina()
+    {
+        var diferencia = DateTime.UtcNow - Reloj.Ahora;
+        Assert.InRange(diferencia.TotalHours, 2.9, 3.1);
+    }
+
+    [Fact]
+    public async Task Pagos_GetAll_Filtra_Por_Fecha()
+    {
+        await using var db = TestDbFactory.Create();
+        var cancha = new Cancha { Nombre = "Cancha 1", TipoSuperficie = "Sintetico", PrecioPorHora = 10000, Activa = true };
+        var cliente = new Cliente { NombreCompleto = "Ana", Telefono = "1", FechaAlta = Reloj.Hoy };
+        var reserva = new Reserva { Cancha = cancha, Cliente = cliente, Fecha = new DateOnly(2026, 9, 1), HoraInicio = new TimeOnly(18, 0), HoraFin = new TimeOnly(19, 0), EstadoReserva = "Confirmada", EstadoPago = "Pendiente", FechaCreacion = Reloj.Ahora };
+        db.Reservas.Add(reserva);
+        db.Pagos.Add(new Pago { Reserva = reserva, Monto = 5000, MetodoPago = "Efectivo", FechaPago = new DateOnly(2026, 9, 1) });
+        db.Pagos.Add(new Pago { Reserva = reserva, Monto = 5000, MetodoPago = "Efectivo", FechaPago = new DateOnly(2026, 9, 3) });
+        await db.SaveChangesAsync();
+        var servicio = new PagoService(db);
+        Assert.Equal(2, (await servicio.GetAllAsync(null, null)).Count);
+        Assert.Single(await servicio.GetAllAsync(new DateOnly(2026, 9, 2), new DateOnly(2026, 9, 30)));
+    }
+}

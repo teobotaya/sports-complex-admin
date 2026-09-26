@@ -34,21 +34,21 @@ const ClienteDetalle: React.FC = () => {
       reservasApi.getAll({ idCliente }),
       cancelacionesApi.getAll(),
       canchasApi.getAll(),
+      pagosApi.getAll(),
     ])
-      .then(async ([c, reservas, cancelaciones, canchas]) => {
+      .then(([c, reservas, cancelaciones, canchas, pagos]) => {
         setCliente(c);
         setHistorial(reservas.sort((a, b) => b.fecha.localeCompare(a.fecha)));
         setCancelacionesCliente(cancelaciones.filter((cc) => reservas.some((r) => r.idReserva === cc.idReserva)));
 
         const conDeuda = reservas.filter((r) => r.estadoReserva !== 'Cancelada' && r.estadoPago !== 'Abonado');
-        const saldos = await Promise.all(conDeuda.map(async (r) => {
+        const saldos = conDeuda.map((r) => {
           const cancha = canchas.find((ca) => ca.idCancha === r.idCancha);
           const horas = (new Date(`2000-01-01T${r.horaFin}`).getTime() - new Date(`2000-01-01T${r.horaInicio}`).getTime()) / 3600000;
           const totalEsperado = (cancha?.precioPorHora ?? 0) * horas;
-          const pagos = await pagosApi.getByReserva(r.idReserva);
-          const totalPagado = pagos.reduce((sum, p) => sum + p.monto, 0);
+          const totalPagado = pagos.filter((p) => p.idReserva === r.idReserva).reduce((sum, p) => sum + p.monto, 0);
           return { reserva: r, saldoPendiente: totalEsperado - totalPagado };
-        }));
+        });
         setSaldosPendientes(saldos.filter((s) => s.saldoPendiente > 0));
       })
       .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar el cliente.'))

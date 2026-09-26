@@ -17,6 +17,10 @@ public class PagosController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<List<PagoDto>>> GetAll([FromQuery] DateOnly? desde, [FromQuery] DateOnly? hasta) =>
+        Ok(await _service.GetAllAsync(desde, hasta));
+
     [HttpGet("reserva/{idReserva:int}")]
     public async Task<ActionResult<List<PagoDto>>> GetByReserva(int idReserva) =>
         Ok(await _service.GetByReservaAsync(idReserva));

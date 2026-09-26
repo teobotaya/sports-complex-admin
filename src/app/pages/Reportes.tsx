@@ -6,6 +6,7 @@ import { isoDate } from '../../data/mock';
 import { reportesApi, ReporteOcupacion, ReporteIngresos, ReporteDeudor } from '../api/notificaciones';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
+import OcupacionTabla from '../components/OcupacionTabla';
 
 const Reportes: React.FC = () => {
   const [desde, setDesde] = useState(isoDate(-30));
@@ -73,7 +74,7 @@ const Reportes: React.FC = () => {
               <div className="sc-card h-100">
                 <div className="sc-card-header"><h2>Ocupación por cancha</h2></div>
                 <div className="sc-card-body">
-                  <BarChart data={ocupacion.map((o) => ({ label: o.cancha, value: o.horasUtilizadas }))} formatValue={(v) => `${v} hs`} />
+                  <OcupacionTabla data={ocupacion} />
                 </div>
               </div>
             </div>

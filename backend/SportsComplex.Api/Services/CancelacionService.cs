@@ -35,7 +35,7 @@ public class CancelacionService
             IdReserva = idReserva,
             IdUsuario = idUsuario,
             Motivo = dto.Motivo,
-            FechaCancelacion = DateTime.UtcNow
+            FechaCancelacion = Reloj.Ahora
         };
         _db.Cancelaciones.Add(cancelacion);
         await _db.SaveChangesAsync();

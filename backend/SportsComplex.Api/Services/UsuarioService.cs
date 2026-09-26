@@ -44,6 +44,10 @@ public class UsuarioService
 
     public async Task<UsuarioDto> CreateAsync(CrearUsuarioDto dto)
     {
+        if (string.IsNullOrWhiteSpace(dto.NombreCompleto) || string.IsNullOrWhiteSpace(dto.Username))
+            throw new BusinessRuleException("El nombre completo y el nombre de usuario son obligatorios.");
+        if (string.IsNullOrWhiteSpace(dto.Password) || dto.Password.Length < 8)
+            throw new BusinessRuleException("La contraseña debe tener al menos 8 caracteres.");
         if (!RolesValidos.Contains(dto.Rol))
             throw new BusinessRuleException("El rol debe ser 'administrador' o 'empleado'.");
 
@@ -56,7 +60,7 @@ public class UsuarioService
             Username = dto.Username,
             Rol = dto.Rol,
             Activo = true,
-            FechaCreacion = DateTime.UtcNow
+            FechaCreacion = Reloj.Ahora
         };
         usuario.PasswordHash = _passwordHasher.HashPassword(usuario, dto.Password);
 
@@ -67,6 +71,8 @@ public class UsuarioService
 
     public async Task<UsuarioDto> UpdateAsync(int id, ActualizarUsuarioDto dto)
     {
+        if (string.IsNullOrWhiteSpace(dto.NombreCompleto))
+            throw new BusinessRuleException("El nombre completo es obligatorio.");
         if (!RolesValidos.Contains(dto.Rol))
             throw new BusinessRuleException("El rol debe ser 'administrador' o 'empleado'.");
 

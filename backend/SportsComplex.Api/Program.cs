@@ -82,6 +82,7 @@ app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {
+    await DbBootstrap.EnsureDatabaseAsync(scope.ServiceProvider, app.Logger);
     await DbBootstrap.EnsureAdminUsuarioAsync(scope.ServiceProvider, app.Configuration);
 }
 

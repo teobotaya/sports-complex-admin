@@ -7,6 +7,11 @@ namespace SportsComplex.Api.Common;
 /// </summary>
 public static class ReglasHorario
 {
+    /// <summary>Horario de atención del complejo: primer turno 08:00, último turno termina 22:00.</summary>
+    public const int HoraApertura = 8;
+    public const int HoraCierre = 22;
+    public const int HorasPorDia = HoraCierre - HoraApertura;
+
     public static bool EsHoraEntera(TimeOnly hora) =>
         hora.Minute == 0 && hora.Second == 0 && hora.Millisecond == 0;
 

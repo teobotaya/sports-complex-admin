@@ -35,13 +35,11 @@ const Pagos: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const [todasReservas, todasCanchas] = await Promise.all([reservasApi.getAll(), canchasApi.getAll()]);
-      const pagosPorReserva = await Promise.all(
-        todasReservas.map((r) => pagosApi.getByReserva(r.idReserva).then((ps) => ps.map((p) => ({ ...p, reserva: r }))))
-      );
+      const [todasReservas, todasCanchas, todosPagos] = await Promise.all([reservasApi.getAll(), canchasApi.getAll(), pagosApi.getAll()]);
+      const porId = new Map(todasReservas.map((r) => [r.idReserva, r]));
       setReservas(todasReservas);
       setCanchas(todasCanchas);
-      setPagos(pagosPorReserva.flat().sort((a, b) => b.fechaPago.localeCompare(a.fechaPago)));
+      setPagos(todosPagos.map((p) => ({ ...p, reserva: porId.get(p.idReserva) })) as PagoConReserva[]);
     } catch (e) {
       setError(e instanceof ApiError ? e.message : 'Error al cargar pagos.');
     } finally {

@@ -15,6 +15,17 @@ public class PagoService
         _db = db;
     }
 
+    /// <summary>Todos los pagos, opcionalmente dentro de un rango de fechas de pago.
+    /// Evita que el frontend tenga que pedir los pagos reserva por reserva.</summary>
+    public async Task<List<PagoDto>> GetAllAsync(DateOnly? desde, DateOnly? hasta)
+    {
+        var query = _db.Pagos.AsQueryable();
+        if (desde.HasValue) query = query.Where(p => p.FechaPago >= desde.Value);
+        if (hasta.HasValue) query = query.Where(p => p.FechaPago <= hasta.Value);
+        return await query.OrderByDescending(p => p.FechaPago).ThenByDescending(p => p.IdPago)
+            .Select(p => ToDto(p)).ToListAsync();
+    }
+
     public async Task<List<PagoDto>> GetByReservaAsync(int idReserva)
     {
         return await _db.Pagos.Where(p => p.IdReserva == idReserva)
@@ -40,7 +51,7 @@ public class PagoService
             IdReserva = dto.IdReserva,
             Monto = dto.Monto,
             MetodoPago = dto.MetodoPago,
-            FechaPago = DateOnly.FromDateTime(DateTime.UtcNow),
+            FechaPago = Reloj.Hoy,
             Observaciones = dto.Observaciones
         };
         _db.Pagos.Add(pago);

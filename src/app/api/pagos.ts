@@ -17,6 +17,13 @@ export interface CrearPagoInput {
 }
 
 export const pagosApi = {
+  getAll: (desde?: string, hasta?: string) => {
+    const qs = new URLSearchParams();
+    if (desde) qs.set('desde', desde);
+    if (hasta) qs.set('hasta', hasta);
+    const q = qs.toString();
+    return api.get<Pago[]>(`/pagos${q ? `?${q}` : ''}`);
+  },
   getByReserva: (idReserva: number) => api.get<Pago[]>(`/pagos/reserva/${idReserva}`),
   create: (dto: CrearPagoInput) => api.post<Pago>('/pagos', dto),
 };

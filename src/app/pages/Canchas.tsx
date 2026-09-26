@@ -5,10 +5,13 @@ import StatusBadge from '../components/StatusBadge';
 import Modal from '../components/Modal';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
+import { useAuth } from '../context/AuthContext';
 
 const vacio = { nombre: '', tipoSuperficie: '', precioPorHora: 0 };
 
 const Canchas: React.FC = () => {
+  const { usuario } = useAuth();
+  const esAdmin = usuario?.rol === 'administrador';
   const history = useHistory();
   const [canchas, setCanchas] = useState<Cancha[]>([]);
   const [loading, setLoading] = useState(true);
@@ -67,9 +70,11 @@ const Canchas: React.FC = () => {
         title="Canchas"
         subtitle="Canchas disponibles en el complejo"
         action={
-          <button type="button" className="btn btn-sc-primary text-white" onClick={() => setCreando(true)}>
-            Agregar cancha
-          </button>
+          esAdmin ? (
+            <button type="button" className="btn btn-sc-primary text-white" onClick={() => setCreando(true)}>
+              Agregar cancha
+            </button>
+          ) : undefined
         }
       />
 
@@ -88,7 +93,7 @@ const Canchas: React.FC = () => {
                 <div className="detail-row"><span className="detail-row-label">Precio/hora</span><span className="detail-row-value">${c.precioPorHora.toLocaleString('es-AR')}</span></div>
                 <div className="d-flex gap-2 mt-3">
                   <button type="button" className="btn btn-sm btn-outline-secondary flex-fill" onClick={() => history.push(`/reservas?cancha=${c.idCancha}`)}>Ver agenda</button>
-                  <button type="button" className="btn btn-sm btn-sc-primary text-white flex-fill" onClick={() => setEditando({ ...c })}>Editar</button>
+                  {esAdmin && <button type="button" className="btn btn-sm btn-sc-primary text-white flex-fill" onClick={() => setEditando({ ...c })}>Editar</button>}
                 </div>
               </div>
             </div>

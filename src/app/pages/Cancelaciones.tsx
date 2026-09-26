@@ -8,6 +8,12 @@ import { reservasApi, Reserva } from '../api/reservas';
 import { cancelacionesApi, Cancelacion, devolucionesApi, Devolucion } from '../api/pagos';
 import { pagosApi } from '../api/pagos';
 import { ApiError } from '../api/client';
+import { fechaLocalIso } from '../../data/mock';
+
+// Fecha AAAA-MM-DD de la cancelación en hora local (la API la envía con hora).
+function fechaLocal(valor: string): string {
+  return fechaLocalIso(new Date(valor));
+}
 
 interface Fila {
   cancelacion: Cancelacion;
@@ -28,23 +34,18 @@ const Cancelaciones: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const [cancelaciones, devoluciones, reservasCanceladas] = await Promise.all([
+      const [cancelaciones, devoluciones, reservasCanceladas, pagos] = await Promise.all([
         cancelacionesApi.getAll(),
         devolucionesApi.getAll(),
         reservasApi.getAll({ estado: 'Cancelada' }),
+        pagosApi.getAll(),
       ]);
-      const filasConPagos = await Promise.all(
-        cancelaciones.map(async (c) => {
-          const reserva = reservasCanceladas.find((r) => r.idReserva === c.idReserva);
-          const pagos = await pagosApi.getByReserva(c.idReserva);
-          return {
-            cancelacion: c,
-            reserva,
-            totalPagado: pagos.reduce((sum, p) => sum + p.monto, 0),
-            devolucion: devoluciones.find((d) => d.idCancelacion === c.idCancelacion),
-          };
-        })
-      );
+      const filasConPagos = cancelaciones.map((c) => ({
+        cancelacion: c,
+        reserva: reservasCanceladas.find((r) => r.idReserva === c.idReserva),
+        totalPagado: pagos.filter((p) => p.idReserva === c.idReserva).reduce((sum, p) => sum + p.monto, 0),
+        devolucion: devoluciones.find((d) => d.idCancelacion === c.idCancelacion),
+      }));
       setFilas(filasConPagos.sort((a, b) => b.cancelacion.fechaCancelacion.localeCompare(a.cancelacion.fechaCancelacion)));
     } catch (e) {
       setError(e instanceof ApiError ? e.message : 'Error al cargar cancelaciones.');
@@ -54,6 +55,19 @@ const Cancelaciones: React.FC = () => {
   };
 
   useEffect(() => { cargar(); }, []);
+
+  // Filtros del historial: por fecha de cancelación y por cliente.
+  const [desde, setDesde] = useState('');
+  const [hasta, setHasta] = useState('');
+  const [busqueda, setBusqueda] = useState('');
+  const filtradas = filas.filter((f) => {
+    const fecha = fechaLocal(f.cancelacion.fechaCancelacion);
+    if (desde && fecha < desde) return false;
+    if (hasta && fecha > hasta) return false;
+    const q = busqueda.trim().toLowerCase();
+    if (q && !(f.reserva?.clienteNombre ?? '').toLowerCase().includes(q)) return false;
+    return true;
+  });
 
   const [devolviendo, setDevolviendo] = useState<Fila | null>(null);
   const [metodoDevolucion, setMetodoDevolucion] = useState('Efectivo');
@@ -86,6 +100,25 @@ const Cancelaciones: React.FC = () => {
 
       {error && <div className="availability-msg availability-fail mb-3">{error}</div>}
 
+      <div className="sc-card mb-3">
+        <div className="sc-card-body">
+          <div className="row g-2 align-items-end">
+            <div className="col-6 col-md-3">
+              <label htmlFor="canc-desde" className="form-label small text-muted-sc mb-1">Cancelada desde</label>
+              <input id="canc-desde" type="date" className="form-control form-control-sm" value={desde} onChange={(e) => setDesde(e.target.value)} />
+            </div>
+            <div className="col-6 col-md-3">
+              <label htmlFor="canc-hasta" className="form-label small text-muted-sc mb-1">Hasta</label>
+              <input id="canc-hasta" type="date" className="form-control form-control-sm" value={hasta} onChange={(e) => setHasta(e.target.value)} />
+            </div>
+            <div className="col-12 col-md-4">
+              <label htmlFor="canc-cliente" className="form-label small text-muted-sc mb-1">Buscar cliente</label>
+              <input id="canc-cliente" type="text" className="form-control form-control-sm" placeholder="Nombre del cliente" value={busqueda} onChange={(e) => setBusqueda(e.target.value)} />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="sc-card">
         {loading ? (
           <div className="text-muted-sc p-3">Cargando…</div>
@@ -105,6 +138,13 @@ const Cancelaciones: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
+                {filas.length > 0 && filtradas.length === 0 && (
+                  <tr>
+                    <td colSpan={8}>
+                      <EmptyState title="Sin resultados" message="Ninguna cancelación coincide con los filtros." />
+                    </td>
+                  </tr>
+                )}
                 {filas.length === 0 && (
                   <tr>
                     <td colSpan={8}>
@@ -117,7 +157,7 @@ const Cancelaciones: React.FC = () => {
                     </td>
                   </tr>
                 )}
-                {filas.map((f) => (
+                {filtradas.map((f) => (
                   <tr key={f.cancelacion.idCancelacion}>
                     <td>#{f.cancelacion.idReserva}</td>
                     <td>{f.reserva?.clienteNombre ?? '—'}</td>

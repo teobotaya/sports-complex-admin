@@ -43,7 +43,7 @@ public class ClienteService
             NombreCompleto = dto.NombreCompleto,
             Telefono = dto.Telefono,
             Observaciones = dto.Observaciones,
-            FechaAlta = DateOnly.FromDateTime(DateTime.UtcNow)
+            FechaAlta = Reloj.Hoy
         };
         _db.Clientes.Add(cliente);
         await _db.SaveChangesAsync();

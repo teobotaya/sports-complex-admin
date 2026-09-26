@@ -2,7 +2,7 @@
 // No se cobran fracciones de hora; las llegadas tarde o temprano se anotan en Observaciones.
 
 export const HORA_APERTURA = 8; // primer turno 08:00
-export const HORA_CIERRE = 23; // último turno termina 23:00
+export const HORA_CIERRE = 22; // último turno termina 22:00 (mismo horario que tenía la grilla original: 08 a 21 hs)
 
 export const fmtHora = (h: number): string => `${String(h).padStart(2, '0')}:00`;
 

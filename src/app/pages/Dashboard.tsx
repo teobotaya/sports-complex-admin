@@ -37,8 +37,9 @@ const Dashboard: React.FC = () => {
         setCanchas(ca);
         setClientes(cl);
         setReservasTotales(todas);
-        const pagosHoy = await Promise.all(hoyRes.map((r) => pagosApi.getByReserva(r.idReserva)));
-        setIngresosHoy(pagosHoy.flat().filter((p) => p.fechaPago === hoy).reduce((acc, p) => acc + p.monto, 0));
+        // Todos los pagos cobrados hoy (también señas de reservas de otros días).
+        const pagosHoy = await pagosApi.getAll(hoy, hoy);
+        setIngresosHoy(pagosHoy.reduce((acc, p) => acc + p.monto, 0));
       })
       .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar el dashboard.'))
       .finally(() => setLoading(false));

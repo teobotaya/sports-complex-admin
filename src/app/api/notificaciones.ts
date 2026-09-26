@@ -14,7 +14,7 @@ export const notificacionesApi = {
   marcarTodasLeidas: () => api.post<void>('/notificaciones/leer-todas'),
 };
 
-export interface ReporteOcupacion { idCancha: number; cancha: string; horasUtilizadas: number; }
+export interface ReporteOcupacion { idCancha: number; cancha: string; horasUtilizadas: number; horasDisponibles: number; }
 export interface ReporteIngresos { metodoPago: string; total: number; }
 export interface ReporteDeudor { idCliente: number; cliente: string; idReserva: number; fecha: string; saldoPendiente: number; }
 

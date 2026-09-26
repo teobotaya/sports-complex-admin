@@ -59,7 +59,7 @@ public class ReservaService
             EstadoReserva = "Confirmada",
             EstadoPago = "Pendiente",
             Observaciones = dto.Observaciones,
-            FechaCreacion = DateTime.UtcNow
+            FechaCreacion = Reloj.Ahora
         };
         _db.Reservas.Add(reserva);
         await _db.SaveChangesAsync();

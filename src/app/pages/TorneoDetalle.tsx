@@ -4,7 +4,8 @@ import PageHeader from '../components/PageHeader';
 import StatusBadge from '../components/StatusBadge';
 import Modal from '../components/Modal';
 import EmptyState from '../components/EmptyState';
-import { torneosApi, equiposApi, partidosApi, Torneo, Equipo, Partido, Posicion } from '../api/torneos';
+import { torneosApi, equiposApi, partidosApi, Torneo, Equipo, Partido, Posicion, ActualizarTorneoInput } from '../api/torneos';
+import { useAuth } from '../context/AuthContext';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
 import { opcionesInicio } from '../components/horarios';
@@ -29,6 +30,27 @@ const TorneoDetalle: React.FC = () => {
   const [cargandoResultado, setCargandoResultado] = useState<Partido | null>(null);
   const [golesLocal, setGolesLocal] = useState('');
   const [golesVisitante, setGolesVisitante] = useState('');
+  const { usuario } = useAuth();
+  const esAdmin = usuario?.rol === 'administrador';
+  const [editandoTorneo, setEditandoTorneo] = useState<ActualizarTorneoInput | null>(null);
+
+  // Solo el administrador edita el torneo; es la forma de pasarlo a «En curso» o «Finalizado».
+  const abrirEdicionTorneo = () => {
+    if (!torneo) return;
+    setError(null);
+    setEditandoTorneo({ nombre: torneo.nombre, categoria: torneo.categoria, fechaInicio: torneo.fechaInicio, fechaFin: torneo.fechaFin, estado: torneo.estado });
+  };
+  const guardarTorneo = async () => {
+    if (!editandoTorneo) return;
+    if (!editandoTorneo.nombre.trim()) { setError('El nombre del torneo es obligatorio.'); return; }
+    try {
+      await torneosApi.update(idTorneo, { ...editandoTorneo, nombre: editandoTorneo.nombre.trim(), categoria: editandoTorneo.categoria?.trim() || null });
+      setEditandoTorneo(null);
+      cargar();
+    } catch (e) {
+      setError(e instanceof ApiError ? e.message : 'Error al guardar el torneo.');
+    }
+  };
 
   const cargar = async () => {
     setLoading(true);
@@ -148,6 +170,7 @@ const TorneoDetalle: React.FC = () => {
         action={
           <div className="d-flex gap-2">
             <button type="button" className="btn btn-outline-secondary" onClick={() => history.push('/torneos')}>Volver</button>
+            {esAdmin && <button type="button" className="btn btn-outline-secondary" onClick={abrirEdicionTorneo}>Editar torneo</button>}
             <button type="button" className="btn btn-sc-primary text-white" onClick={() => setProgramando(true)}>Programar partido</button>
           </div>
         }
@@ -302,6 +325,48 @@ const TorneoDetalle: React.FC = () => {
           </table>
         </div>
       </div>
+
+      {editandoTorneo && (
+        <Modal
+          title="Editar torneo"
+          onClose={() => setEditandoTorneo(null)}
+          footer={
+            <>
+              <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => setEditandoTorneo(null)}>Cancelar</button>
+              <button type="button" className="btn btn-sm btn-sc-primary text-white" onClick={guardarTorneo}>Guardar cambios</button>
+            </>
+          }
+        >
+          {error && <div className="availability-msg availability-fail mb-2">{error}</div>}
+          <div className="mb-2">
+            <label htmlFor="torneo-edit-nombre" className="form-label small text-muted-sc mb-1">Nombre</label>
+            <input id="torneo-edit-nombre" type="text" className="form-control form-control-sm" value={editandoTorneo.nombre} onChange={(e) => setEditandoTorneo({ ...editandoTorneo, nombre: e.target.value })} />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="torneo-edit-categoria" className="form-label small text-muted-sc mb-1">Categoría</label>
+            <input id="torneo-edit-categoria" type="text" className="form-control form-control-sm" value={editandoTorneo.categoria ?? ''} onChange={(e) => setEditandoTorneo({ ...editandoTorneo, categoria: e.target.value })} />
+          </div>
+          <div className="row g-2 mb-2">
+            <div className="col-6">
+              <label htmlFor="torneo-edit-inicio" className="form-label small text-muted-sc mb-1">Fecha de inicio</label>
+              <input id="torneo-edit-inicio" type="date" className="form-control form-control-sm" value={editandoTorneo.fechaInicio} onChange={(e) => setEditandoTorneo({ ...editandoTorneo, fechaInicio: e.target.value })} />
+            </div>
+            <div className="col-6">
+              <label htmlFor="torneo-edit-fin" className="form-label small text-muted-sc mb-1">Fecha de fin</label>
+              <input id="torneo-edit-fin" type="date" className="form-control form-control-sm" value={editandoTorneo.fechaFin} onChange={(e) => setEditandoTorneo({ ...editandoTorneo, fechaFin: e.target.value })} />
+            </div>
+          </div>
+          <div className="mb-2">
+            <label htmlFor="torneo-edit-estado" className="form-label small text-muted-sc mb-1">Estado</label>
+            <select id="torneo-edit-estado" className="form-select form-select-sm" value={editandoTorneo.estado} onChange={(e) => setEditandoTorneo({ ...editandoTorneo, estado: e.target.value as ActualizarTorneoInput['estado'] })}>
+              <option value="Planificado">Planificado</option>
+              <option value="En curso">En curso</option>
+              <option value="Finalizado">Finalizado</option>
+            </select>
+            <div className="text-muted-sc mt-1" style={{ fontSize: 12 }}>Un torneo finalizado ya no permite programar partidos, cargar resultados ni cambiar equipos.</div>
+          </div>
+        </Modal>
+      )}
 
       {agregandoEquipo && (
         <Modal

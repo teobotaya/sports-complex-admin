@@ -28,7 +28,7 @@ public class NotificacionService
     /// pendientes) para el usuario indicado, evitando duplicar la misma alerta ya existente.</summary>
     private async Task GenerarAutomaticasAsync(int idUsuario)
     {
-        var hoy = DateOnly.FromDateTime(DateTime.UtcNow);
+        var hoy = Reloj.Hoy;
         var existentes = await _db.Notificaciones.Where(n => n.IdUsuario == idUsuario)
             .Select(n => n.Mensaje).ToListAsync();
         var nuevas = new List<Entities.Notificacion>();
@@ -78,7 +78,7 @@ public class NotificacionService
         Tipo = tipo,
         Mensaje = mensaje,
         Leida = false,
-        FechaCreacion = DateTime.UtcNow
+        FechaCreacion = Reloj.Ahora
     };
 
     public async Task MarcarLeidaAsync(int idNotificacion, int idUsuario)

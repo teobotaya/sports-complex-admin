@@ -5,6 +5,7 @@ import BarChart from '../components/BarChart';
 import { isoDate } from '../../data/mock';
 import { estadisticasApi, EstadisticasResumen } from '../api/notificaciones';
 import { ApiError } from '../api/client';
+import OcupacionTabla from '../components/OcupacionTabla';
 
 const Estadisticas: React.FC = () => {
   const [desde, setDesde] = useState(isoDate(-30));
@@ -67,7 +68,7 @@ const Estadisticas: React.FC = () => {
               <div className="sc-card h-100">
                 <div className="sc-card-header"><h2>Ocupación de canchas</h2></div>
                 <div className="sc-card-body">
-                  <BarChart data={resumen.ocupacion.map((o) => ({ label: o.cancha, value: o.horasUtilizadas }))} formatValue={(v) => `${v} hs`} />
+                  <OcupacionTabla data={resumen.ocupacion} />
                 </div>
               </div>
             </div>
