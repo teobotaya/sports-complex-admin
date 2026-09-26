@@ -28,6 +28,8 @@ export interface CrearUsuarioInput {
 export interface ActualizarUsuarioInput {
   nombreCompleto: string;
   rol: 'administrador' | 'empleado';
+  /** Opcional: si se completa, reemplaza la contraseña del usuario. */
+  nuevaPassword?: string;
 }
 
 export const usuariosApi = {

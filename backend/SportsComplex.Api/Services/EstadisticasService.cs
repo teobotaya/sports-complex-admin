@@ -29,14 +29,17 @@ public class EstadisticasService
         var canceladas = reservas.Count(r => r.EstadoReserva == "Cancelada");
         var tasaCancelaciones = total == 0 ? 0 : (double)canceladas / total * 100;
 
-        var horariosPico = reservas
+        // Horarios pico y clientes frecuentes se calculan sobre los turnos efectivos (sin canceladas).
+        var efectivas = reservas.Where(r => r.EstadoReserva != "Cancelada").ToList();
+
+        var horariosPico = efectivas
             .GroupBy(r => r.HoraInicio.Hour)
             .Select(g => new HorarioPicoDto(g.Key, g.Count()))
             .OrderByDescending(h => h.CantidadReservas)
             .Take(5)
             .ToList();
 
-        var clientesFrecuentes = reservas
+        var clientesFrecuentes = efectivas
             .GroupBy(r => new { r.IdCliente, Nombre = r.Cliente!.NombreCompleto })
             .Select(g => new ClienteFrecuenteDto(g.Key.IdCliente, g.Key.Nombre, g.Count()))
             .OrderByDescending(c => c.CantidadReservas)

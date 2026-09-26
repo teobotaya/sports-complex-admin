@@ -129,7 +129,7 @@ const Partidos: React.FC = () => {
       </div>
 
       {cargando && (
-        <Modal
+        <Modal error={error}
           title={`Cargar resultado: ${cargando.equipoLocalNombre} vs ${cargando.equipoVisitanteNombre}`}
           onClose={() => setCargando(null)}
           footer={

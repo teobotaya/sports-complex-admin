@@ -1,4 +1,5 @@
 import { api } from './client';
+import { HistorialItem } from './auditoria';
 
 export interface Cliente {
   idCliente: number;
@@ -20,4 +21,5 @@ export const clientesApi = {
   create: (dto: ClienteInput) => api.post<Cliente>('/clientes', dto),
   update: (id: number, dto: ClienteInput) => api.put<Cliente>(`/clientes/${id}`, dto),
   delete: (id: number) => api.delete<void>(`/clientes/${id}`),
+  getHistorial: (id: number) => api.get<HistorialItem[]>(`/clientes/${id}/historial`),
 };

@@ -19,6 +19,13 @@ export const opcionesFin = (inicio: string): string[] => {
   return Array.from({ length: HORA_CIERRE - desde + 1 }, (_, i) => fmtHora(desde + i));
 };
 
+/** Una reserva ocupa la franja si no está cancelada y la franja cae dentro de su horario. */
+export const ocupaFranja = (r: { estadoReserva: string; horaInicio: string; horaFin: string }, hora: string): boolean =>
+  r.estadoReserva !== 'Cancelada' && r.horaInicio.slice(0, 5) <= hora && r.horaFin.slice(0, 5) > hora;
+
+/** Un partido de torneo ocupa la cancha 1 hora desde su hora de inicio. */
+export const partidoEnFranja = (p: { horaInicio: string }, hora: string): boolean => p.horaInicio.slice(0, 5) === hora;
+
 export const esHoraEntera = (hora: string): boolean => /^\d{2}:00(:00)?$/.test(hora);
 
 /** Dado un inicio, sugiere un fin 1 hora después (o conserva el actual si sigue siendo válido). */

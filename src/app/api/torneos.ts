@@ -104,6 +104,8 @@ export const equiposApi = {
 
 export const partidosApi = {
   getById: (id: number) => api.get<Partido>(`/partidos/${id}`),
+  /** Partidos de un día: ocupan la cancha 1 hora desde su hora de inicio. */
+  getByFecha: (fecha: string) => api.get<Partido[]>(`/partidos?fecha=${fecha}`),
   registrarResultado: (id: number, golesLocal: number, golesVisitante: number) =>
     api.post<Partido>(`/partidos/${id}/resultado`, { golesLocal, golesVisitante }),
 };

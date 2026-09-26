@@ -25,7 +25,7 @@ public class UsuariosController : ControllerBase
     public async Task<ActionResult<UsuarioDto>> Create(CrearUsuarioDto dto) => Ok(await _service.CreateAsync(dto));
 
     [HttpPut("{id:int}")]
-    public async Task<ActionResult<UsuarioDto>> Update(int id, ActualizarUsuarioDto dto) => Ok(await _service.UpdateAsync(id, dto));
+    public async Task<ActionResult<UsuarioDto>> Update(int id, ActualizarUsuarioDto dto) => Ok(await _service.UpdateAsync(id, dto, User.GetUserId()));
 
     [HttpPost("{id:int}/desactivar")]
     public async Task<IActionResult> Desactivar(int id)

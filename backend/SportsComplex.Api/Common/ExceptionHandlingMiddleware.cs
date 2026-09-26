@@ -29,6 +29,8 @@ public class ExceptionHandlingMiddleware
                 BusinessRuleException => HttpStatusCode.BadRequest,
                 ConflictException => HttpStatusCode.Conflict,
                 UnauthorizedException => HttpStatusCode.Unauthorized,
+                // Dos personas guardando lo mismo a la vez (ej. el mismo turno): lo frena la base.
+                Microsoft.EntityFrameworkCore.DbUpdateException => HttpStatusCode.Conflict,
                 _ => HttpStatusCode.InternalServerError
             };
 
@@ -40,7 +42,13 @@ public class ExceptionHandlingMiddleware
 
             var payload = JsonSerializer.Serialize(new
             {
-                error = status == HttpStatusCode.InternalServerError ? "Ocurrió un error interno." : ex.Message
+                error = status switch
+                {
+                    HttpStatusCode.InternalServerError => "Ocurrió un error interno.",
+                    _ when ex is Microsoft.EntityFrameworkCore.DbUpdateException =>
+                        "No se pudo guardar porque otro usuario acaba de registrar un dato igual (por ejemplo, el mismo turno). Actualizá la pantalla e intentá de nuevo.",
+                    _ => ex.Message
+                }
             });
 
             await context.Response.WriteAsync(payload);

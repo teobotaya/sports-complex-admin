@@ -139,7 +139,7 @@ const Equipos: React.FC = () => {
       </div>
 
       {verIntegrantesDe && (
-        <Modal title={`Integrantes de ${verIntegrantesDe.nombre}`} onClose={() => setVerIntegrantesDe(null)}>
+        <Modal error={error} title={`Integrantes de ${verIntegrantesDe.nombre}`} onClose={() => setVerIntegrantesDe(null)}>
           <ul className="mb-3" style={{ paddingLeft: 0, listStyle: 'none' }}>
             {integrantes.length === 0 && (
               <li style={{ listStyle: 'none' }}>

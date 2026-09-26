@@ -24,11 +24,21 @@ public static class ReglasHorario
 
         if (fin <= inicio)
             throw new BusinessRuleException("La hora de fin debe ser posterior a la hora de inicio.");
+
+        if (inicio.Hour < HoraApertura || fin > new TimeOnly(HoraCierre, 0))
+            throw new BusinessRuleException(FueraDeHorario);
     }
 
     public static void ValidarInicioPartido(TimeOnly inicio)
     {
         if (!EsHoraEntera(inicio))
             throw new BusinessRuleException("Los partidos solo pueden programarse en horas enteras (por ejemplo 20:00).");
+
+        // Un partido ocupa la cancha 1 hora: el último puede empezar a las 21:00.
+        if (inicio.Hour < HoraApertura || inicio.Hour >= HoraCierre)
+            throw new BusinessRuleException(FueraDeHorario);
     }
+
+    private static string FueraDeHorario =>
+        $"El complejo atiende de {HoraApertura:00}:00 a {HoraCierre:00}:00: el turno debe quedar dentro de ese horario.";
 }

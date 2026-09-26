@@ -26,7 +26,9 @@ public class ReportesController : ControllerBase
         Ok(await _service.GetIngresosAsync(desde, hasta, idCancha));
 
     [HttpGet("deudores")]
-    public async Task<ActionResult<List<ReporteDeudorDto>>> GetDeudores([FromQuery] int? idCancha) => Ok(await _service.GetDeudoresAsync(idCancha));
+    public async Task<ActionResult<List<ReporteDeudorDto>>> GetDeudores(
+        [FromQuery] int? idCancha, [FromQuery] DateOnly? desde, [FromQuery] DateOnly? hasta) =>
+        Ok(await _service.GetDeudoresAsync(idCancha, desde, hasta));
 }
 
 [ApiController]

@@ -59,6 +59,13 @@ public class TorneoService
         var torneo = await _db.Torneos.Include(t => t.Equipos).Include(t => t.Partidos)
             .FirstOrDefaultAsync(t => t.IdTorneo == id) ?? throw new NotFoundException("Torneo no encontrado.");
 
+        // Un torneo finalizado queda cerrado: no vuelve a "Planificado" / "En curso" ni se modifica.
+        if (torneo.Estado == "Finalizado")
+            throw new BusinessRuleException("Un torneo finalizado no puede modificarse.");
+
+        if (torneo.Partidos.Any(p => p.Fecha < dto.FechaInicio || p.Fecha > dto.FechaFin))
+            throw new BusinessRuleException("Hay partidos programados fuera de las nuevas fechas del torneo.");
+
         torneo.Nombre = dto.Nombre;
         torneo.FechaInicio = dto.FechaInicio;
         torneo.FechaFin = dto.FechaFin;

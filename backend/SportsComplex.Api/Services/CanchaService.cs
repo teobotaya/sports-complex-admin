@@ -56,10 +56,26 @@ public class CanchaService
         if (await _db.Canchas.AnyAsync(c => c.Nombre == dto.Nombre && c.IdCancha != id))
             throw new ConflictException("Ya existe una cancha con ese nombre.");
 
+        var cambiaPrecio = cancha.PrecioPorHora != dto.PrecioPorHora;
+
         cancha.Nombre = dto.Nombre;
         cancha.TipoSuperficie = dto.TipoSuperficie;
         cancha.PrecioPorHora = dto.PrecioPorHora;
         cancha.Activa = dto.Activa;
+
+        if (cambiaPrecio)
+        {
+            // El saldo de cada reserva se calcula con el precio vigente de la cancha:
+            // al cambiarlo se recalcula el estado de pago de las reservas de hoy en adelante
+            // (las ya jugadas conservan el estado con el que se cobraron).
+            var hoy = Reloj.Hoy;
+            var reservas = await _db.Reservas.Include(r => r.Pagos)
+                .Where(r => r.IdCancha == id && r.EstadoReserva != "Cancelada" && r.Fecha >= hoy).ToListAsync();
+            foreach (var r in reservas)
+                r.EstadoPago = CalculoPago.Estado(r.Pagos.Sum(p => p.Monto),
+                    CalculoPago.ImporteTotal(r.HoraInicio, r.HoraFin, dto.PrecioPorHora));
+        }
+
         await _db.SaveChangesAsync();
         return ToDto(cancha);
     }

@@ -8,6 +8,8 @@ import { reservasApi, Reserva } from '../api/reservas';
 import { cancelacionesApi, Cancelacion, pagosApi } from '../api/pagos';
 import { canchasApi } from '../api/canchas';
 import { ApiError } from '../api/client';
+import { HistorialItem } from '../api/auditoria';
+import HistorialCambios from '../components/HistorialCambios';
 
 const pct = (part: number, total: number) => (total === 0 ? 0 : Math.round((part / total) * 100));
 
@@ -23,6 +25,7 @@ const ClienteDetalle: React.FC = () => {
   const [historial, setHistorial] = useState<Reserva[]>([]);
   const [cancelacionesCliente, setCancelacionesCliente] = useState<Cancelacion[]>([]);
   const [saldosPendientes, setSaldosPendientes] = useState<SaldoReserva[]>([]);
+  const [cambios, setCambios] = useState<HistorialItem[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -53,6 +56,7 @@ const ClienteDetalle: React.FC = () => {
       })
       .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar el cliente.'))
       .finally(() => setLoading(false));
+    clientesApi.getHistorial(idCliente).then(setCambios).catch(() => setCambios([]));
   }, [id]);
 
   if (loading) return <div className="text-muted-sc p-3">Cargando…</div>;
@@ -67,14 +71,16 @@ const ClienteDetalle: React.FC = () => {
     );
   }
 
-  /* Métricas derivadas en el frontend a partir de las reservas reales del cliente.
-     No se persiste nada ni se modifica la API: sólo se agrupa por los estados existentes. */
+  /* Comportamiento de asistencia: cumplidas (se presentó), ausencias (no se presentó),
+     cancelaciones y turnos todavía por jugar. La asistencia la marca el empleado en cada reserva. */
   const hoy = new Date().toLocaleDateString('sv-SE');
   const total = historial.length;
   const canceladas = historial.filter((r) => r.estadoReserva === 'Cancelada').length;
-  const concretadas = historial.filter((r) => r.estadoReserva === 'Confirmada' && r.fecha < hoy).length;
-  const agendadas = historial.filter((r) => r.estadoReserva === 'Confirmada' && r.fecha >= hoy).length;
-  const pendientes = historial.filter((r) => r.estadoReserva === 'Pendiente').length;
+  const vigentes = historial.filter((r) => r.estadoReserva !== 'Cancelada');
+  const concretadas = vigentes.filter((r) => r.asistencia === 'Presente').length;
+  const ausencias = vigentes.filter((r) => r.asistencia === 'Ausente').length;
+  const agendadas = vigentes.filter((r) => r.fecha > hoy && !r.asistencia).length;
+  const sinRegistrar = vigentes.filter((r) => r.fecha <= hoy && !r.asistencia).length;
   const activas = total - canceladas;
   const abonadas = historial.filter((r) => r.estadoReserva !== 'Cancelada' && r.estadoPago === 'Abonado').length;
   const parciales = historial.filter((r) => r.estadoReserva !== 'Cancelada' && r.estadoPago === 'Parcialmente abonado').length;
@@ -105,7 +111,7 @@ const ClienteDetalle: React.FC = () => {
           </div>
         </div>
         <div className="d-flex gap-2">
-          <StatusBadge label={canceladas > 0 && pct(canceladas, total) >= 40 ? 'Pendiente' : 'Activo'} />
+          <StatusBadge label={(canceladas + ausencias) > 0 && pct(canceladas + ausencias, total) >= 40 ? 'Pendiente' : 'Activo'} />
         </div>
       </div>
 
@@ -115,24 +121,27 @@ const ClienteDetalle: React.FC = () => {
             <div className="sc-card-header"><h2>Comportamiento de reservas</h2><span className="text-muted-sc small">Sobre {total} reserva{total === 1 ? '' : 's'}</span></div>
             <div className="sc-card-body">
               <div className="metric-grid mb-3">
-                <div className="metric-item"><div className="metric-value metric-green">{pct(concretadas, total)}%</div><div className="metric-label">Concretadas</div></div>
-                <div className="metric-item"><div className="metric-value metric-blue">{pct(agendadas, total)}%</div><div className="metric-label">Agendadas</div></div>
-                <div className="metric-item"><div className="metric-value metric-orange">{pct(pendientes, total)}%</div><div className="metric-label">Pendientes</div></div>
+                <div className="metric-item"><div className="metric-value metric-green">{pct(concretadas, total)}%</div><div className="metric-label">Cumplidas</div></div>
+                <div className="metric-item"><div className="metric-value metric-orange">{pct(ausencias, total)}%</div><div className="metric-label">Ausencias</div></div>
                 <div className="metric-item"><div className="metric-value metric-red">{pct(canceladas, total)}%</div><div className="metric-label">Canceladas</div></div>
+                <div className="metric-item"><div className="metric-value metric-blue">{pct(agendadas, total)}%</div><div className="metric-label">Por jugar</div></div>
               </div>
               <div className="stacked-bar">
                 <div className="stacked-seg stacked-seg-green" style={{ width: `${pct(concretadas, total)}%` }} />
-                <div className="stacked-seg stacked-seg-blue" style={{ width: `${pct(agendadas, total)}%` }} />
-                <div className="stacked-seg stacked-seg-orange" style={{ width: `${pct(pendientes, total)}%` }} />
+                <div className="stacked-seg stacked-seg-orange" style={{ width: `${pct(ausencias, total)}%` }} />
                 <div className="stacked-seg stacked-seg-red" style={{ width: `${pct(canceladas, total)}%` }} />
+                <div className="stacked-seg stacked-seg-blue" style={{ width: `${pct(agendadas, total)}%` }} />
               </div>
               <div className="stack-legend">
-                <span className="stack-legend-item"><i className="stack-dot stack-dot-green" />Concretadas <b>{concretadas}</b></span>
-                <span className="stack-legend-item"><i className="stack-dot stack-dot-blue" />Agendadas <b>{agendadas}</b></span>
-                <span className="stack-legend-item"><i className="stack-dot stack-dot-orange" />Pendientes <b>{pendientes}</b></span>
+                <span className="stack-legend-item"><i className="stack-dot stack-dot-green" />Cumplidas <b>{concretadas}</b></span>
+                <span className="stack-legend-item"><i className="stack-dot stack-dot-orange" />Ausencias <b>{ausencias}</b></span>
                 <span className="stack-legend-item"><i className="stack-dot stack-dot-red" />Canceladas <b>{canceladas}</b></span>
+                <span className="stack-legend-item"><i className="stack-dot stack-dot-blue" />Por jugar <b>{agendadas}</b></span>
               </div>
-              <p className="metric-note">Calculado en el momento a partir del historial real del cliente. El sistema no registra asistencia efectiva, por lo que no se muestra un porcentaje de “no presentado”.</p>
+              <p className="metric-note">
+                La asistencia se marca en el detalle de cada reserva (Se presentó / No se presentó).
+                {sinRegistrar > 0 && ` Hay ${sinRegistrar} turno${sinRegistrar === 1 ? '' : 's'} ya jugado${sinRegistrar === 1 ? '' : 's'} sin asistencia registrada.`}
+              </p>
             </div>
           </div>
         </div>
@@ -183,12 +192,12 @@ const ClienteDetalle: React.FC = () => {
             <div className="table-responsive-sc">
               <table className="table-sc mb-0">
                 <thead>
-                  <tr><th>Fecha</th><th>Cancha</th><th>Horario</th><th>Estado</th><th>Pago</th></tr>
+                  <tr><th>Fecha</th><th>Cancha</th><th>Horario</th><th>Estado</th><th>Pago</th><th>Asistencia</th></tr>
                 </thead>
                 <tbody>
                   {historial.length === 0 && (
                     <tr>
-                      <td colSpan={5}>
+                      <td colSpan={6}>
                         <EmptyState
                           title="No hay reservas"
                           message="Este cliente todavía no tiene turnos cargados."
@@ -205,6 +214,7 @@ const ClienteDetalle: React.FC = () => {
                       <td>{r.horaInicio} - {r.horaFin}</td>
                       <td><StatusBadge label={r.estadoReserva} /></td>
                       <td><StatusBadge label={r.estadoPago} /></td>
+                      <td>{r.asistencia ? <StatusBadge label={r.asistencia === 'Presente' ? 'Se presentó' : 'No se presentó'} /> : <span className="text-muted-sc">—</span>}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -237,6 +247,17 @@ const ClienteDetalle: React.FC = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="row g-3 mt-0">
+        <div className="col-lg-12">
+          <div className="sc-card">
+            <div className="sc-card-header"><h2>Historial de cambios de los datos</h2><span className="text-muted-sc small">Quién y cuándo modificó este cliente</span></div>
+            <div className="sc-card-body">
+              <HistorialCambios items={cambios} />
             </div>
           </div>
         </div>

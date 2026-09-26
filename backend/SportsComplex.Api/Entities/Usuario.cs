@@ -13,4 +13,7 @@ public class Usuario
     public ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
     public ICollection<Cancelacion> Cancelaciones { get; set; } = new List<Cancelacion>();
     public ICollection<Notificacion> Notificaciones { get; set; } = new List<Notificacion>();
+    public ICollection<Pago> Pagos { get; set; } = new List<Pago>();
+    public ICollection<Devolucion> Devoluciones { get; set; } = new List<Devolucion>();
+    public ICollection<Auditoria> Auditorias { get; set; } = new List<Auditoria>();
 }

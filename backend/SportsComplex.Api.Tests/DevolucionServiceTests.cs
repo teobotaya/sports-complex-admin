@@ -41,7 +41,7 @@ public class DevolucionServiceTests
         var servicio = new DevolucionService(db);
 
         await Assert.ThrowsAsync<BusinessRuleException>(() =>
-            servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 15000, "Efectivo", null)));
+            servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 15000, "Efectivo", null), 1));
     }
 
     [Fact]
@@ -51,7 +51,7 @@ public class DevolucionServiceTests
         var servicio = new DevolucionService(db);
 
         await Assert.ThrowsAsync<BusinessRuleException>(() =>
-            servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 5000, "Efectivo", null)));
+            servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 5000, "Efectivo", null), 1));
     }
 
     [Fact]
@@ -59,10 +59,10 @@ public class DevolucionServiceTests
     {
         var (db, cancelacion) = await ConCancelacionYPagoAsync(10000);
         var servicio = new DevolucionService(db);
-        await servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 10000, "Efectivo", null));
+        await servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 10000, "Efectivo", null), 1);
 
         await Assert.ThrowsAsync<ConflictException>(() =>
-            servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 5000, "Tarjeta", null)));
+            servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 5000, "Tarjeta", null), 1));
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public class DevolucionServiceTests
         var (db, cancelacion) = await ConCancelacionYPagoAsync(10000);
         var servicio = new DevolucionService(db);
 
-        var devolucion = await servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 10000, "Tarjeta", null));
+        var devolucion = await servicio.RegistrarAsync(new CrearDevolucionDto(cancelacion.IdCancelacion, 10000, "Tarjeta", null), 1);
 
         Assert.Equal("Tarjeta", devolucion.Metodo);
     }

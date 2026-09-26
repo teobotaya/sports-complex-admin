@@ -7,6 +7,10 @@ public class Pago
     public int IdReserva { get; set; }
     public Reserva? Reserva { get; set; }
 
+    // Usuario que registró el cobro (auditoría). Null solo en pagos cargados antes de esta columna.
+    public int? IdUsuario { get; set; }
+    public Usuario? Usuario { get; set; }
+
     public decimal Monto { get; set; }
     public string MetodoPago { get; set; } = string.Empty;
     public DateOnly FechaPago { get; set; }

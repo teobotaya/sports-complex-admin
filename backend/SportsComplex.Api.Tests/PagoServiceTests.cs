@@ -34,7 +34,7 @@ public class PagoServiceTests
         var servicio = new PagoService(db);
 
         await Assert.ThrowsAsync<BusinessRuleException>(() =>
-            servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 0, "Efectivo", null)));
+            servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 0, "Efectivo", null), 1));
     }
 
     [Fact]
@@ -46,7 +46,7 @@ public class PagoServiceTests
         var servicio = new PagoService(db);
 
         await Assert.ThrowsAsync<BusinessRuleException>(() =>
-            servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 5000, "Efectivo", null)));
+            servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 5000, "Efectivo", null), 1));
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public class PagoServiceTests
         var (db, reserva) = await ConReservaAsync(15000);
         var servicio = new PagoService(db);
 
-        await servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 5000, "Efectivo", null));
+        await servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 5000, "Efectivo", null), 1);
 
         var actualizada = await db.Reservas.FindAsync(reserva.IdReserva);
         Assert.Equal("Parcialmente abonado", actualizada!.EstadoPago);
@@ -67,7 +67,7 @@ public class PagoServiceTests
         var (db, reserva) = await ConReservaAsync(15000);
         var servicio = new PagoService(db);
 
-        await servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 15000, "Efectivo", null));
+        await servicio.RegistrarAsync(new CrearPagoDto(reserva.IdReserva, 15000, "Efectivo", null), 1);
 
         var actualizada = await db.Reservas.FindAsync(reserva.IdReserva);
         Assert.Equal("Abonado", actualizada!.EstadoPago);

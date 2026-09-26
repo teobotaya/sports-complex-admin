@@ -69,15 +69,26 @@ public class UsuarioService
         return ToDto(usuario);
     }
 
-    public async Task<UsuarioDto> UpdateAsync(int id, ActualizarUsuarioDto dto)
+    public async Task<UsuarioDto> UpdateAsync(int id, ActualizarUsuarioDto dto, int idUsuarioActual)
     {
         if (string.IsNullOrWhiteSpace(dto.NombreCompleto))
             throw new BusinessRuleException("El nombre completo es obligatorio.");
         if (!RolesValidos.Contains(dto.Rol))
             throw new BusinessRuleException("El rol debe ser 'administrador' o 'empleado'.");
 
+        // Evita que el sistema quede sin administrador: nadie puede quitarse a sí mismo ese rol.
+        if (id == idUsuarioActual && dto.Rol != "administrador")
+            throw new BusinessRuleException("El administrador no puede quitarse a sí mismo el rol de administrador.");
+
         var usuario = await _db.Usuarios.FindAsync(id)
             ?? throw new NotFoundException("Usuario no encontrado.");
+
+        if (!string.IsNullOrEmpty(dto.NuevaPassword))
+        {
+            if (dto.NuevaPassword.Length < 8)
+                throw new BusinessRuleException("La contraseña debe tener al menos 8 caracteres.");
+            usuario.PasswordHash = _passwordHasher.HashPassword(usuario, dto.NuevaPassword);
+        }
 
         usuario.NombreCompleto = dto.NombreCompleto;
         usuario.Rol = dto.Rol;
@@ -105,10 +116,14 @@ public class UsuarioService
         var usuario = await _db.Usuarios.FindAsync(id)
             ?? throw new NotFoundException("Usuario no encontrado.");
 
+        // Si ya operó en el sistema, borrarlo rompería la auditoría: se lo desactiva en su lugar.
         var tieneHistorial = await _db.Reservas.AnyAsync(r => r.IdUsuario == id)
-            || await _db.Cancelaciones.AnyAsync(c => c.IdUsuario == id);
+            || await _db.Cancelaciones.AnyAsync(c => c.IdUsuario == id)
+            || await _db.Pagos.AnyAsync(p => p.IdUsuario == id)
+            || await _db.Devoluciones.AnyAsync(d => d.IdUsuario == id)
+            || await _db.Auditorias.AnyAsync(a => a.IdUsuario == id);
         if (tieneHistorial)
-            throw new BusinessRuleException("No se puede eliminar un usuario con reservas o cancelaciones registradas. Podés desactivarlo en su lugar.");
+            throw new BusinessRuleException("No se puede eliminar un usuario que ya registró operaciones en el sistema. Podés desactivarlo en su lugar.");
 
         var notificaciones = _db.Notificaciones.Where(n => n.IdUsuario == id);
         _db.Notificaciones.RemoveRange(notificaciones);

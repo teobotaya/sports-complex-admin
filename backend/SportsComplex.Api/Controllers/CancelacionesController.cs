@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SportsComplex.Api.Common;
 using SportsComplex.Api.Dtos;
 using SportsComplex.Api.Services;
 
@@ -37,5 +38,5 @@ public class DevolucionesController : ControllerBase
     public async Task<ActionResult<List<DevolucionDto>>> GetAll() => Ok(await _service.GetAllAsync());
 
     [HttpPost]
-    public async Task<ActionResult<DevolucionDto>> Create(CrearDevolucionDto dto) => Ok(await _service.RegistrarAsync(dto));
+    public async Task<ActionResult<DevolucionDto>> Create(CrearDevolucionDto dto) => Ok(await _service.RegistrarAsync(dto, User.GetUserId()));
 }

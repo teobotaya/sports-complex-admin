@@ -327,7 +327,7 @@ const TorneoDetalle: React.FC = () => {
       </div>
 
       {editandoTorneo && (
-        <Modal
+        <Modal error={error}
           title="Editar torneo"
           onClose={() => setEditandoTorneo(null)}
           footer={
@@ -369,7 +369,7 @@ const TorneoDetalle: React.FC = () => {
       )}
 
       {agregandoEquipo && (
-        <Modal
+        <Modal error={error}
           title="Agregar equipo al torneo"
           onClose={() => setAgregandoEquipo(false)}
           confirmClose={!!(nuevoEquipo.nombre || nuevoEquipo.contactoNombre || nuevoEquipo.contactoTelefono)}
@@ -396,7 +396,7 @@ const TorneoDetalle: React.FC = () => {
       )}
 
       {programando && (
-        <Modal
+        <Modal error={error}
           title="Programar partido"
           onClose={() => setProgramando(false)}
           confirmClose={!!(nuevoPartido.idEquipoLocal || nuevoPartido.idEquipoVisitante || nuevoPartido.idCancha || nuevoPartido.fecha || nuevoPartido.horaInicio)}
@@ -443,7 +443,7 @@ const TorneoDetalle: React.FC = () => {
       )}
 
       {cargandoResultado && (
-        <Modal
+        <Modal error={error}
           title={`Cargar resultado: ${cargandoResultado.equipoLocalNombre} vs ${cargandoResultado.equipoVisitanteNombre}`}
           onClose={() => setCargandoResultado(null)}
           footer={

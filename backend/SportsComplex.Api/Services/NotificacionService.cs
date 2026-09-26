@@ -29,53 +29,56 @@ public class NotificacionService
     private async Task GenerarAutomaticasAsync(int idUsuario)
     {
         var hoy = Reloj.Hoy;
-        var existentes = await _db.Notificaciones.Where(n => n.IdUsuario == idUsuario)
-            .Select(n => n.Mensaje).ToListAsync();
+        // Un aviso por evento y usuario: se identifica por tipo + registro de origen (restricción única en la BD).
+        var existentes = (await _db.Notificaciones.Where(n => n.IdUsuario == idUsuario && n.IdReferencia != null)
+            .Select(n => new { n.Tipo, n.IdReferencia }).ToListAsync())
+            .Select(n => (n.Tipo, n.IdReferencia!.Value)).ToHashSet();
         var nuevas = new List<Entities.Notificacion>();
+
+        void Agregar(string tipo, int idReferencia, string mensaje)
+        {
+            if (existentes.Add((tipo, idReferencia)))
+                nuevas.Add(NuevaNotificacion(idUsuario, tipo, idReferencia, mensaje));
+        }
 
         var reservasVencidas = await _db.Reservas
             .Where(r => r.Fecha < hoy && r.EstadoReserva != "Cancelada" && r.EstadoPago != "Abonado")
             .ToListAsync();
         foreach (var r in reservasVencidas)
-        {
-            var mensaje = $"La reserva #{r.IdReserva} del {r.Fecha:yyyy-MM-dd} tiene un pago vencido.";
-            if (!existentes.Contains(mensaje))
-                nuevas.Add(NuevaNotificacion(idUsuario, "pago", mensaje));
-        }
+            Agregar("pago", r.IdReserva, $"La reserva #{r.IdReserva} del {r.Fecha:dd/MM/yyyy} tiene un pago vencido.");
 
         var partidosSinResultado = await _db.Partidos
             .Where(p => p.Fecha < hoy && p.Estado == "Programado")
             .ToListAsync();
         foreach (var p in partidosSinResultado)
-        {
-            var mensaje = $"El partido #{p.IdPartido} del {p.Fecha:yyyy-MM-dd} no tiene resultado cargado.";
-            if (!existentes.Contains(mensaje))
-                nuevas.Add(NuevaNotificacion(idUsuario, "partido", mensaje));
-        }
+            Agregar("partido", p.IdPartido, $"El partido #{p.IdPartido} del {p.Fecha:dd/MM/yyyy} no tiene resultado cargado.");
 
         var cancelacionesConDeuda = await _db.Cancelaciones
-            .Where(c => !_db.Devoluciones.Any(d => d.IdCancelacion == c.IdCancelacion))
+            .Where(c => !_db.Devoluciones.Any(d => d.IdCancelacion == c.IdCancelacion)
+                && _db.Pagos.Any(p => p.IdReserva == c.IdReserva))
             .ToListAsync();
         foreach (var c in cancelacionesConDeuda)
-        {
-            var totalPagado = await _db.Pagos.Where(p => p.IdReserva == c.IdReserva).SumAsync(p => p.Monto);
-            if (totalPagado <= 0) continue;
-            var mensaje = $"La cancelación #{c.IdCancelacion} tiene una devolución pendiente.";
-            if (!existentes.Contains(mensaje))
-                nuevas.Add(NuevaNotificacion(idUsuario, "cancelacion", mensaje));
-        }
+            Agregar("cancelacion", c.IdCancelacion, $"La cancelación #{c.IdCancelacion} tiene una devolución pendiente.");
 
-        if (nuevas.Count > 0)
+        if (nuevas.Count == 0) return;
+
+        _db.Notificaciones.AddRange(nuevas);
+        try
         {
-            _db.Notificaciones.AddRange(nuevas);
             await _db.SaveChangesAsync();
+        }
+        catch (DbUpdateException)
+        {
+            // Otro pedido simultáneo (ej. dos pestañas) ya generó el mismo aviso: se descarta el repetido.
+            foreach (var n in nuevas) _db.Entry(n).State = EntityState.Detached;
         }
     }
 
-    private static Entities.Notificacion NuevaNotificacion(int idUsuario, string tipo, string mensaje) => new()
+    private static Entities.Notificacion NuevaNotificacion(int idUsuario, string tipo, int idReferencia, string mensaje) => new()
     {
         IdUsuario = idUsuario,
         Tipo = tipo,
+        IdReferencia = idReferencia,
         Mensaje = mensaje,
         Leida = false,
         FechaCreacion = Reloj.Ahora

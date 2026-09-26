@@ -17,6 +17,11 @@ public class PartidosController : ControllerBase
         _service = service;
     }
 
+    /// <summary>Partidos de un día (la agenda los muestra como turnos ocupados).</summary>
+    [HttpGet]
+    public async Task<ActionResult<List<PartidoDto>>> GetByFecha([FromQuery] DateOnly fecha) =>
+        Ok(await _service.GetByFechaAsync(fecha));
+
     [HttpGet("{id:int}")]
     public async Task<ActionResult<PartidoDto>> GetById(int id) => Ok(await _service.GetByIdAsync(id));
 

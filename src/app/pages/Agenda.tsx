@@ -5,7 +5,8 @@ import { isoDate } from '../../data/mock';
 import { reservasApi, Reserva } from '../api/reservas';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
-import { HORAS_GRILLA } from '../components/horarios';
+import { HORAS_GRILLA, ocupaFranja, partidoEnFranja } from '../components/horarios';
+import { partidosApi, Partido } from '../api/torneos';
 
 const HORAS = HORAS_GRILLA;
 
@@ -20,19 +21,24 @@ const Agenda: React.FC = () => {
   const [fecha, setFecha] = useState(isoDate(0));
   const [canchas, setCanchas] = useState<Cancha[]>([]);
   const [reservas, setReservas] = useState<Reserva[]>([]);
+  const [partidos, setPartidos] = useState<Partido[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
-    Promise.all([canchasApi.getAll(), reservasApi.getAll({ fecha })])
-      .then(([c, r]) => { setCanchas(c.filter((x) => x.activa)); setReservas(r); })
+    Promise.all([canchasApi.getAll(), reservasApi.getAll({ fecha }), partidosApi.getByFecha(fecha)])
+      .then(([c, r, p]) => { setCanchas(c.filter((x) => x.activa)); setReservas(r); setPartidos(p); })
       .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar la agenda.'))
       .finally(() => setLoading(false));
   }, [fecha]);
 
+  // Las reservas canceladas liberan el horario: no ocupan la grilla.
   const reservaEn = (idCancha: number, hora: string) =>
-    reservas.find((r) => r.idCancha === idCancha && r.horaInicio <= hora && r.horaFin > hora);
+    reservas.find((r) => r.idCancha === idCancha && ocupaFranja(r, hora));
+
+  const partidoEn = (idCancha: number, hora: string) =>
+    partidos.find((p) => p.idCancha === idCancha && partidoEnFranja(p, hora));
 
   const irANuevaReserva = (idCancha: number, hora: string) =>
     history.push(`/nueva-reserva?canchaId=${idCancha}&fecha=${fecha}&hora=${hora}`);
@@ -58,7 +64,7 @@ const Agenda: React.FC = () => {
       <div className="d-flex gap-3 mb-3 no-print" style={{ fontSize: 12.5 }}>
         <span className="d-flex align-items-center gap-1"><span className="status-dot-disponible" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Confirmada</span>
         <span className="d-flex align-items-center gap-1"><span className="status-dot-mantenimiento" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Pendiente</span>
-        <span className="d-flex align-items-center gap-1"><span className="status-dot-ocupada" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Cancelada</span>
+        <span className="d-flex align-items-center gap-1"><span className="status-dot-proxima" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Partido de torneo</span>
         <span className="text-muted-sc">Hacé clic en un horario libre para reservarlo</span>
       </div>
 
@@ -80,11 +86,16 @@ const Agenda: React.FC = () => {
                   {HORAS.map((h) => {
                     const hora = `${String(h).padStart(2, '0')}:00`;
                     const r = reservaEn(c.idCancha, hora);
+                    const p = r ? undefined : partidoEn(c.idCancha, hora);
                     return (
                       <div key={h} className="agenda-cell agenda-slot-wrap">
                         {r ? (
                           <div className={`agenda-slot ${toneClass[r.estadoReserva]}`} title={`${r.clienteNombre} · ${r.horaInicio}-${r.horaFin}`}>
                             {r.clienteNombre}
+                          </div>
+                        ) : p ? (
+                          <div className="agenda-slot agenda-slot-partido" title={`${p.torneoNombre}: ${p.equipoLocalNombre} vs ${p.equipoVisitanteNombre}`}>
+                            {p.equipoLocalNombre} vs {p.equipoVisitanteNombre}
                           </div>
                         ) : (
                           <button type="button" className="agenda-slot agenda-slot-free" onClick={() => irANuevaReserva(c.idCancha, hora)}>

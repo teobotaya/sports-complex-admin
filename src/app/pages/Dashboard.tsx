@@ -13,13 +13,19 @@ import { clientesApi, Cliente } from '../api/clientes';
 import { pagosApi } from '../api/pagos';
 import { ApiError } from '../api/client';
 import { useAuth } from '../context/AuthContext';
+import { HORA_APERTURA, HORA_CIERRE } from '../components/horarios';
 
+// El empleado ve la vista operativa del día; el administrador, el resumen general.
+// (Antes se decidía después de declarar algunos hooks y antes de otros, algo que React no permite.)
 const Dashboard: React.FC = () => {
   const { usuario } = useAuth();
+  if (usuario && usuario.rol !== 'administrador') return <RecepcionistaHome />;
+  return <DashboardAdmin />;
+};
+
+const DashboardAdmin: React.FC = () => {
   const history = useHistory();
   const hoy = isoDate(0);
-
-  if (usuario && usuario.rol !== 'administrador') return <RecepcionistaHome />;
 
   const [reservasHoy, setReservasHoy] = useState<Reserva[]>([]);
   const [canchas, setCanchas] = useState<Cancha[]>([]);
@@ -48,8 +54,9 @@ const Dashboard: React.FC = () => {
   const pagosPendientes = reservasHoy.filter((r) => r.estadoPago !== 'Abonado').length;
   const proximasReservas = [...reservasHoy].sort((a, b) => a.horaInicio.localeCompare(b.horaInicio)).slice(0, 6);
 
-  const demandaHoraria = Array.from({ length: 6 }, (_, i) => {
-    const desde = 9 + i * 2;
+  // Franjas de 2 horas que cubren todo el horario de atención (08 a 22).
+  const demandaHoraria = Array.from({ length: (HORA_CIERRE - HORA_APERTURA) / 2 }, (_, i) => {
+    const desde = HORA_APERTURA + i * 2;
     const hasta = desde + 2;
     const cantidad = reservasHoy.filter((r) => {
       const h = Number(r.horaInicio.slice(0, 2));
@@ -68,7 +75,7 @@ const Dashboard: React.FC = () => {
 
       <div className="row g-3 mb-4">
         <div className="col-6 col-lg-3">
-          <StatCard label="Reservas de hoy" value={reservasHoy.length} hint={`${canchas.length} canchas disponibles`} />
+          <StatCard label="Reservas de hoy" value={reservasHoy.length} hint={`${canchas.filter((c) => c.activa).length} canchas activas`} />
         </div>
         <div className="col-6 col-lg-3">
           <StatCard label="Canchas activas" value={`${canchas.filter((c) => c.activa).length}/${canchas.length}`} hint="Habilitadas para reservar" />

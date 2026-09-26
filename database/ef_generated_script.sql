@@ -412,3 +412,220 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    DROP INDEX [IX_Notificacion_id_usuario] ON [Notificacion];
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    ALTER TABLE [Reserva] ADD [asistencia] nvarchar(10) NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    ALTER TABLE [Pago] ADD [id_usuario] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    ALTER TABLE [Notificacion] ADD [id_referencia] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    ALTER TABLE [Devolucion] ADD [id_usuario] int NULL;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    CREATE TABLE [Auditoria] (
+        [id_auditoria] int NOT NULL IDENTITY,
+        [fecha_hora] datetime2 NOT NULL,
+        [id_usuario] int NULL,
+        [entidad] nvarchar(30) NOT NULL,
+        [id_registro] int NOT NULL,
+        [accion] nvarchar(20) NOT NULL,
+        [detalle] nvarchar(max) NULL,
+        CONSTRAINT [PK_Auditoria] PRIMARY KEY ([id_auditoria]),
+        CONSTRAINT [CK_Auditoria_Accion] CHECK (accion IN ('Alta','Modificación','Baja')),
+        CONSTRAINT [FK_Auditoria_Usuario_id_usuario] FOREIGN KEY ([id_usuario]) REFERENCES [Usuario] ([id_usuario]) ON DELETE NO ACTION
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    CREATE TABLE [Parametro] (
+        [id_parametro] int NOT NULL IDENTITY,
+        [clave] nvarchar(50) NOT NULL,
+        [valor] nvarchar(100) NOT NULL,
+        [descripcion] nvarchar(200) NULL,
+        CONSTRAINT [PK_Parametro] PRIMARY KEY ([id_parametro])
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'id_parametro', N'clave', N'descripcion', N'valor') AND [object_id] = OBJECT_ID(N'[Parametro]'))
+        SET IDENTITY_INSERT [Parametro] ON;
+    EXEC(N'INSERT INTO [Parametro] ([id_parametro], [clave], [descripcion], [valor])
+    VALUES (1, N''minutos_inactividad'', N''Minutos sin actividad antes de cerrar la sesión automáticamente'', N''30'')');
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'id_parametro', N'clave', N'descripcion', N'valor') AND [object_id] = OBJECT_ID(N'[Parametro]'))
+        SET IDENTITY_INSERT [Parametro] OFF;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    EXEC(N'ALTER TABLE [Reserva] ADD CONSTRAINT [CK_Reserva_Asistencia] CHECK (asistencia IS NULL OR asistencia IN (''Presente'',''Ausente''))');
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    CREATE INDEX [IX_Pago_id_usuario] ON [Pago] ([id_usuario]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+
+    UPDATE Notificacion
+    SET id_referencia = TRY_CAST(SUBSTRING(mensaje, CHARINDEX('#', mensaje) + 1,
+            CHARINDEX(' ', mensaje + ' ', CHARINDEX('#', mensaje)) - CHARINDEX('#', mensaje) - 1) AS INT)
+    WHERE CHARINDEX('#', mensaje) > 0;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+
+    ;WITH repetidas AS (
+        SELECT ROW_NUMBER() OVER (PARTITION BY id_usuario, tipo, id_referencia ORDER BY id_notificacion) AS n
+        FROM Notificacion WHERE id_referencia IS NOT NULL)
+    DELETE FROM repetidas WHERE n > 1;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    EXEC(N'CREATE UNIQUE INDEX [UX_Notificacion_Usuario_Evento] ON [Notificacion] ([id_usuario], [tipo], [id_referencia]) WHERE [id_referencia] IS NOT NULL');
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    CREATE INDEX [IX_Devolucion_id_usuario] ON [Devolucion] ([id_usuario]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    CREATE INDEX [IX_Auditoria_Entidad_Registro] ON [Auditoria] ([entidad], [id_registro]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    CREATE INDEX [IX_Auditoria_id_usuario] ON [Auditoria] ([id_usuario]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    CREATE UNIQUE INDEX [IX_Parametro_clave] ON [Parametro] ([clave]);
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    ALTER TABLE [Devolucion] ADD CONSTRAINT [FK_Devolucion_Usuario_id_usuario] FOREIGN KEY ([id_usuario]) REFERENCES [Usuario] ([id_usuario]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    ALTER TABLE [Pago] ADD CONSTRAINT [FK_Pago_Usuario_id_usuario] FOREIGN KEY ([id_usuario]) REFERENCES [Usuario] ([id_usuario]) ON DELETE NO ACTION;
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20260926203834_AuditoriaAsistenciaParametros'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20260926203834_AuditoriaAsistenciaParametros', N'8.0.10');
+END;
+GO
+
+COMMIT;
+GO
+

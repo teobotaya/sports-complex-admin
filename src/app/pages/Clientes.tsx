@@ -166,7 +166,7 @@ const Clientes: React.FC = () => {
       </div>
 
       {editando && (
-        <Modal
+        <Modal error={error}
           title="Editar cliente"
           onClose={() => setEditando(null)}
           footer={
@@ -192,7 +192,7 @@ const Clientes: React.FC = () => {
       )}
 
       {creando && (
-        <Modal
+        <Modal error={error}
           title="Nuevo cliente"
           onClose={() => setCreando(false)}
           confirmClose={!!(nuevo.nombreCompleto || nuevo.telefono || nuevo.observaciones)}

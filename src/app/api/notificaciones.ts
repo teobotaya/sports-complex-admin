@@ -8,6 +8,10 @@ export interface Notificacion {
   fechaCreacion: string;
 }
 
+/** Evento que avisa a la campanita que cambió el estado de los avisos. */
+export const EVENTO_NOTIFICACIONES = 'sc-notificaciones-actualizadas';
+export const avisarCambioNotificaciones = () => window.dispatchEvent(new Event(EVENTO_NOTIFICACIONES));
+
 export const notificacionesApi = {
   getMias: () => api.get<Notificacion[]>('/notificaciones'),
   marcarLeida: (id: number) => api.post<void>(`/notificaciones/${id}/leida`),
@@ -15,7 +19,8 @@ export const notificacionesApi = {
 };
 
 export interface ReporteOcupacion { idCancha: number; cancha: string; horasUtilizadas: number; horasDisponibles: number; }
-export interface ReporteIngresos { metodoPago: string; total: number; }
+/** total = cobrado − devuelto (ingreso neto del período). */
+export interface ReporteIngresos { metodoPago: string; cobrado: number; devuelto: number; total: number; }
 export interface ReporteDeudor { idCliente: number; cliente: string; idReserva: number; fecha: string; saldoPendiente: number; }
 
 export const reportesApi = {
@@ -23,8 +28,14 @@ export const reportesApi = {
     api.get<ReporteOcupacion[]>(`/reportes/ocupacion?desde=${desde}&hasta=${hasta}${idCancha ? `&idCancha=${idCancha}` : ''}`),
   getIngresos: (desde: string, hasta: string, idCancha?: number) =>
     api.get<ReporteIngresos[]>(`/reportes/ingresos?desde=${desde}&hasta=${hasta}${idCancha ? `&idCancha=${idCancha}` : ''}`),
-  getDeudores: (idCancha?: number) =>
-    api.get<ReporteDeudor[]>(`/reportes/deudores${idCancha ? `?idCancha=${idCancha}` : ''}`),
+  getDeudores: (idCancha?: number, desde?: string, hasta?: string) => {
+    const qs = new URLSearchParams();
+    if (idCancha) qs.set('idCancha', String(idCancha));
+    if (desde) qs.set('desde', desde);
+    if (hasta) qs.set('hasta', hasta);
+    const q = qs.toString();
+    return api.get<ReporteDeudor[]>(`/reportes/deudores${q ? `?${q}` : ''}`);
+  },
 };
 
 export interface HorarioPico { hora: number; cantidadReservas: number; }

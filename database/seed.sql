@@ -19,3 +19,10 @@ BEGIN
         ('Cancha 4 - Futbol 7', 'Cesped sintetico', 22000.00, 1);
 END
 GO
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Parametro WHERE clave = 'minutos_inactividad')
+BEGIN
+    INSERT INTO dbo.Parametro (clave, valor, descripcion) VALUES
+        ('minutos_inactividad', '30', N'Minutos sin actividad antes de cerrar la sesión automáticamente');
+END
+GO

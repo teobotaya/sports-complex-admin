@@ -3,7 +3,8 @@
   SCRIPT COMPLETO DE BASE DE DATOS (SQL Server)
   Incluye: creacion de base, tablas, relaciones, restricciones, indices y datos iniciales.
   Generado a partir de database/schema.sql + database/seed.sql para la entrega de Base de Datos.
-  Fecha de generacion: 2026-09-07
+  Fecha de generacion: 2026-09-26 (agrega Auditoria, Parametro, asistencia de reservas,
+  usuario responsable de pagos y devoluciones, y avisos sin duplicados).
 */
 
 /*
@@ -82,6 +83,9 @@ CREATE TABLE dbo.Reserva (
         CHECK (estado_reserva IN ('Confirmada', 'Pendiente', 'Cancelada')),
     estado_pago     VARCHAR(30)   NOT NULL DEFAULT 'Pendiente'
         CHECK (estado_pago IN ('Pendiente', 'Parcialmente abonado', 'Abonado')),
+    -- Asistencia del cliente al turno (NULL = sin registrar). Permite contar las ausencias.
+    asistencia      VARCHAR(10)   NULL
+        CONSTRAINT CK_Reserva_Asistencia CHECK (asistencia IS NULL OR asistencia IN ('Presente', 'Ausente')),
     observaciones   NVARCHAR(MAX) NULL,
     fecha_creacion  DATETIME2     NOT NULL DEFAULT SYSDATETIME(),
     CONSTRAINT FK_Reserva_Cliente FOREIGN KEY (id_cliente) REFERENCES dbo.Cliente(id_cliente),
@@ -107,15 +111,18 @@ GO
 CREATE TABLE dbo.Pago (
     id_pago         INT IDENTITY(1,1) PRIMARY KEY,
     id_reserva      INT           NOT NULL,
+    id_usuario      INT           NULL,     -- usuario que registró el cobro (auditoría)
     monto           DECIMAL(10,2) NOT NULL CHECK (monto > 0),
     metodo_pago     VARCHAR(30)   NOT NULL,
     fecha_pago      DATE          NOT NULL DEFAULT CAST(GETDATE() AS DATE),
     observaciones   NVARCHAR(MAX) NULL,
-    CONSTRAINT FK_Pago_Reserva FOREIGN KEY (id_reserva) REFERENCES dbo.Reserva(id_reserva)
+    CONSTRAINT FK_Pago_Reserva FOREIGN KEY (id_reserva) REFERENCES dbo.Reserva(id_reserva),
+    CONSTRAINT FK_Pago_Usuario FOREIGN KEY (id_usuario) REFERENCES dbo.Usuario(id_usuario)
 );
 GO
 
 CREATE INDEX IX_Pago_Reserva ON dbo.Pago(id_reserva);
+CREATE INDEX IX_Pago_Usuario ON dbo.Pago(id_usuario);
 GO
 
 -- =========================================================
@@ -138,12 +145,17 @@ GO
 CREATE TABLE dbo.Devolucion (
     id_devolucion   INT IDENTITY(1,1) PRIMARY KEY,
     id_cancelacion  INT           NOT NULL UNIQUE,
+    id_usuario      INT           NULL,     -- usuario que registró la devolución (auditoría)
     monto_devuelto  DECIMAL(10,2) NOT NULL CHECK (monto_devuelto > 0),
     metodo          VARCHAR(30)   NOT NULL,
     fecha           DATE          NOT NULL DEFAULT CAST(GETDATE() AS DATE),
     observaciones   NVARCHAR(MAX) NULL,
-    CONSTRAINT FK_Devolucion_Cancelacion FOREIGN KEY (id_cancelacion) REFERENCES dbo.Cancelacion(id_cancelacion)
+    CONSTRAINT FK_Devolucion_Cancelacion FOREIGN KEY (id_cancelacion) REFERENCES dbo.Cancelacion(id_cancelacion),
+    CONSTRAINT FK_Devolucion_Usuario FOREIGN KEY (id_usuario) REFERENCES dbo.Usuario(id_usuario)
 );
+GO
+
+CREATE INDEX IX_Devolucion_Usuario ON dbo.Devolucion(id_usuario);
 GO
 
 -- =========================================================
@@ -153,6 +165,7 @@ CREATE TABLE dbo.Notificacion (
     id_notificacion INT IDENTITY(1,1) PRIMARY KEY,
     id_usuario      INT           NOT NULL,
     tipo            VARCHAR(50)   NOT NULL,
+    id_referencia   INT           NULL,     -- reserva, partido o cancelación que originó el aviso
     mensaje         NVARCHAR(MAX) NOT NULL,
     leida           BIT           NOT NULL DEFAULT 0,
     fecha_creacion  DATETIME2     NOT NULL DEFAULT SYSDATETIME(),
@@ -160,7 +173,10 @@ CREATE TABLE dbo.Notificacion (
 );
 GO
 
-CREATE INDEX IX_Notificacion_Usuario ON dbo.Notificacion(id_usuario);
+-- Regla: no puede haber dos avisos del mismo evento para el mismo usuario.
+CREATE UNIQUE INDEX UX_Notificacion_Usuario_Evento
+    ON dbo.Notificacion (id_usuario, tipo, id_referencia)
+    WHERE id_referencia IS NOT NULL;
 GO
 
 -- =========================================================
@@ -242,6 +258,39 @@ GO
 CREATE INDEX IX_Partido_Torneo ON dbo.Partido(id_torneo);
 GO
 
+-- =========================================================
+-- AUDITORIA
+-- Registro automático de cada alta, modificación o baja (fecha, hora y usuario).
+-- =========================================================
+CREATE TABLE dbo.Auditoria (
+    id_auditoria    INT IDENTITY(1,1) PRIMARY KEY,
+    fecha_hora      DATETIME2     NOT NULL DEFAULT SYSDATETIME(),
+    id_usuario      INT           NULL,     -- NULL: operación del propio sistema
+    entidad         VARCHAR(30)   NOT NULL, -- Reserva, Cliente, Pago...
+    id_registro     INT           NOT NULL,
+    accion          NVARCHAR(20)  NOT NULL
+        CONSTRAINT CK_Auditoria_Accion CHECK (accion IN (N'Alta', N'Modificación', N'Baja')),
+    detalle         NVARCHAR(MAX) NULL,     -- campos modificados: "Hora de fin: 19:00 → 20:00"
+    CONSTRAINT FK_Auditoria_Usuario FOREIGN KEY (id_usuario) REFERENCES dbo.Usuario(id_usuario)
+);
+GO
+
+CREATE INDEX IX_Auditoria_Entidad_Registro ON dbo.Auditoria(entidad, id_registro);
+CREATE INDEX IX_Auditoria_Usuario ON dbo.Auditoria(id_usuario);
+GO
+
+-- =========================================================
+-- PARAMETRO
+-- Parámetros operativos que ajusta el administrador (ej. minutos de inactividad).
+-- =========================================================
+CREATE TABLE dbo.Parametro (
+    id_parametro    INT IDENTITY(1,1) PRIMARY KEY,
+    clave           VARCHAR(50)   NOT NULL UNIQUE,
+    valor           VARCHAR(100)  NOT NULL,
+    descripcion     NVARCHAR(200) NULL
+);
+GO
+
 /*
   Datos iniciales mínimos - Sistema de Gestión Integral para Complejo Deportivo
   Fuente: docs - Estudio de Prefactibilidad ("tres canchas de fútbol cinco y
@@ -261,5 +310,12 @@ BEGIN
         ('Cancha 2 - Futbol 5', 'Cesped sintetico', 15000.00, 1),
         ('Cancha 3 - Futbol 5', 'Cesped sintetico', 15000.00, 1),
         ('Cancha 4 - Futbol 7', 'Cesped sintetico', 22000.00, 1);
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Parametro WHERE clave = 'minutos_inactividad')
+BEGIN
+    INSERT INTO dbo.Parametro (clave, valor, descripcion) VALUES
+        ('minutos_inactividad', '30', N'Minutos sin actividad antes de cerrar la sesión automáticamente');
 END
 GO

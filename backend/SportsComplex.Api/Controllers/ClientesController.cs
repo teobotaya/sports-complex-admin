@@ -11,11 +11,16 @@ namespace SportsComplex.Api.Controllers;
 public class ClientesController : ControllerBase
 {
     private readonly ClienteService _service;
+    private readonly AuditoriaService _auditoria;
 
-    public ClientesController(ClienteService service)
+    public ClientesController(ClienteService service, AuditoriaService auditoria)
     {
         _service = service;
+        _auditoria = auditoria;
     }
+
+    [HttpGet("{id:int}/historial")]
+    public async Task<ActionResult<List<AuditoriaDto>>> Historial(int id) => Ok(await _auditoria.GetHistorialClienteAsync(id));
 
     [HttpGet]
     public async Task<ActionResult<List<ClienteDto>>> GetAll([FromQuery] string? busqueda) =>

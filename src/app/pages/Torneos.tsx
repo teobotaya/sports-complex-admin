@@ -89,7 +89,7 @@ const Torneos: React.FC = () => {
       </div>
 
       {creando && (
-        <Modal
+        <Modal error={error}
           title="Crear torneo"
           onClose={() => setCreando(false)}
           confirmClose={!!(nuevo.nombre || nuevo.categoria || nuevo.fechaInicio || nuevo.fechaFin)}

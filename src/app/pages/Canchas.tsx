@@ -102,7 +102,7 @@ const Canchas: React.FC = () => {
       </div>
 
       {editando && (
-        <Modal
+        <Modal error={error}
           title="Editar cancha"
           onClose={() => setEditando(null)}
           footer={
@@ -135,7 +135,7 @@ const Canchas: React.FC = () => {
       )}
 
       {creando && (
-        <Modal
+        <Modal error={error}
           title="Agregar cancha"
           onClose={() => setCreando(false)}
           confirmClose={!!(nuevo.nombre || nuevo.tipoSuperficie || nuevo.precioPorHora > 0)}

@@ -5,6 +5,7 @@ import Modal from '../components/Modal';
 import { usuariosApi, Usuario } from '../api/usuarios';
 import { useAuth } from '../context/AuthContext';
 import { ApiError } from '../api/client';
+import { parametrosApi, MINUTOS_INACTIVIDAD } from '../api/auditoria';
 
 const vacio = { nombreCompleto: '', username: '', password: '', rol: 'empleado' as Usuario['rol'] };
 
@@ -14,6 +15,27 @@ const Usuarios: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editando, setEditando] = useState<Usuario | null>(null);
+  const [nuevaPassword, setNuevaPassword] = useState('');
+  const [minutos, setMinutos] = useState('');
+  const [msgConfig, setMsgConfig] = useState<string | null>(null);
+
+  useEffect(() => {
+    parametrosApi.getAll()
+      .then((ps) => setMinutos(ps.find((p) => p.clave === MINUTOS_INACTIVIDAD)?.valor ?? '30'))
+      .catch(() => undefined);
+  }, []);
+
+  const guardarMinutos = async () => {
+    setError(null);
+    setMsgConfig(null);
+    try {
+      const p = await parametrosApi.update(MINUTOS_INACTIVIDAD, minutos);
+      setMinutos(p.valor);
+      setMsgConfig(`Guardado: la sesión se cierra tras ${p.valor} minutos sin actividad.`);
+    } catch (e) {
+      setError(e instanceof ApiError ? e.message : 'No se pudo guardar la configuración.');
+    }
+  };
   const [creando, setCreando] = useState(false);
   const [nuevo, setNuevo] = useState(vacio);
 
@@ -52,7 +74,12 @@ const Usuarios: React.FC = () => {
     if (!editando) return;
     setError(null);
     try {
-      await usuariosApi.update(editando.idUsuario, { nombreCompleto: editando.nombreCompleto, rol: editando.rol });
+      await usuariosApi.update(editando.idUsuario, {
+        nombreCompleto: editando.nombreCompleto,
+        rol: editando.rol,
+        nuevaPassword: nuevaPassword || undefined,
+      });
+      setNuevaPassword('');
       setEditando(null);
       cargar();
     } catch (e) {
@@ -90,6 +117,24 @@ const Usuarios: React.FC = () => {
 
       {error && <div className="availability-msg availability-fail mb-3">{error}</div>}
 
+      <div className="sc-card mb-3">
+        <div className="sc-card-header"><h2>Configuración de sesiones</h2></div>
+        <div className="sc-card-body">
+          <div className="row g-2 align-items-end">
+            <div className="col-6 col-md-3">
+              <label htmlFor="cfg-minutos" className="form-label small text-muted-sc mb-1">Cerrar sesión tras (minutos sin actividad)</label>
+              <input id="cfg-minutos" type="number" min={5} max={480} className="form-control form-control-sm" value={minutos} onChange={(e) => setMinutos(e.target.value)} />
+            </div>
+            <div className="col-6 col-md-3">
+              <button type="button" className="btn btn-sm btn-sc-primary text-white" onClick={guardarMinutos}>Guardar</button>
+            </div>
+          </div>
+          <div className="text-muted-sc mt-2" style={{ fontSize: 12.5 }}>
+            {msgConfig ?? 'Entre 5 y 480 minutos. Aplica a todos los usuarios desde su próxima acción en el sistema.'}
+          </div>
+        </div>
+      </div>
+
       <div className="sc-card">
         {loading ? (
           <div className="text-muted-sc p-3">Cargando usuarios…</div>
@@ -116,7 +161,7 @@ const Usuarios: React.FC = () => {
                     <td>{new Date(u.fechaCreacion).toLocaleDateString('es-AR')}</td>
                     <td>
                       <div className="d-flex gap-1">
-                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => setEditando({ ...u })}>Editar</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => { setNuevaPassword(''); setEditando({ ...u }); }}>Editar</button>
                         <button
                           type="button"
                           className="btn btn-sm btn-outline-secondary"
@@ -146,7 +191,7 @@ const Usuarios: React.FC = () => {
       </div>
 
       {editando && (
-        <Modal
+        <Modal error={error}
           title="Editar usuario"
           onClose={() => setEditando(null)}
           footer={
@@ -167,11 +212,16 @@ const Usuarios: React.FC = () => {
               <option value="empleado">Empleado</option>
             </select>
           </div>
+          <div className="mb-2">
+            <label htmlFor="usuario-editar-pass" className="form-label small text-muted-sc mb-1">Nueva contraseña (opcional)</label>
+            <input id="usuario-editar-pass" type="password" className="form-control form-control-sm" placeholder="Dejar vacío para no cambiarla" value={nuevaPassword} onChange={(e) => setNuevaPassword(e.target.value)} />
+            <div className="text-muted-sc mt-1" style={{ fontSize: 12 }}>Mínimo 8 caracteres. Usala si el usuario olvidó su contraseña.</div>
+          </div>
         </Modal>
       )}
 
       {creando && (
-        <Modal
+        <Modal error={error}
           title="Crear usuario"
           onClose={() => setCreando(false)}
           confirmClose={!!(nuevo.nombreCompleto || nuevo.username || nuevo.password)}

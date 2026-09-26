@@ -24,8 +24,10 @@ public class IntegranteService
 
     public async Task<IntegranteDto> AgregarAsync(int idEquipo, CrearIntegranteDto dto)
     {
-        if (!await _db.Equipos.AnyAsync(e => e.IdEquipo == idEquipo))
-            throw new NotFoundException("Equipo no encontrado.");
+        var equipo = await _db.Equipos.Include(e => e.Torneo).FirstOrDefaultAsync(e => e.IdEquipo == idEquipo)
+            ?? throw new NotFoundException("Equipo no encontrado.");
+        if (equipo.Torneo!.Estado == "Finalizado")
+            throw new BusinessRuleException("No pueden modificarse los integrantes de un torneo finalizado.");
 
         if (string.IsNullOrWhiteSpace(dto.NombreCompleto) || string.IsNullOrWhiteSpace(dto.Dni))
             throw new BusinessRuleException("Nombre completo y DNI son obligatorios.");
@@ -41,7 +43,10 @@ public class IntegranteService
 
     public async Task QuitarAsync(int idIntegrante)
     {
-        var integrante = await _db.Integrantes.FindAsync(idIntegrante) ?? throw new NotFoundException("Integrante no encontrado.");
+        var integrante = await _db.Integrantes.Include(i => i.Equipo).ThenInclude(e => e!.Torneo)
+            .FirstOrDefaultAsync(i => i.IdIntegrante == idIntegrante) ?? throw new NotFoundException("Integrante no encontrado.");
+        if (integrante.Equipo!.Torneo!.Estado == "Finalizado")
+            throw new BusinessRuleException("No pueden modificarse los integrantes de un torneo finalizado.");
         _db.Integrantes.Remove(integrante);
         await _db.SaveChangesAsync();
     }

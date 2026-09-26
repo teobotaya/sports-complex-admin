@@ -1400,6 +1400,7 @@ a:hover { color: var(--sc-blue-dark); }
 .agenda-slot-confirmada { background: var(--sc-success); }
 .agenda-slot-pendiente { background: var(--sc-warning); }
 .agenda-slot-cancelada { background: var(--sc-danger); opacity: 0.65; }
+.agenda-slot-partido { background: var(--sc-blue); }
 .agenda-slot-free {
   background: var(--sc-surface-secondary);
   border: 1px dashed var(--sc-border-strong);

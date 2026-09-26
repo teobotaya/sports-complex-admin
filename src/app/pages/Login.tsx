@@ -7,7 +7,12 @@ const Login: React.FC = () => {
   const { usuario, login, loading } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  // Si la sesión se cerró sola (inactividad o usuario desactivado), se explica el motivo.
+  const [error, setError] = useState<string | null>(() => {
+    const motivo = sessionStorage.getItem('sc_motivo_logout');
+    sessionStorage.removeItem('sc_motivo_logout');
+    return motivo;
+  });
 
   if (usuario) return <Redirect to="/" />;
 

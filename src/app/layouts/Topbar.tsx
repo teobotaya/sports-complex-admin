@@ -4,7 +4,7 @@ import { pageTitles } from '../components/navConfig';
 import { IconBell, IconMenu } from '../components/Icons';
 import { todayLabel } from '../../data/mock';
 import { useAuth } from '../context/AuthContext';
-import { notificacionesApi, Notificacion } from '../api/notificaciones';
+import { notificacionesApi, Notificacion, EVENTO_NOTIFICACIONES } from '../api/notificaciones';
 
 interface TopbarProps {
   onToggleSidebar: () => void;
@@ -25,9 +25,13 @@ const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
   const [showNotifs, setShowNotifs] = useState(false);
   const [notificaciones, setNotificaciones] = useState<Notificacion[]>([]);
 
+  // La campanita se actualiza al entrar y cada vez que se marcan avisos como leídos.
   React.useEffect(() => {
     if (!usuario) return;
-    notificacionesApi.getMias().then(setNotificaciones).catch(() => setNotificaciones([]));
+    const recargar = () => notificacionesApi.getMias().then(setNotificaciones).catch(() => setNotificaciones([]));
+    recargar();
+    window.addEventListener(EVENTO_NOTIFICACIONES, recargar);
+    return () => window.removeEventListener(EVENTO_NOTIFICACIONES, recargar);
   }, [usuario]);
 
   const unreadCount = notificaciones.filter((n) => !n.leida).length;

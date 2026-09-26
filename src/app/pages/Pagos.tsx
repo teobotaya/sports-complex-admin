@@ -210,18 +210,19 @@ const Pagos: React.FC = () => {
       )}
 
       {detalle && (
-        <Modal title={`Pago #${detalle.idPago}`} onClose={() => setDetalle(null)}>
+        <Modal error={error} title={`Pago #${detalle.idPago}`} onClose={() => setDetalle(null)}>
           <div className="detail-row"><span className="detail-row-label">Cliente</span><span className="detail-row-value">{detalle.reserva?.clienteNombre ?? '—'}</span></div>
           <div className="detail-row"><span className="detail-row-label">Reserva</span><span className="detail-row-value">#{detalle.idReserva}</span></div>
           <div className="detail-row"><span className="detail-row-label">Monto</span><span className="detail-row-value">${detalle.monto.toLocaleString('es-AR')}</span></div>
           <div className="detail-row"><span className="detail-row-label">Método</span><span className="detail-row-value">{detalle.metodoPago}</span></div>
           <div className="detail-row"><span className="detail-row-label">Fecha</span><span className="detail-row-value">{detalle.fechaPago}</span></div>
+          <div className="detail-row"><span className="detail-row-label">Registrado por</span><span className="detail-row-value">{detalle.registradoPor ?? '—'}</span></div>
           {detalle.reserva && <div className="detail-row"><span className="detail-row-label">Estado reserva</span><span className="detail-row-value"><StatusBadge label={detalle.reserva.estadoPago} /></span></div>}
         </Modal>
       )}
 
       {registrando && (
-        <Modal
+        <Modal error={error}
           title="Registrar pago"
           onClose={() => setRegistrando(false)}
           confirmClose={!!(nuevo.idReserva || nuevo.monto)}

@@ -71,21 +71,35 @@ const Cancelaciones: React.FC = () => {
 
   const [devolviendo, setDevolviendo] = useState<Fila | null>(null);
   const [metodoDevolucion, setMetodoDevolucion] = useState('Efectivo');
+  const [montoDevolucion, setMontoDevolucion] = useState('');
+  const [obsDevolucion, setObsDevolucion] = useState('');
 
   const abrirDevolucion = (fila: Fila) => {
     setMetodoDevolucion('Efectivo');
+    // Por defecto se propone devolver todo lo abonado; se puede bajar (devolución parcial).
+    setMontoDevolucion(String(fila.totalPagado));
+    setObsDevolucion('');
     setDevolviendo(fila);
   };
 
   const confirmarDevolucion = async () => {
     if (!devolviendo || !metodoDevolucion) return;
+    const monto = Number(montoDevolucion);
+    if (!monto || monto <= 0) {
+      setError('Ingresá un monto a devolver mayor a cero.');
+      return;
+    }
+    if (monto > devolviendo.totalPagado) {
+      setError(`El monto no puede superar lo abonado ($${devolviendo.totalPagado.toLocaleString('es-AR')}).`);
+      return;
+    }
     setError(null);
     try {
       await devolucionesApi.create({
         idCancelacion: devolviendo.cancelacion.idCancelacion,
-        montoDevuelto: devolviendo.totalPagado,
+        montoDevuelto: monto,
         metodo: metodoDevolucion,
-        observaciones: null,
+        observaciones: obsDevolucion.trim() || null,
       });
       setDevolviendo(null);
       cargar();
@@ -165,7 +179,15 @@ const Cancelaciones: React.FC = () => {
                     <td>{new Date(f.cancelacion.fechaCancelacion).toLocaleDateString('es-AR')}</td>
                     <td>{f.cancelacion.motivo ?? '—'}</td>
                     <td>{f.totalPagado > 0 ? `$${f.totalPagado.toLocaleString('es-AR')}` : 'Sin pago previo'}</td>
-                    <td><StatusBadge label={f.devolucion ? 'Realizada' : f.totalPagado > 0 ? 'Pendiente' : 'No aplica'} /></td>
+                    <td>
+                      <StatusBadge label={f.devolucion ? 'Realizada' : f.totalPagado > 0 ? 'Pendiente' : 'No aplica'} />
+                      {f.devolucion && (
+                        <div className="text-muted-sc" style={{ fontSize: 12 }}>
+                          ${f.devolucion.montoDevuelto.toLocaleString('es-AR')} · {f.devolucion.metodo}
+                          {f.devolucion.registradoPor ? ` · ${f.devolucion.registradoPor}` : ''}
+                        </div>
+                      )}
+                    </td>
                     <td>
                       {!f.devolucion && f.totalPagado > 0 ? (
                         <button type="button" className="btn btn-sm btn-sc-primary text-white" onClick={() => abrirDevolucion(f)}>
@@ -184,7 +206,7 @@ const Cancelaciones: React.FC = () => {
       </div>
 
       {devolviendo && (
-        <Modal
+        <Modal error={error}
           title="Registrar devolución"
           onClose={() => setDevolviendo(null)}
           footer={
@@ -195,14 +217,23 @@ const Cancelaciones: React.FC = () => {
           }
         >
           <div className="detail-row"><span className="detail-row-label">Cliente</span><span className="detail-row-value">{devolviendo.reserva?.clienteNombre ?? '—'}</span></div>
-          <div className="detail-row"><span className="detail-row-label">Monto a devolver</span><span className="detail-row-value">${devolviendo.totalPagado.toLocaleString('es-AR')}</span></div>
+          <div className="detail-row"><span className="detail-row-label">Total abonado</span><span className="detail-row-value">${devolviendo.totalPagado.toLocaleString('es-AR')}</span></div>
           <div className="mb-2 mt-2">
+            <label htmlFor="dev-monto" className="form-label small text-muted-sc mb-1">Monto a devolver</label>
+            <input id="dev-monto" type="number" min={1} max={devolviendo.totalPagado} className="form-control form-control-sm" value={montoDevolucion} onChange={(e) => setMontoDevolucion(e.target.value)} />
+            <div className="text-muted-sc mt-1" style={{ fontSize: 12 }}>Podés devolver una parte (por ejemplo, si se retiene la seña) o el total.</div>
+          </div>
+          <div className="mb-2">
             <label className="form-label small text-muted-sc mb-1">Método de devolución</label>
             <select className="form-select form-select-sm" value={metodoDevolucion} onChange={(e) => setMetodoDevolucion(e.target.value)}>
               <option value="Efectivo">Efectivo</option>
               <option value="Tarjeta">Tarjeta</option>
               <option value="Transferencia">Transferencia</option>
             </select>
+          </div>
+          <div className="mb-2">
+            <label htmlFor="dev-obs" className="form-label small text-muted-sc mb-1">Observaciones (opcional)</label>
+            <textarea id="dev-obs" className="form-control form-control-sm" rows={2} placeholder="Ej: se retiene la seña por cancelar con menos de 24 hs" value={obsDevolucion} onChange={(e) => setObsDevolucion(e.target.value)} />
           </div>
         </Modal>
       )}

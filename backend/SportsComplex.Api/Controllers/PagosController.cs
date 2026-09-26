@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SportsComplex.Api.Common;
 using SportsComplex.Api.Dtos;
 using SportsComplex.Api.Services;
 
@@ -26,5 +27,5 @@ public class PagosController : ControllerBase
         Ok(await _service.GetByReservaAsync(idReserva));
 
     [HttpPost]
-    public async Task<ActionResult<PagoDto>> Create(CrearPagoDto dto) => Ok(await _service.RegistrarAsync(dto));
+    public async Task<ActionResult<PagoDto>> Create(CrearPagoDto dto) => Ok(await _service.RegistrarAsync(dto, User.GetUserId()));
 }

@@ -1,11 +1,20 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using SportsComplex.Api.Common;
 using SportsComplex.Api.Entities;
 
 namespace SportsComplex.Api.Data;
 
 public class AppDbContext : DbContext
 {
+    private readonly IUsuarioActual? _usuarioActual;
+
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+    public AppDbContext(DbContextOptions<AppDbContext> options, IUsuarioActual usuarioActual) : base(options)
+    {
+        _usuarioActual = usuarioActual;
+    }
 
     public DbSet<Cliente> Clientes => Set<Cliente>();
     public DbSet<Usuario> Usuarios => Set<Usuario>();
@@ -19,6 +28,8 @@ public class AppDbContext : DbContext
     public DbSet<Equipo> Equipos => Set<Equipo>();
     public DbSet<Integrante> Integrantes => Set<Integrante>();
     public DbSet<Partido> Partidos => Set<Partido>();
+    public DbSet<Auditoria> Auditorias => Set<Auditoria>();
+    public DbSet<Parametro> Parametros => Set<Parametro>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -75,6 +86,7 @@ public class AppDbContext : DbContext
             e.Property(x => x.HoraFin).HasColumnName("hora_fin");
             e.Property(x => x.EstadoReserva).HasColumnName("estado_reserva").HasMaxLength(20).IsRequired();
             e.Property(x => x.EstadoPago).HasColumnName("estado_pago").HasMaxLength(30).IsRequired();
+            e.Property(x => x.Asistencia).HasColumnName("asistencia").HasMaxLength(10);
             e.Property(x => x.Observaciones).HasColumnName("observaciones");
             e.Property(x => x.FechaCreacion).HasColumnName("fecha_creacion");
 
@@ -88,6 +100,7 @@ public class AppDbContext : DbContext
             e.ToTable(tb => tb.HasCheckConstraint("CK_Reserva_Horario", "hora_fin > hora_inicio"));
             e.ToTable(tb => tb.HasCheckConstraint("CK_Reserva_EstadoReserva", "estado_reserva IN ('Confirmada','Pendiente','Cancelada')"));
             e.ToTable(tb => tb.HasCheckConstraint("CK_Reserva_EstadoPago", "estado_pago IN ('Pendiente','Parcialmente abonado','Abonado')"));
+            e.ToTable(tb => tb.HasCheckConstraint("CK_Reserva_Asistencia", "asistencia IS NULL OR asistencia IN ('Presente','Ausente')"));
 
             // Regla: no puede haber dos reservas activas en la misma cancha, fecha y horario.
             e.HasIndex(x => new { x.IdCancha, x.Fecha, x.HoraInicio })
@@ -102,6 +115,7 @@ public class AppDbContext : DbContext
             e.HasKey(x => x.IdPago);
             e.Property(x => x.IdPago).HasColumnName("id_pago");
             e.Property(x => x.IdReserva).HasColumnName("id_reserva");
+            e.Property(x => x.IdUsuario).HasColumnName("id_usuario");
             e.Property(x => x.Monto).HasColumnName("monto").HasColumnType("decimal(10,2)");
             e.Property(x => x.MetodoPago).HasColumnName("metodo_pago").HasMaxLength(30).IsRequired();
             e.Property(x => x.FechaPago).HasColumnName("fecha_pago");
@@ -109,6 +123,8 @@ public class AppDbContext : DbContext
 
             e.HasOne(x => x.Reserva).WithMany(r => r.Pagos)
                 .HasForeignKey(x => x.IdReserva).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Usuario).WithMany(u => u.Pagos)
+                .HasForeignKey(x => x.IdUsuario).OnDelete(DeleteBehavior.Restrict);
 
             e.ToTable(tb => tb.HasCheckConstraint("CK_Pago_Monto", "monto > 0"));
         });
@@ -137,6 +153,7 @@ public class AppDbContext : DbContext
             e.Property(x => x.IdDevolucion).HasColumnName("id_devolucion");
             e.Property(x => x.IdCancelacion).HasColumnName("id_cancelacion");
             e.HasIndex(x => x.IdCancelacion).IsUnique();
+            e.Property(x => x.IdUsuario).HasColumnName("id_usuario");
             e.Property(x => x.MontoDevuelto).HasColumnName("monto_devuelto").HasColumnType("decimal(10,2)");
             e.Property(x => x.Metodo).HasColumnName("metodo").HasMaxLength(30).IsRequired();
             e.Property(x => x.Fecha).HasColumnName("fecha");
@@ -144,6 +161,8 @@ public class AppDbContext : DbContext
 
             e.HasOne(x => x.Cancelacion).WithOne(c => c.Devolucion)
                 .HasForeignKey<Devolucion>(x => x.IdCancelacion).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Usuario).WithMany(u => u.Devoluciones)
+                .HasForeignKey(x => x.IdUsuario).OnDelete(DeleteBehavior.Restrict);
 
             e.ToTable(tb => tb.HasCheckConstraint("CK_Devolucion_Monto", "monto_devuelto > 0"));
         });
@@ -155,6 +174,12 @@ public class AppDbContext : DbContext
             e.Property(x => x.IdNotificacion).HasColumnName("id_notificacion");
             e.Property(x => x.IdUsuario).HasColumnName("id_usuario");
             e.Property(x => x.Tipo).HasColumnName("tipo").HasMaxLength(50).IsRequired();
+            e.Property(x => x.IdReferencia).HasColumnName("id_referencia");
+            // Regla: no puede haber dos avisos del mismo evento para el mismo usuario.
+            e.HasIndex(x => new { x.IdUsuario, x.Tipo, x.IdReferencia })
+                .IsUnique()
+                .HasFilter("[id_referencia] IS NOT NULL")
+                .HasDatabaseName("UX_Notificacion_Usuario_Evento");
             e.Property(x => x.Mensaje).HasColumnName("mensaje").IsRequired();
             e.Property(x => x.Leida).HasColumnName("leida");
             e.Property(x => x.FechaCreacion).HasColumnName("fecha_creacion");
@@ -237,5 +262,137 @@ public class AppDbContext : DbContext
             e.ToTable(tb => tb.HasCheckConstraint("CK_Partido_GolesLocal", "goles_local >= 0"));
             e.ToTable(tb => tb.HasCheckConstraint("CK_Partido_GolesVisitante", "goles_visitante >= 0"));
         });
+
+        modelBuilder.Entity<Auditoria>(e =>
+        {
+            e.ToTable("Auditoria");
+            e.HasKey(x => x.IdAuditoria);
+            e.Property(x => x.IdAuditoria).HasColumnName("id_auditoria");
+            e.Property(x => x.FechaHora).HasColumnName("fecha_hora");
+            e.Property(x => x.IdUsuario).HasColumnName("id_usuario");
+            e.Property(x => x.Entidad).HasColumnName("entidad").HasMaxLength(30).IsRequired();
+            e.Property(x => x.IdRegistro).HasColumnName("id_registro");
+            e.Property(x => x.Accion).HasColumnName("accion").HasMaxLength(20).IsRequired();
+            e.Property(x => x.Detalle).HasColumnName("detalle");
+            e.HasIndex(x => new { x.Entidad, x.IdRegistro }).HasDatabaseName("IX_Auditoria_Entidad_Registro");
+
+            e.HasOne(x => x.Usuario).WithMany(u => u.Auditorias)
+                .HasForeignKey(x => x.IdUsuario).OnDelete(DeleteBehavior.Restrict);
+
+            e.ToTable(tb => tb.HasCheckConstraint("CK_Auditoria_Accion", "accion IN ('Alta','Modificación','Baja')"));
+        });
+
+        modelBuilder.Entity<Parametro>(e =>
+        {
+            e.ToTable("Parametro");
+            e.HasKey(x => x.IdParametro);
+            e.Property(x => x.IdParametro).HasColumnName("id_parametro");
+            e.Property(x => x.Clave).HasColumnName("clave").HasMaxLength(50).IsRequired();
+            e.HasIndex(x => x.Clave).IsUnique();
+            e.Property(x => x.Valor).HasColumnName("valor").HasMaxLength(100).IsRequired();
+            e.Property(x => x.Descripcion).HasColumnName("descripcion").HasMaxLength(200);
+
+            e.HasData(new Parametro
+            {
+                IdParametro = 1,
+                Clave = Parametro.MinutosInactividad,
+                Valor = "30",
+                Descripcion = "Minutos sin actividad antes de cerrar la sesión automáticamente"
+            });
+        });
     }
+
+    // =========================================================
+    // Auditoría automática: cada alta, modificación o baja queda registrada
+    // con fecha, hora y usuario, sin que cada servicio tenga que acordarse.
+    // =========================================================
+
+    private static readonly HashSet<Type> EntidadesAuditadas = new()
+    {
+        typeof(Cliente), typeof(Usuario), typeof(Cancha), typeof(Reserva), typeof(Pago),
+        typeof(Cancelacion), typeof(Devolucion), typeof(Torneo), typeof(Equipo),
+        typeof(Integrante), typeof(Partido), typeof(Parametro)
+    };
+
+    public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    {
+        var pendientes = ChangeTracker.Entries()
+            .Where(e => EntidadesAuditadas.Contains(e.Entity.GetType())
+                && e.State is EntityState.Added or EntityState.Modified or EntityState.Deleted)
+            .Select(e => new CambioPendiente(e, e.State, DescribirCambios(e),
+                e.State == EntityState.Added ? null : ClavePrimaria(e)))
+            .Where(c => c.State != EntityState.Modified || c.Detalle != null)
+            .ToList();
+
+        var resultado = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        if (pendientes.Count == 0) return resultado;
+
+        var idUsuario = _usuarioActual?.IdUsuario;
+        var ahora = Reloj.Ahora;
+        foreach (var c in pendientes)
+        {
+            Auditorias.Add(new Auditoria
+            {
+                FechaHora = ahora,
+                IdUsuario = idUsuario,
+                Entidad = c.Entry.Metadata.ClrType.Name,
+                IdRegistro = c.Clave ?? ClavePrimaria(c.Entry),
+                Accion = c.State switch
+                {
+                    EntityState.Added => "Alta",
+                    EntityState.Deleted => "Baja",
+                    _ => "Modificación"
+                },
+                Detalle = c.Detalle
+            });
+        }
+        await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        return resultado;
+    }
+
+    private sealed record CambioPendiente(EntityEntry Entry, EntityState State, string? Detalle, int? Clave);
+
+    private static int ClavePrimaria(EntityEntry e)
+    {
+        var pk = e.Metadata.FindPrimaryKey()!.Properties[0];
+        return Convert.ToInt32(e.Property(pk.Name).CurrentValue);
+    }
+
+    /// <summary>En una modificación, arma "Campo: antes → después" solo con los campos que cambiaron.</summary>
+    private static string? DescribirCambios(EntityEntry e)
+    {
+        if (e.State != EntityState.Modified) return null;
+        var cambios = e.Properties
+            .Where(p => p.IsModified && !p.Metadata.IsPrimaryKey() && !Equals(p.OriginalValue, p.CurrentValue))
+            .Select(p => p.Metadata.Name == nameof(Usuario.PasswordHash)
+                ? "Contraseña: modificada"
+                : $"{NombreCampo(p.Metadata.Name)}: {Valor(p.OriginalValue)} → {Valor(p.CurrentValue)}")
+            .ToList();
+        return cambios.Count == 0 ? null : string.Join("; ", cambios);
+    }
+
+    private static string Valor(object? v) => v switch
+    {
+        null => "(vacío)",
+        TimeOnly t => t.ToString("HH:mm"),
+        DateOnly d => d.ToString("dd/MM/yyyy"),
+        DateTime dt => dt.ToString("dd/MM/yyyy HH:mm"),
+        bool b => b ? "Sí" : "No",
+        decimal m => "$" + m.ToString("#,0.##", new System.Globalization.NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalSeparator = "," }),
+        string s when s.Length == 0 => "(vacío)",
+        _ => v.ToString() ?? string.Empty
+    };
+
+    private static readonly Dictionary<string, string> NombresCampos = new()
+    {
+        ["IdCancha"] = "Cancha", ["IdCliente"] = "Cliente", ["HoraInicio"] = "Hora de inicio",
+        ["HoraFin"] = "Hora de fin", ["EstadoReserva"] = "Estado", ["EstadoPago"] = "Estado de pago",
+        ["NombreCompleto"] = "Nombre", ["PrecioPorHora"] = "Precio por hora", ["TipoSuperficie"] = "Superficie",
+        ["FechaInicio"] = "Fecha de inicio", ["FechaFin"] = "Fecha de fin", ["GolesLocal"] = "Goles local",
+        ["GolesVisitante"] = "Goles visitante", ["Username"] = "Usuario", ["ContactoNombre"] = "Contacto",
+        ["ContactoTelefono"] = "Teléfono de contacto", ["Telefono"] = "Teléfono",
+    };
+
+    private static string NombreCampo(string propiedad) =>
+        NombresCampos.TryGetValue(propiedad, out var n) ? n : propiedad;
 }

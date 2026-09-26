@@ -47,25 +47,46 @@ public class ReportesService
     {
         ValidarRango(desde, hasta);
 
-        return await _db.Pagos.Include(p => p.Reserva)
+        var cobrado = await _db.Pagos
             .Where(p => p.FechaPago >= desde && p.FechaPago <= hasta
                 && (idCancha == null || p.Reserva!.IdCancha == idCancha))
             .GroupBy(p => p.MetodoPago)
-            .Select(g => new ReporteIngresosDto(g.Key, g.Sum(p => p.Monto)))
+            .Select(g => new { Metodo = g.Key, Monto = g.Sum(p => p.Monto) })
             .ToListAsync();
+
+        // Las devoluciones del período se descuentan: el reporte muestra el ingreso real (neto).
+        var devuelto = await _db.Devoluciones
+            .Where(d => d.Fecha >= desde && d.Fecha <= hasta
+                && (idCancha == null || d.Cancelacion!.Reserva!.IdCancha == idCancha))
+            .GroupBy(d => d.Metodo)
+            .Select(g => new { Metodo = g.Key, Monto = g.Sum(d => d.MontoDevuelto) })
+            .ToListAsync();
+
+        return cobrado.Select(c => c.Metodo).Union(devuelto.Select(d => d.Metodo))
+            .Select(metodo =>
+            {
+                var c = cobrado.Where(x => x.Metodo == metodo).Sum(x => x.Monto);
+                var d = devuelto.Where(x => x.Metodo == metodo).Sum(x => x.Monto);
+                return new ReporteIngresosDto(metodo, c, d, c - d);
+            })
+            .OrderByDescending(i => i.Total)
+            .ToList();
     }
 
-    public async Task<List<ReporteDeudorDto>> GetDeudoresAsync(int? idCancha = null)
+    /// <summary>Reservas con saldo pendiente, filtrables por cancha y por fecha del turno.</summary>
+    public async Task<List<ReporteDeudorDto>> GetDeudoresAsync(int? idCancha = null, DateOnly? desde = null, DateOnly? hasta = null)
     {
+        if (desde.HasValue && hasta.HasValue) ValidarRango(desde.Value, hasta.Value);
+
         var reservas = await _db.Reservas.Include(r => r.Cliente).Include(r => r.Cancha).Include(r => r.Pagos)
             .Where(r => r.EstadoReserva != "Cancelada" && r.EstadoPago != "Abonado"
-                && (idCancha == null || r.IdCancha == idCancha))
+                && (idCancha == null || r.IdCancha == idCancha)
+                && (desde == null || r.Fecha >= desde) && (hasta == null || r.Fecha <= hasta))
             .ToListAsync();
 
         return reservas.Select(r =>
         {
-            var horas = (decimal)(r.HoraFin.ToTimeSpan() - r.HoraInicio.ToTimeSpan()).TotalHours;
-            var totalEsperado = r.Cancha!.PrecioPorHora * horas;
+            var totalEsperado = CalculoPago.ImporteTotal(r.HoraInicio, r.HoraFin, r.Cancha!.PrecioPorHora);
             var totalPagado = r.Pagos.Sum(p => p.Monto);
             return new ReporteDeudorDto(r.IdCliente, r.Cliente!.NombreCompleto, r.IdReserva, r.Fecha, totalEsperado - totalPagado);
         })

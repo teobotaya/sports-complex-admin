@@ -7,6 +7,7 @@ export interface Pago {
   metodoPago: string;
   fechaPago: string;
   observaciones: string | null;
+  registradoPor: string | null;
 }
 
 export interface CrearPagoInput {
@@ -47,6 +48,7 @@ export interface Devolucion {
   metodo: string;
   fecha: string;
   observaciones: string | null;
+  registradoPor: string | null;
 }
 
 export interface CrearDevolucionInput {

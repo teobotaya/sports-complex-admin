@@ -9,10 +9,14 @@ using SportsComplex.Api.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter()));
+    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter()))
+    // Datos mal formados o faltantes (ej. una fecha vacía): mensaje en español con el mismo formato { error } que el resto de la API.
+    .ConfigureApiBehaviorOptions(options => options.InvalidModelStateResponseFactory = ValidacionEnEspanol.Respuesta);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUsuarioActual, UsuarioActualHttp>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -34,6 +38,8 @@ builder.Services.AddScoped<PartidoService>();
 builder.Services.AddScoped<NotificacionService>();
 builder.Services.AddScoped<ReportesService>();
 builder.Services.AddScoped<EstadisticasService>();
+builder.Services.AddScoped<AuditoriaService>();
+builder.Services.AddScoped<ParametroService>();
 
 var jwtSection = builder.Configuration.GetSection("Jwt");
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -49,6 +55,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = jwtSection["Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSection["Key"] ?? string.Empty))
         };
+        // Si el administrador desactiva al usuario o le cambia el rol, su sesión deja de valer
+        // en el siguiente pedido (la API responde 401 y el sistema vuelve a pedir el login).
+        options.Events = new JwtBearerEvents { OnTokenValidated = SesionVigente.ValidarAsync };
     });
 builder.Services.AddAuthorization();
 

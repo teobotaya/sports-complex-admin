@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PageHeader from '../components/PageHeader';
 import EmptyState from '../components/EmptyState';
 import { IconBell } from '../components/Icons';
-import { notificacionesApi, Notificacion } from '../api/notificaciones';
+import { notificacionesApi, Notificacion, avisarCambioNotificaciones } from '../api/notificaciones';
 import { ApiError } from '../api/client';
 
 const Notificaciones: React.FC = () => {
@@ -23,6 +23,7 @@ const Notificaciones: React.FC = () => {
   const marcarLeida = async (id: number) => {
     try {
       await notificacionesApi.marcarLeida(id);
+      avisarCambioNotificaciones();
       cargar();
     } catch (e) {
       setError(e instanceof ApiError ? e.message : 'Error al marcar como leída.');
@@ -32,6 +33,7 @@ const Notificaciones: React.FC = () => {
   const marcarTodasLeidas = async () => {
     try {
       await notificacionesApi.marcarTodasLeidas();
+      avisarCambioNotificaciones();
       cargar();
     } catch (e) {
       setError(e instanceof ApiError ? e.message : 'Error al marcar todas como leídas.');

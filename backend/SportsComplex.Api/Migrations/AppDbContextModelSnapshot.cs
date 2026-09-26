@@ -22,6 +22,56 @@ namespace SportsComplex.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SportsComplex.Api.Entities.Auditoria", b =>
+                {
+                    b.Property<int>("IdAuditoria")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_auditoria");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAuditoria"));
+
+                    b.Property<string>("Accion")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("accion");
+
+                    b.Property<string>("Detalle")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("detalle");
+
+                    b.Property<string>("Entidad")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnName("entidad");
+
+                    b.Property<DateTime>("FechaHora")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("fecha_hora");
+
+                    b.Property<int>("IdRegistro")
+                        .HasColumnType("int")
+                        .HasColumnName("id_registro");
+
+                    b.Property<int?>("IdUsuario")
+                        .HasColumnType("int")
+                        .HasColumnName("id_usuario");
+
+                    b.HasKey("IdAuditoria");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.HasIndex("Entidad", "IdRegistro")
+                        .HasDatabaseName("IX_Auditoria_Entidad_Registro");
+
+                    b.ToTable("Auditoria", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Auditoria_Accion", "accion IN ('Alta','Modificación','Baja')");
+                        });
+                });
+
             modelBuilder.Entity("SportsComplex.Api.Entities.Cancelacion", b =>
                 {
                     b.Property<int>("IdCancelacion")
@@ -150,6 +200,10 @@ namespace SportsComplex.Api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id_cancelacion");
 
+                    b.Property<int?>("IdUsuario")
+                        .HasColumnType("int")
+                        .HasColumnName("id_usuario");
+
                     b.Property<string>("Metodo")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -168,6 +222,8 @@ namespace SportsComplex.Api.Migrations
 
                     b.HasIndex("IdCancelacion")
                         .IsUnique();
+
+                    b.HasIndex("IdUsuario");
 
                     b.ToTable("Devolucion", null, t =>
                         {
@@ -258,6 +314,10 @@ namespace SportsComplex.Api.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("fecha_creacion");
 
+                    b.Property<int?>("IdReferencia")
+                        .HasColumnType("int")
+                        .HasColumnName("id_referencia");
+
                     b.Property<int>("IdUsuario")
                         .HasColumnType("int")
                         .HasColumnName("id_usuario");
@@ -279,7 +339,10 @@ namespace SportsComplex.Api.Migrations
 
                     b.HasKey("IdNotificacion");
 
-                    b.HasIndex("IdUsuario");
+                    b.HasIndex("IdUsuario", "Tipo", "IdReferencia")
+                        .IsUnique()
+                        .HasDatabaseName("UX_Notificacion_Usuario_Evento")
+                        .HasFilter("[id_referencia] IS NOT NULL");
 
                     b.ToTable("Notificacion", (string)null);
                 });
@@ -301,6 +364,10 @@ namespace SportsComplex.Api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id_reserva");
 
+                    b.Property<int?>("IdUsuario")
+                        .HasColumnType("int")
+                        .HasColumnName("id_usuario");
+
                     b.Property<string>("MetodoPago")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -319,9 +386,54 @@ namespace SportsComplex.Api.Migrations
 
                     b.HasIndex("IdReserva");
 
+                    b.HasIndex("IdUsuario");
+
                     b.ToTable("Pago", null, t =>
                         {
                             t.HasCheckConstraint("CK_Pago_Monto", "monto > 0");
+                        });
+                });
+
+            modelBuilder.Entity("SportsComplex.Api.Entities.Parametro", b =>
+                {
+                    b.Property<int>("IdParametro")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_parametro");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdParametro"));
+
+                    b.Property<string>("Clave")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("clave");
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasColumnName("descripcion");
+
+                    b.Property<string>("Valor")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("valor");
+
+                    b.HasKey("IdParametro");
+
+                    b.HasIndex("Clave")
+                        .IsUnique();
+
+                    b.ToTable("Parametro", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdParametro = 1,
+                            Clave = "minutos_inactividad",
+                            Descripcion = "Minutos sin actividad antes de cerrar la sesión automáticamente",
+                            Valor = "30"
                         });
                 });
 
@@ -404,6 +516,11 @@ namespace SportsComplex.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdReserva"));
 
+                    b.Property<string>("Asistencia")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasColumnName("asistencia");
+
                     b.Property<string>("EstadoPago")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -461,6 +578,8 @@ namespace SportsComplex.Api.Migrations
 
                     b.ToTable("Reserva", null, t =>
                         {
+                            t.HasCheckConstraint("CK_Reserva_Asistencia", "asistencia IS NULL OR asistencia IN ('Presente','Ausente')");
+
                             t.HasCheckConstraint("CK_Reserva_EstadoPago", "estado_pago IN ('Pendiente','Parcialmente abonado','Abonado')");
 
                             t.HasCheckConstraint("CK_Reserva_EstadoReserva", "estado_reserva IN ('Confirmada','Pendiente','Cancelada')");
@@ -565,6 +684,16 @@ namespace SportsComplex.Api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SportsComplex.Api.Entities.Auditoria", b =>
+                {
+                    b.HasOne("SportsComplex.Api.Entities.Usuario", "Usuario")
+                        .WithMany("Auditorias")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("SportsComplex.Api.Entities.Cancelacion", b =>
                 {
                     b.HasOne("SportsComplex.Api.Entities.Reserva", "Reserva")
@@ -592,7 +721,14 @@ namespace SportsComplex.Api.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("SportsComplex.Api.Entities.Usuario", "Usuario")
+                        .WithMany("Devoluciones")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Cancelacion");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("SportsComplex.Api.Entities.Equipo", b =>
@@ -636,7 +772,14 @@ namespace SportsComplex.Api.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("SportsComplex.Api.Entities.Usuario", "Usuario")
+                        .WithMany("Pagos")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Reserva");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("SportsComplex.Api.Entities.Partido", b =>
@@ -743,9 +886,15 @@ namespace SportsComplex.Api.Migrations
 
             modelBuilder.Entity("SportsComplex.Api.Entities.Usuario", b =>
                 {
+                    b.Navigation("Auditorias");
+
                     b.Navigation("Cancelaciones");
 
+                    b.Navigation("Devoluciones");
+
                     b.Navigation("Notificaciones");
+
+                    b.Navigation("Pagos");
 
                     b.Navigation("Reservas");
                 });

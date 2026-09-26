@@ -17,10 +17,10 @@ public class DevolucionService
 
     public async Task<List<DevolucionDto>> GetAllAsync()
     {
-        return await _db.Devoluciones.Select(d => ToDto(d)).ToListAsync();
+        return await _db.Devoluciones.Include(d => d.Usuario).Select(d => ToDto(d)).ToListAsync();
     }
 
-    public async Task<DevolucionDto> RegistrarAsync(CrearDevolucionDto dto)
+    public async Task<DevolucionDto> RegistrarAsync(CrearDevolucionDto dto, int idUsuario)
     {
         if (dto.MontoDevuelto <= 0)
             throw new BusinessRuleException("El monto a devolver debe ser mayor a cero.");
@@ -42,6 +42,7 @@ public class DevolucionService
         var devolucion = new Devolucion
         {
             IdCancelacion = dto.IdCancelacion,
+            IdUsuario = idUsuario > 0 ? idUsuario : null,
             MontoDevuelto = dto.MontoDevuelto,
             Metodo = dto.Metodo,
             Fecha = Reloj.Hoy,
@@ -50,9 +51,10 @@ public class DevolucionService
         _db.Devoluciones.Add(devolucion);
         await _db.SaveChangesAsync();
 
+        await _db.Entry(devolucion).Reference(d => d.Usuario).LoadAsync();
         return ToDto(devolucion);
     }
 
     private static DevolucionDto ToDto(Devolucion d) =>
-        new(d.IdDevolucion, d.IdCancelacion, d.MontoDevuelto, d.Metodo, d.Fecha, d.Observaciones);
+        new(d.IdDevolucion, d.IdCancelacion, d.MontoDevuelto, d.Metodo, d.Fecha, d.Observaciones, d.Usuario?.NombreCompleto);
 }

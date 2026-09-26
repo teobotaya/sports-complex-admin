@@ -38,6 +38,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 
   // Sesión vencida o inválida: se limpia y se fuerza el login nuevamente.
   if (response.status === 401 && token) {
+    sessionStorage.setItem('sc_motivo_logout', 'Tu sesión terminó (venció o el administrador cambió tu usuario). Volvé a ingresar.');
     setToken(null);
     localStorage.removeItem(USER_KEY);
     if (window.location.pathname !== '/login') window.location.href = '/login';
@@ -49,7 +50,10 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const data = isJson ? await response.json() : undefined;
 
   if (!response.ok) {
-    const message = (data && (data.error || data.title)) || 'Ocurrió un error inesperado.';
+    const message = (data && data.error)
+      || (response.status === 403 ? 'No tenés permiso para realizar esta acción.' : null)
+      || (response.status === 400 ? 'Revisá los datos ingresados.' : null)
+      || 'Ocurrió un error inesperado.';
     throw new ApiError(message, response.status);
   }
 

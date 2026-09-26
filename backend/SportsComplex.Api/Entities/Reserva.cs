@@ -18,6 +18,7 @@ public class Reserva
     public TimeOnly HoraFin { get; set; }
     public string EstadoReserva { get; set; } = "Pendiente"; // Confirmada | Pendiente | Cancelada
     public string EstadoPago { get; set; } = "Pendiente"; // Pendiente | Parcialmente abonado | Abonado
+    public string? Asistencia { get; set; } // null (sin registrar) | Presente | Ausente
     public string? Observaciones { get; set; }
     public DateTime FechaCreacion { get; set; }
 

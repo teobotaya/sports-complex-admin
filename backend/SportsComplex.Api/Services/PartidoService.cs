@@ -24,6 +24,13 @@ public class PartidoService
             .Select(p => ToDto(p)).ToListAsync();
     }
 
+    public async Task<List<PartidoDto>> GetByFechaAsync(DateOnly fecha)
+    {
+        return await Query().Where(p => p.Fecha == fecha)
+            .OrderBy(p => p.HoraInicio)
+            .Select(p => ToDto(p)).ToListAsync();
+    }
+
     public async Task<PartidoDto> GetByIdAsync(int id)
     {
         var partido = await Query().FirstOrDefaultAsync(p => p.IdPartido == id)
@@ -38,6 +45,10 @@ public class PartidoService
 
         if (torneo.Estado == "Finalizado")
             throw new BusinessRuleException("Un torneo finalizado no permite programar nuevos partidos.");
+
+        if (dto.Fecha < torneo.FechaInicio || dto.Fecha > torneo.FechaFin)
+            throw new BusinessRuleException(
+                $"La fecha del partido debe estar dentro del torneo ({torneo.FechaInicio:dd/MM/yyyy} al {torneo.FechaFin:dd/MM/yyyy}).");
 
         if (torneo.Equipos.Count < 2)
             throw new BusinessRuleException("El torneo debe tener al menos dos equipos inscriptos para programar partidos.");

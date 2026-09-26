@@ -28,7 +28,7 @@ const Reportes: React.FC = () => {
     Promise.all([
       reportesApi.getOcupacion(desde, hasta, idCancha),
       reportesApi.getIngresos(desde, hasta, idCancha),
-      reportesApi.getDeudores(idCancha),
+      reportesApi.getDeudores(idCancha, desde, hasta),
     ])
       .then(([o, i, d]) => { setOcupacion(o); setIngresos(i); setDeudores(d); })
       .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar reportes.'))
@@ -83,13 +83,28 @@ const Reportes: React.FC = () => {
                 <div className="sc-card-header"><h2>Ingresos por método de pago</h2></div>
                 <div className="sc-card-body">
                   <BarChart data={ingresos.map((i) => ({ label: i.metodoPago, value: i.total }))} formatValue={(v) => `$${v.toLocaleString('es-AR')}`} />
+                  {ingresos.length > 0 && (
+                    <table className="table-sc mb-0 mt-3">
+                      <thead><tr><th>Método</th><th>Cobrado</th><th>Devuelto</th><th>Neto</th></tr></thead>
+                      <tbody>
+                        {ingresos.map((i) => (
+                          <tr key={i.metodoPago}>
+                            <td>{i.metodoPago}</td>
+                            <td>${i.cobrado.toLocaleString('es-AR')}</td>
+                            <td>{i.devuelto > 0 ? `−$${i.devuelto.toLocaleString('es-AR')}` : '—'}</td>
+                            <td className="fw-600">${i.total.toLocaleString('es-AR')}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
           <div className="sc-card">
-            <div className="sc-card-header"><h2>Clientes con saldo pendiente</h2></div>
+            <div className="sc-card-header"><h2>Clientes con saldo pendiente</h2><span className="text-muted-sc small">Turnos del período y cancha seleccionados</span></div>
             <div className="table-responsive-sc">
               <table className="table-sc mb-0">
                 <thead><tr><th>Cliente</th><th>Reserva</th><th>Fecha</th><th>Saldo pendiente</th></tr></thead>

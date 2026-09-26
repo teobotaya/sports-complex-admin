@@ -30,6 +30,8 @@ const defaultToneMap: Record<string, BadgeTone> = {
   Mantenimiento: 'neutral',
   'No aplica': 'neutral',
   'En curso': 'info',
+  'Se presentó': 'success',
+  'No se presentó': 'danger',
 };
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ label, tone }) => {
