@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1652" height="1483" viewBox="0 0 1652 1483" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="1652" height="1483" fill="#ffffff"/>
+<line x1="141.4609375" y1="229.0" x2="141.4609375" y2="1423.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="468.7421875" y1="192" x2="468.7421875" y2="1423.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="918.1171875" y1="192" x2="918.1171875" y2="1423.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1107.5234375" y1="174" x2="1107.5234375" y2="1423.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1512.1796875" y1="192" x2="1512.1796875" y2="1423.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<rect x="21.4609375" y="407.0" width="1610.71875" height="956.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
+<path d="M 21.4609375 433.0 L 54.8984375 433.0 L 62.8984375 425.0 L 62.8984375 407.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.2"/>
+<line x1="21.4609375" y1="597.0" x2="1632.1796875" y2="597.0" stroke="#1f2933" stroke-width="1.1" stroke-dasharray="7 5"/>
+<rect x="35.4609375" y="727.0" width="1582.71875" height="622.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
+<path d="M 35.4609375 753.0 L 68.8984375 753.0 L 76.8984375 745.0 L 76.8984375 727.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.2"/>
+<line x1="35.4609375" y1="917.0" x2="1618.1796875" y2="917.0" stroke="#1f2933" stroke-width="1.1" stroke-dasharray="7 5"/>
+<text x="30.5" y="425.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">alt</text>
+<text x="155.5" y="426.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[monto ≤ 0 o sin método de pago]</text>
+<text x="155.5" y="616.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[datos correctos]</text>
+<text x="44.5" y="745.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">alt</text>
+<text x="155.5" y="746.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[la reserva está cancelada]</text>
+<text x="155.5" y="936.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[la reserva está activa]</text>
+<path d="M 141.5 279.0 L 468.7 279.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="468.7,279.0 455.7,273.5 455.7,284.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 468.7 325.0 L 918.1 325.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="918.1,325.0 905.1,319.5 905.1,330.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 918.1 371.0 L 1107.5 371.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1107.5,371.0 1094.5,365.5 1094.5,376.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1107.5 465.0 L 918.1 465.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="918.1" y1="465.0" x2="931.1" y2="471.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="918.1" y1="465.0" x2="931.1" y2="458.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 918.1 511.0 L 468.7 511.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="468.7" y1="511.0" x2="481.7" y2="517.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="468.7" y1="511.0" x2="481.7" y2="504.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 468.7 557.0 L 141.5 557.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="141.5" y1="557.0" x2="154.5" y2="563.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="141.5" y1="557.0" x2="154.5" y2="550.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1107.5 645.0 L 1512.2 645.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1512.2,645.0 1499.2,639.5 1499.2,650.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1512.2 691.0 L 1107.5 691.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="1107.5" y1="691.0" x2="1120.5" y2="697.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1107.5" y1="691.0" x2="1120.5" y2="684.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1107.5 785.0 L 918.1 785.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="918.1" y1="785.0" x2="931.1" y2="791.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="918.1" y1="785.0" x2="931.1" y2="778.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 918.1 831.0 L 468.7 831.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="468.7" y1="831.0" x2="481.7" y2="837.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="468.7" y1="831.0" x2="481.7" y2="824.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 468.7 877.0 L 141.5 877.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="141.5" y1="877.0" x2="154.5" y2="883.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="141.5" y1="877.0" x2="154.5" y2="870.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1107.5 965.0 L 1512.2 965.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1512.2,965.0 1499.2,959.5 1499.2,970.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1107.5 1011.0 L 1512.2 1011.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1512.2,1011.0 1499.2,1005.5 1499.2,1016.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1512.2 1057.0 L 1107.5 1057.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="1107.5" y1="1057.0" x2="1120.5" y2="1063.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1107.5" y1="1057.0" x2="1120.5" y2="1050.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1107.5 1103.0 L 1151.5 1103.0 L 1151.5 1127.0 L 1107.5 1127.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1107.5,1127.0 1120.5,1132.5 1120.5,1121.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1107.5 1171.0 L 1512.2 1171.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1512.2,1171.0 1499.2,1165.5 1499.2,1176.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1107.5 1217.0 L 918.1 1217.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="918.1" y1="1217.0" x2="931.1" y2="1223.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="918.1" y1="1217.0" x2="931.1" y2="1210.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 918.1 1263.0 L 468.7 1263.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="468.7" y1="1263.0" x2="481.7" y2="1269.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="468.7" y1="1263.0" x2="481.7" y2="1256.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 468.7 1309.0 L 141.5 1309.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="141.5" y1="1309.0" x2="154.5" y2="1315.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="141.5" y1="1309.0" x2="154.5" y2="1302.5" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="141.4609375" cy="122" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="141.4609375" y1="133" x2="141.4609375" y2="162" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="121.4609375" y1="143" x2="161.4609375" y2="143" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="141.4609375" y1="162" x2="124.4609375" y2="186" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="141.4609375" y1="162" x2="158.4609375" y2="186" stroke="#1f2933" stroke-width="1.6"/>
+<rect x="415.40625" y="130" width="106.671875" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="838.8203125" y="130" width="158.59375" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1043.9296875" y="130" width="127.1875" height="44" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1441.515625" y="130" width="141.328125" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<text x="141.5" y="208.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Empleado /</text>
+<text x="141.5" y="225.5" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Administrador</text>
+<text x="468.7" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Frontend</text>
+<text x="468.7" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >Pagos.tsx</text>
+<text x="918.1" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">PagosController</text>
+<text x="918.1" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >POST /api/pagos</text>
+<text x="1107.5" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">PagoService</text>
+<text x="1512.2" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Base de datos</text>
+<text x="1512.2" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >SQL Server</text>
+<text x="153.5" y="272.0" font-size="12" text-anchor="start" fill="#1f2933" >1. elige la reserva, escribe el monto y el método</text>
+<text x="480.7" y="318.0" font-size="12" text-anchor="start" fill="#1f2933" >2. POST /api/pagos {idReserva, monto, metodoPago}</text>
+<text x="930.1" y="364.0" font-size="12" text-anchor="start" fill="#1f2933" >3. RegistrarAsync(dto)</text>
+<text x="1095.5" y="458.0" font-size="12" text-anchor="end" fill="#1f2933" >4. BusinessRuleException</text>
+<text x="906.1" y="504.0" font-size="12" text-anchor="end" fill="#1f2933" >5. 400 · monto mayor a cero / método obligatorio</text>
+<text x="456.7" y="550.0" font-size="12" text-anchor="end" fill="#1f2933" >6. muestra el error</text>
+<text x="1119.5" y="638.0" font-size="12" text-anchor="start" fill="#1f2933" >7. buscar la reserva con su cancha</text>
+<text x="1500.2" y="684.0" font-size="12" text-anchor="end" fill="#1f2933" >8. reserva + precio por hora</text>
+<text x="1095.5" y="778.0" font-size="12" text-anchor="end" fill="#1f2933" >9. BusinessRuleException</text>
+<text x="906.1" y="824.0" font-size="12" text-anchor="end" fill="#1f2933" >10. 400 · «No pueden registrarse pagos sobre reservas canceladas.»</text>
+<text x="456.7" y="870.0" font-size="12" text-anchor="end" fill="#1f2933" >11. muestra el error</text>
+<text x="1119.5" y="958.0" font-size="12" text-anchor="start" fill="#1f2933" >12. INSERT Pago (fecha del día)</text>
+<text x="1119.5" y="1004.0" font-size="12" text-anchor="start" fill="#1f2933" >13. sumar los pagos de la reserva</text>
+<text x="1500.2" y="1050.0" font-size="12" text-anchor="end" fill="#1f2933" >14. total abonado</text>
+<text x="1159.5" y="1120.0" font-size="12" text-anchor="start" fill="#1f2933" >15. total esperado = precio por hora × horas del turno</text>
+<text x="1119.5" y="1164.0" font-size="12" text-anchor="start" fill="#1f2933" >16. UPDATE Reserva.estado_pago</text>
+<text x="1095.5" y="1210.0" font-size="12" text-anchor="end" fill="#1f2933" >17. PagoDto</text>
+<text x="906.1" y="1256.0" font-size="12" text-anchor="end" fill="#1f2933" >18. 200 OK</text>
+<text x="456.7" y="1302.0" font-size="12" text-anchor="end" fill="#1f2933" >19. muestra el nuevo estado de pago</text>
+<text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama de Secuencia — CU-03 Registrar pago</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >UML · el estado de pago de la reserva se recalcula en cada pago: Pendiente, Parcialmente abonado o Abonado</text>
+</svg>

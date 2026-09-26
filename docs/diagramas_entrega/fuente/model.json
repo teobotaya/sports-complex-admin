@@ -1,0 +1,1083 @@
+[
+  {
+    "table": "Cancelacion",
+    "entity": "Cancelacion",
+    "columns": [
+      {
+        "name": "id_cancelacion",
+        "prop": "IdCancelacion",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_cancelacion",
+        "prop": "FechaCancelacion",
+        "type": "datetime2",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_reserva",
+        "prop": "IdReserva",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "id_usuario",
+        "prop": "IdUsuario",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "motivo",
+        "prop": "Motivo",
+        "type": "nvarchar(max)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_reserva"
+        ],
+        "principal": "Reserva",
+        "unique": true,
+        "required": true,
+        "name": "FK_Cancelacion_Reserva_id_reserva",
+        "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "principal": "Usuario",
+        "unique": false,
+        "required": true,
+        "name": "FK_Cancelacion_Usuario_id_usuario",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_reserva"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Cancelacion_id_reserva"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Cancelacion_id_usuario"
+      }
+    ]
+  },
+  {
+    "table": "Cancha",
+    "entity": "Cancha",
+    "columns": [
+      {
+        "name": "id_cancha",
+        "prop": "IdCancha",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "activa",
+        "prop": "Activa",
+        "type": "bit",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "nombre",
+        "prop": "Nombre",
+        "type": "nvarchar(100)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "precio_por_hora",
+        "prop": "PrecioPorHora",
+        "type": "decimal(10,2)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "tipo_superficie",
+        "prop": "TipoSuperficie",
+        "type": "nvarchar(50)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [],
+    "indexes": [
+      {
+        "cols": [
+          "nombre"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Cancha_nombre"
+      }
+    ]
+  },
+  {
+    "table": "Cliente",
+    "entity": "Cliente",
+    "columns": [
+      {
+        "name": "id_cliente",
+        "prop": "IdCliente",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_alta",
+        "prop": "FechaAlta",
+        "type": "date",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "nombre_completo",
+        "prop": "NombreCompleto",
+        "type": "nvarchar(150)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "observaciones",
+        "prop": "Observaciones",
+        "type": "nvarchar(max)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "telefono",
+        "prop": "Telefono",
+        "type": "nvarchar(20)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [],
+    "indexes": [
+      {
+        "cols": [
+          "telefono"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Cliente_telefono"
+      }
+    ]
+  },
+  {
+    "table": "Devolucion",
+    "entity": "Devolucion",
+    "columns": [
+      {
+        "name": "id_devolucion",
+        "prop": "IdDevolucion",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha",
+        "prop": "Fecha",
+        "type": "date",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_cancelacion",
+        "prop": "IdCancelacion",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "metodo",
+        "prop": "Metodo",
+        "type": "nvarchar(30)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "monto_devuelto",
+        "prop": "MontoDevuelto",
+        "type": "decimal(10,2)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "observaciones",
+        "prop": "Observaciones",
+        "type": "nvarchar(max)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_cancelacion"
+        ],
+        "principal": "Cancelacion",
+        "unique": true,
+        "required": true,
+        "name": "FK_Devolucion_Cancelacion_id_cancelacion",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_cancelacion"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Devolucion_id_cancelacion"
+      }
+    ]
+  },
+  {
+    "table": "Equipo",
+    "entity": "Equipo",
+    "columns": [
+      {
+        "name": "id_equipo",
+        "prop": "IdEquipo",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "contacto_nombre",
+        "prop": "ContactoNombre",
+        "type": "nvarchar(150)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "contacto_telefono",
+        "prop": "ContactoTelefono",
+        "type": "nvarchar(20)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_torneo",
+        "prop": "IdTorneo",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "nombre",
+        "prop": "Nombre",
+        "type": "nvarchar(150)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_torneo"
+        ],
+        "principal": "Torneo",
+        "unique": false,
+        "required": true,
+        "name": "FK_Equipo_Torneo_id_torneo",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_torneo",
+          "nombre"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Equipo_id_torneo_nombre"
+      }
+    ]
+  },
+  {
+    "table": "Integrante",
+    "entity": "Integrante",
+    "columns": [
+      {
+        "name": "id_integrante",
+        "prop": "IdIntegrante",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "dni",
+        "prop": "Dni",
+        "type": "nvarchar(15)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_equipo",
+        "prop": "IdEquipo",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "nombre_completo",
+        "prop": "NombreCompleto",
+        "type": "nvarchar(150)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_equipo"
+        ],
+        "principal": "Equipo",
+        "unique": false,
+        "required": true,
+        "name": "FK_Integrante_Equipo_id_equipo",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_equipo",
+          "dni"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Integrante_id_equipo_dni"
+      }
+    ]
+  },
+  {
+    "table": "Notificacion",
+    "entity": "Notificacion",
+    "columns": [
+      {
+        "name": "id_notificacion",
+        "prop": "IdNotificacion",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_creacion",
+        "prop": "FechaCreacion",
+        "type": "datetime2",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_usuario",
+        "prop": "IdUsuario",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "leida",
+        "prop": "Leida",
+        "type": "bit",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "mensaje",
+        "prop": "Mensaje",
+        "type": "nvarchar(max)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "tipo",
+        "prop": "Tipo",
+        "type": "nvarchar(50)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "principal": "Usuario",
+        "unique": false,
+        "required": true,
+        "name": "FK_Notificacion_Usuario_id_usuario",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Notificacion_id_usuario"
+      }
+    ]
+  },
+  {
+    "table": "Pago",
+    "entity": "Pago",
+    "columns": [
+      {
+        "name": "id_pago",
+        "prop": "IdPago",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_pago",
+        "prop": "FechaPago",
+        "type": "date",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_reserva",
+        "prop": "IdReserva",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "metodo_pago",
+        "prop": "MetodoPago",
+        "type": "nvarchar(30)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "monto",
+        "prop": "Monto",
+        "type": "decimal(10,2)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "observaciones",
+        "prop": "Observaciones",
+        "type": "nvarchar(max)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_reserva"
+        ],
+        "principal": "Reserva",
+        "unique": false,
+        "required": true,
+        "name": "FK_Pago_Reserva_id_reserva",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_reserva"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Pago_id_reserva"
+      }
+    ]
+  },
+  {
+    "table": "Partido",
+    "entity": "Partido",
+    "columns": [
+      {
+        "name": "id_partido",
+        "prop": "IdPartido",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "estado",
+        "prop": "Estado",
+        "type": "nvarchar(20)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha",
+        "prop": "Fecha",
+        "type": "date",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "goles_local",
+        "prop": "GolesLocal",
+        "type": "int",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "goles_visitante",
+        "prop": "GolesVisitante",
+        "type": "int",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "hora_inicio",
+        "prop": "HoraInicio",
+        "type": "time",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_cancha",
+        "prop": "IdCancha",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "id_equipo_local",
+        "prop": "IdEquipoLocal",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "id_equipo_visitante",
+        "prop": "IdEquipoVisitante",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "id_torneo",
+        "prop": "IdTorneo",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_cancha"
+        ],
+        "principal": "Cancha",
+        "unique": false,
+        "required": true,
+        "name": "FK_Partido_Cancha_id_cancha",
+        "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_equipo_local"
+        ],
+        "principal": "Equipo",
+        "unique": false,
+        "required": true,
+        "name": "FK_Partido_Equipo_id_equipo_local",
+        "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_equipo_visitante"
+        ],
+        "principal": "Equipo",
+        "unique": false,
+        "required": true,
+        "name": "FK_Partido_Equipo_id_equipo_visitante",
+        "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_torneo"
+        ],
+        "principal": "Torneo",
+        "unique": false,
+        "required": true,
+        "name": "FK_Partido_Torneo_id_torneo",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_equipo_local"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Partido_id_equipo_local"
+      },
+      {
+        "cols": [
+          "id_equipo_visitante"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Partido_id_equipo_visitante"
+      },
+      {
+        "cols": [
+          "id_torneo"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Partido_id_torneo"
+      },
+      {
+        "cols": [
+          "id_cancha",
+          "fecha",
+          "hora_inicio"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Partido_id_cancha_fecha_hora_inicio"
+      }
+    ]
+  },
+  {
+    "table": "Reserva",
+    "entity": "Reserva",
+    "columns": [
+      {
+        "name": "id_reserva",
+        "prop": "IdReserva",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "estado_pago",
+        "prop": "EstadoPago",
+        "type": "nvarchar(30)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "estado_reserva",
+        "prop": "EstadoReserva",
+        "type": "nvarchar(20)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha",
+        "prop": "Fecha",
+        "type": "date",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_creacion",
+        "prop": "FechaCreacion",
+        "type": "datetime2",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "hora_fin",
+        "prop": "HoraFin",
+        "type": "time",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "hora_inicio",
+        "prop": "HoraInicio",
+        "type": "time",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_cancha",
+        "prop": "IdCancha",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "id_cliente",
+        "prop": "IdCliente",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "id_usuario",
+        "prop": "IdUsuario",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "observaciones",
+        "prop": "Observaciones",
+        "type": "nvarchar(max)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_cancha"
+        ],
+        "principal": "Cancha",
+        "unique": false,
+        "required": true,
+        "name": "FK_Reserva_Cancha_id_cancha",
+        "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_cliente"
+        ],
+        "principal": "Cliente",
+        "unique": false,
+        "required": true,
+        "name": "FK_Reserva_Cliente_id_cliente",
+        "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "principal": "Usuario",
+        "unique": false,
+        "required": true,
+        "name": "FK_Reserva_Usuario_id_usuario",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_cliente"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Reserva_id_cliente"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Reserva_id_usuario"
+      },
+      {
+        "cols": [
+          "id_cancha",
+          "fecha",
+          "hora_inicio"
+        ],
+        "unique": true,
+        "filter": "[estado_reserva] \u003C\u003E \u0027Cancelada\u0027",
+        "name": "UX_Reserva_Cancha_Fecha_Horario"
+      }
+    ]
+  },
+  {
+    "table": "Torneo",
+    "entity": "Torneo",
+    "columns": [
+      {
+        "name": "id_torneo",
+        "prop": "IdTorneo",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "categoria",
+        "prop": "Categoria",
+        "type": "nvarchar(50)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "estado",
+        "prop": "Estado",
+        "type": "nvarchar(20)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_fin",
+        "prop": "FechaFin",
+        "type": "date",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_inicio",
+        "prop": "FechaInicio",
+        "type": "date",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "nombre",
+        "prop": "Nombre",
+        "type": "nvarchar(150)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [],
+    "indexes": []
+  },
+  {
+    "table": "Usuario",
+    "entity": "Usuario",
+    "columns": [
+      {
+        "name": "id_usuario",
+        "prop": "IdUsuario",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "activo",
+        "prop": "Activo",
+        "type": "bit",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_creacion",
+        "prop": "FechaCreacion",
+        "type": "datetime2",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "nombre_completo",
+        "prop": "NombreCompleto",
+        "type": "nvarchar(150)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "password_hash",
+        "prop": "PasswordHash",
+        "type": "nvarchar(255)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "rol",
+        "prop": "Rol",
+        "type": "nvarchar(20)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "username",
+        "prop": "Username",
+        "type": "nvarchar(50)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [],
+    "indexes": [
+      {
+        "cols": [
+          "username"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Usuario_username"
+      }
+    ]
+  }
+]

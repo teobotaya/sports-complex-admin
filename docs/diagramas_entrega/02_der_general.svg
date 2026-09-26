@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1330" viewBox="0 0 1800 1330" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="1800" height="1330" fill="#ffffff"/>
+<path d="M 295.0 460.0 L 345.0 460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 565.0 460.0 L 515.0 460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 755.0 460.0 L 805.0 460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1025.0 460.0 L 975.0 460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1215.0 460.0 L 1265.0 460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1485.0 460.0 L 1435.0 460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 660.0 218.0 L 660.0 286.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 660.0 432.0 L 660.0 364.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1120.0 488.0 L 1120.0 556.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1120.0 702.0 L 1120.0 634.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1215.0 730.0 L 1265.0 730.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1485.0 730.0 L 1435.0 730.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 200.0 758.0 L 200.0 826.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 200.0 972.0 L 200.0 904.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 660.0 758.0 L 660.0 826.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 660.0 972.0 L 660.0 904.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 755.0 1000.0 L 805.0 1000.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1025.0 1000.0 L 975.0 1000.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 295.0 1000.0 L 345.0 1000.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 565.0 1000.0 L 515.0 1000.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 595.0 488.0 L 430.0 566.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 295.0 716.0 L 345.0 605.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 725.0 488.0 L 890.0 566.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1025.0 716.0 L 975.0 605.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 240.0 1028.0 L 240.0 1110.0 L 345.0 1110.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 620.0 1028.0 L 620.0 1110.0 L 515.0 1110.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 160.0 1028.0 L 160.0 1230.0 L 805.0 1230.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1120.0 1028.0 L 1120.0 1230.0 L 975.0 1230.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="105.0" y="432.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="565.0" y="432.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1025.0" y="432.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1485.0" y="432.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="565.0" y="162.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="105.0" y="702.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="565.0" y="702.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1025.0" y="702.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1485.0" y="702.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="105.0" y="972.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="565.0" y="972.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1025.0" y="972.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="430.0,421.0 515.0,460.0 430.0,499.0 345.0,460.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="890.0,421.0 975.0,460.0 890.0,499.0 805.0,460.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="1350.0,421.0 1435.0,460.0 1350.0,499.0 1265.0,460.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="660.0,286.0 745.0,325.0 660.0,364.0 575.0,325.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="1120.0,556.0 1205.0,595.0 1120.0,634.0 1035.0,595.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="1350.0,691.0 1435.0,730.0 1350.0,769.0 1265.0,730.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="200.0,826.0 285.0,865.0 200.0,904.0 115.0,865.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="660.0,826.0 745.0,865.0 660.0,904.0 575.0,865.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="890.0,961.0 975.0,1000.0 890.0,1039.0 805.0,1000.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="430.0,961.0 515.0,1000.0 430.0,1039.0 345.0,1000.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="430.0,566.0 515.0,605.0 430.0,644.0 345.0,605.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="890.0,566.0 975.0,605.0 890.0,644.0 805.0,605.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="430.0,1071.0 515.0,1110.0 430.0,1149.0 345.0,1110.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="890.0,1191.0 975.0,1230.0 890.0,1269.0 805.0,1230.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<text x="200.0" y="465.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">CLIENTE</text>
+<text x="660.0" y="465.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">RESERVA</text>
+<text x="1120.0" y="465.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">USUARIO</text>
+<text x="1580.0" y="465.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">NOTIFICACION</text>
+<text x="660.0" y="195.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">PAGO</text>
+<text x="200.0" y="735.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">CANCHA</text>
+<text x="660.0" y="735.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">INTEGRANTE</text>
+<text x="1120.0" y="735.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">CANCELACION</text>
+<text x="1580.0" y="735.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">DEVOLUCION</text>
+<text x="200.0" y="1005.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">PARTIDO</text>
+<text x="660.0" y="1005.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">EQUIPO</text>
+<text x="1120.0" y="1005.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">TORNEO</text>
+<text x="430.0" y="456.9" font-size="13" text-anchor="middle" fill="#1f2933" >realiza</text>
+<text x="430.0" y="472.5" font-size="13" text-anchor="middle" fill="#1f2933" >1:N</text>
+<text x="890.0" y="456.9" font-size="13" text-anchor="middle" fill="#1f2933" >registra</text>
+<text x="890.0" y="472.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="1350.0" y="456.9" font-size="13" text-anchor="middle" fill="#1f2933" >recibe</text>
+<text x="1350.0" y="472.5" font-size="13" text-anchor="middle" fill="#1f2933" >1:N</text>
+<text x="660.0" y="321.9" font-size="13" text-anchor="middle" fill="#1f2933" >corresponde a</text>
+<text x="660.0" y="337.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="1120.0" y="591.9" font-size="13" text-anchor="middle" fill="#1f2933" >efectúa</text>
+<text x="1120.0" y="607.5" font-size="13" text-anchor="middle" fill="#1f2933" >1:N</text>
+<text x="1350.0" y="726.9" font-size="13" text-anchor="middle" fill="#1f2933" >genera</text>
+<text x="1350.0" y="742.5" font-size="13" text-anchor="middle" fill="#1f2933" >1:1</text>
+<text x="200.0" y="861.9" font-size="13" text-anchor="middle" fill="#1f2933" >aloja</text>
+<text x="200.0" y="877.5" font-size="13" text-anchor="middle" fill="#1f2933" >1:N</text>
+<text x="660.0" y="861.9" font-size="13" text-anchor="middle" fill="#1f2933" >integra</text>
+<text x="660.0" y="877.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="890.0" y="996.9" font-size="13" text-anchor="middle" fill="#1f2933" >inscripto en</text>
+<text x="890.0" y="1012.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="430.0" y="996.9" font-size="13" text-anchor="middle" fill="#1f2933" >tiene como</text>
+<text x="430.0" y="1012.5" font-size="13" text-anchor="middle" fill="#1f2933" >local · N:1</text>
+<text x="430.0" y="601.9" font-size="13" text-anchor="middle" fill="#1f2933" >se reserva en</text>
+<text x="430.0" y="617.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="890.0" y="601.9" font-size="13" text-anchor="middle" fill="#1f2933" >origina</text>
+<text x="890.0" y="617.5" font-size="13" text-anchor="middle" fill="#1f2933" >1:1</text>
+<text x="430.0" y="1106.9" font-size="13" text-anchor="middle" fill="#1f2933" >tiene como</text>
+<text x="430.0" y="1122.5" font-size="13" text-anchor="middle" fill="#1f2933" >visitante · N:1</text>
+<text x="890.0" y="1226.9" font-size="13" text-anchor="middle" fill="#1f2933" >pertenece a</text>
+<text x="890.0" y="1242.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="325.0" y="451.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="535.0" y="451.0" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="785.0" y="451.0" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="995.0" y="451.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="1245.0" y="451.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="1455.0" y="451.0" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="681.2" y="252.3" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="681.9" y="406.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="1141.9" y="522.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="1141.2" y="676.3" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="1245.0" y="721.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,1)</text>
+<text x="1455.0" y="721.0" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="221.9" y="792.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="221.2" y="946.3" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="681.2" y="792.3" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="681.9" y="946.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="785.0" y="991.0" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="995.0" y="991.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="325.0" y="991.0" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="535.0" y="991.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="579.5" y="520.4" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="330.1" y="698.8" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="740.5" y="520.4" font-size="12" text-anchor="middle" fill="#1f2933" >(0,1)</text>
+<text x="990.5" y="698.6" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="261.2" y="1062.3" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="598.1" y="1062.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="138.8" y="1062.3" font-size="12" text-anchor="middle" fill="#1f2933" >(1,1)</text>
+<text x="1141.9" y="1062.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<rect x="1330" y="1150" width="440" height="126" fill="#ffffff" stroke="#52606d" stroke-width="1"/>
+<text x="1342.0" y="1172.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">Referencias</text>
+<rect x="1342" y="1189.0" width="62" height="24" fill="#fff" stroke="#1f2933" stroke-width="1.4"/>
+<text x="1422.0" y="1205.2" font-size="12" text-anchor="start" fill="#1f2933" >Entidad</text>
+<polygon points="1373,1217.0 1404,1231.0 1373,1245.0 1342,1231.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<text x="1422.0" y="1235.2" font-size="12" text-anchor="start" fill="#1f2933" >Relación (verbo y tipo: 1:1, 1:N, N:1)</text>
+<text x="1373.0" y="1265.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="1422.0" y="1265.2" font-size="12" text-anchor="start" fill="#1f2933" >Mín. y máx. de veces que participa la entidad de al lado</text>
+<text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama de Entidad-Relación (DER) — vista general</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >Notación de Chen · cardinalidad (mín, máx) junto a cada entidad · el tipo de relación figura dentro del rombo</text>
+</svg>

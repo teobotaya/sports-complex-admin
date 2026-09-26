@@ -1,0 +1,448 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2080" height="1640" viewBox="0 0 2080 1640" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="2080" height="1640" fill="#ffffff"/>
+<path d="M 600.0 193.0 L 460.0 193.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="193.0" x2="600.0" y2="184.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="193.0" x2="600.0" y2="202.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="193.0" x2="600.0" y2="193.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="576.0" cy="193.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="468.0" y1="201.0" x2="468.0" y2="185.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="201.0" x2="474.0" y2="185.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 600.0 219.0 L 530.0 219.0 L 530.0 427.0 L 460.0 427.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="219.0" x2="600.0" y2="210.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="219.0" x2="600.0" y2="228.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="219.0" x2="600.0" y2="219.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="576.0" cy="219.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="468.0" y1="435.0" x2="468.0" y2="419.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="435.0" x2="474.0" y2="419.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 980.0 245.0 L 1120.0 245.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="245.0" x2="980.0" y2="254.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="245.0" x2="980.0" y2="236.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="245.0" x2="980.0" y2="245.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1004.0" cy="245.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1112.0" y1="237.0" x2="1112.0" y2="253.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1106.0" y1="237.0" x2="1106.0" y2="253.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1640.0 245.0 L 1500.0 245.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1626.0" y1="245.0" x2="1640.0" y2="236.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1626.0" y1="245.0" x2="1640.0" y2="254.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1626.0" y1="245.0" x2="1640.0" y2="245.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1616.0" cy="245.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1508.0" y1="253.0" x2="1508.0" y2="237.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1514.0" y1="253.0" x2="1514.0" y2="237.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1120.0 577.0 L 1050.0 577.0 L 1050.0 410.0 L 980.0 410.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1112.0" y1="569.0" x2="1112.0" y2="585.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1099.0" cy="577.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="988.0" y1="418.0" x2="988.0" y2="402.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="418.0" x2="994.0" y2="402.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1500.0 603.0 L 1550.0 603.0 L 1550.0 374.0 L 1500.0 374.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1514.0" y1="603.0" x2="1500.0" y2="612.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1514.0" y1="603.0" x2="1500.0" y2="594.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1514.0" y1="603.0" x2="1500.0" y2="603.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1524.0" cy="603.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1508.0" y1="382.0" x2="1508.0" y2="366.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1514.0" y1="382.0" x2="1514.0" y2="366.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1640.0 655.0 L 1500.0 655.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1632.0" y1="647.0" x2="1632.0" y2="663.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1619.0" cy="655.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1508.0" y1="663.0" x2="1508.0" y2="647.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1514.0" y1="663.0" x2="1514.0" y2="647.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 600.0 603.0 L 550.0 603.0 L 550.0 410.0 L 600.0 410.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="603.0" x2="600.0" y2="594.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="603.0" x2="600.0" y2="612.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="603.0" x2="600.0" y2="603.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="576.0" cy="603.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="592.0" y1="402.0" x2="592.0" y2="418.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="402.0" x2="586.0" y2="418.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 460.0 1101.0 L 530.0 1101.0 L 530.0 960.0 L 600.0 960.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1101.0" x2="460.0" y2="1110.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1101.0" x2="460.0" y2="1092.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1101.0" x2="460.0" y2="1101.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="484.0" cy="1101.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="592.0" y1="952.0" x2="592.0" y2="968.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="952.0" x2="586.0" y2="968.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 460.0 1127.0 L 600.0 1127.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1127.0" x2="460.0" y2="1136.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1127.0" x2="460.0" y2="1118.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1127.0" x2="460.0" y2="1127.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="484.0" cy="1127.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="592.0" y1="1119.0" x2="592.0" y2="1135.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="1119.0" x2="586.0" y2="1135.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 460.0 1153.0 L 600.0 1153.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1153.0" x2="460.0" y2="1162.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1153.0" x2="460.0" y2="1144.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="474.0" y1="1153.0" x2="460.0" y2="1153.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="484.0" cy="1153.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="592.0" y1="1145.0" x2="592.0" y2="1161.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="586.0" y1="1145.0" x2="586.0" y2="1161.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 80.0 1179.0 L 26.0 1179.0 L 26.0 514.0 L 80.0 514.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="66.0" y1="1179.0" x2="80.0" y2="1170.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="66.0" y1="1179.0" x2="80.0" y2="1188.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="66.0" y1="1179.0" x2="80.0" y2="1179.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="56.0" cy="1179.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="72.0" y1="506.0" x2="72.0" y2="522.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="66.0" y1="506.0" x2="66.0" y2="522.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 980.0 1153.0 L 1030.0 1153.0 L 1030.0 960.0 L 980.0 960.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="1153.0" x2="980.0" y2="1162.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="1153.0" x2="980.0" y2="1144.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="1153.0" x2="980.0" y2="1153.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1004.0" cy="1153.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="988.0" y1="968.0" x2="988.0" y2="952.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="968.0" x2="994.0" y2="952.0" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1120.0 1205.0 L 980.0 1205.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1106.0" y1="1205.0" x2="1120.0" y2="1196.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1106.0" y1="1205.0" x2="1120.0" y2="1214.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1106.0" y1="1205.0" x2="1120.0" y2="1205.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1096.0" cy="1205.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="988.0" y1="1213.0" x2="988.0" y2="1197.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="994.0" y1="1213.0" x2="994.0" y2="1197.0" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="600" y="120" width="380" height="320" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="600" y="120" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="600" y1="180" x2="980" y2="180" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="206" x2="980" y2="206" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="232" x2="980" y2="232" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="258" x2="980" y2="258" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="284" x2="980" y2="284" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="310" x2="980" y2="310" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="336" x2="980" y2="336" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="362" x2="980" y2="362" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="388" x2="980" y2="388" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="414" x2="980" y2="414" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="656" y1="154" x2="656" y2="440" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="830" y1="154" x2="830" y2="440" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="80" y="146.0" width="380" height="164" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="80" y="146.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="80" y1="206.0" x2="460" y2="206.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="232.0" x2="460" y2="232.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="258.0" x2="460" y2="258.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="284.0" x2="460" y2="284.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="136" y1="180.0" x2="136" y2="310.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="310" y1="180.0" x2="310" y2="310.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="80" y="380.0" width="380" height="164" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="80" y="380.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="80" y1="440.0" x2="460" y2="440.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="466.0" x2="460" y2="466.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="492.0" x2="460" y2="492.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="518.0" x2="460" y2="518.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="136" y1="414.0" x2="136" y2="544.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="310" y1="414.0" x2="310" y2="544.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="1120" y="198.0" width="380" height="216" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1120" y="198.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1120" y1="258.0" x2="1500" y2="258.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="284.0" x2="1500" y2="284.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="310.0" x2="1500" y2="310.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="336.0" x2="1500" y2="336.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="362.0" x2="1500" y2="362.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="388.0" x2="1500" y2="388.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1176" y1="232.0" x2="1176" y2="414.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1350" y1="232.0" x2="1350" y2="414.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="1640" y="172.0" width="380" height="190" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1640" y="172.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1640" y1="232.0" x2="2020" y2="232.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="258.0" x2="2020" y2="258.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="284.0" x2="2020" y2="284.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="310.0" x2="2020" y2="310.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="336.0" x2="2020" y2="336.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1696" y1="206.0" x2="1696" y2="362.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1870" y1="206.0" x2="1870" y2="362.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="1120" y="504.0" width="380" height="164" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1120" y="504.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1120" y1="564.0" x2="1500" y2="564.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="590.0" x2="1500" y2="590.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="616.0" x2="1500" y2="616.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="642.0" x2="1500" y2="642.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1176" y1="538.0" x2="1176" y2="668.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1350" y1="538.0" x2="1350" y2="668.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="1640" y="582.0" width="380" height="190" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1640" y="582.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1640" y1="642.0" x2="2020" y2="642.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="668.0" x2="2020" y2="668.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="694.0" x2="2020" y2="694.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="720.0" x2="2020" y2="720.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1640" y1="746.0" x2="2020" y2="746.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1696" y1="616.0" x2="1696" y2="772.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1870" y1="616.0" x2="1870" y2="772.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="600" y="530" width="380" height="190" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="600" y="530" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="600" y1="590" x2="980" y2="590" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="616" x2="980" y2="616" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="642" x2="980" y2="642" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="668" x2="980" y2="668" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="694" x2="980" y2="694" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="656" y1="564" x2="656" y2="720" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="830" y1="564" x2="830" y2="720" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="600" y="800" width="380" height="190" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="600" y="800" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="600" y1="860" x2="980" y2="860" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="886" x2="980" y2="886" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="912" x2="980" y2="912" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="938" x2="980" y2="938" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="964" x2="980" y2="964" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="656" y1="834" x2="656" y2="990" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="830" y1="834" x2="830" y2="990" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="600" y="1080" width="380" height="164" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="600" y="1080" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="600" y1="1140" x2="980" y2="1140" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="1166" x2="980" y2="1166" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="1192" x2="980" y2="1192" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="600" y1="1218" x2="980" y2="1218" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="656" y1="1114" x2="656" y2="1244" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="830" y1="1114" x2="830" y2="1244" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="80" y="1028.0" width="380" height="294" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="80" y="1028.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="80" y1="1088.0" x2="460" y2="1088.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1114.0" x2="460" y2="1114.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1140.0" x2="460" y2="1140.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1166.0" x2="460" y2="1166.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1192.0" x2="460" y2="1192.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1218.0" x2="460" y2="1218.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1244.0" x2="460" y2="1244.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1270.0" x2="460" y2="1270.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="80" y1="1296.0" x2="460" y2="1296.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="136" y1="1062.0" x2="136" y2="1322.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="310" y1="1062.0" x2="310" y2="1322.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<rect x="1120" y="1132.0" width="380" height="138" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1120" y="1132.0" width="380" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1120" y1="1192.0" x2="1500" y2="1192.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="1218.0" x2="1500" y2="1218.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1120" y1="1244.0" x2="1500" y2="1244.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1176" y1="1166.0" x2="1176" y2="1270.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<line x1="1350" y1="1166.0" x2="1350" y2="1270.0" stroke="#c7cfd6" stroke-width="0.8"/>
+<text x="790.0" y="143.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Reserva</text>
+<text x="610.0" y="172.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="662.0" y="172.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_reserva</text><line x1="662.0" y1="174.5" x2="737.7" y2="174.5" stroke="#1f2933" stroke-width="1"/>
+<text x="838.0" y="172.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="610.0" y="198.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="662.0" y="198.0" font-size="13" text-anchor="start" fill="#1f2933" >id_cliente</text>
+<text x="838.0" y="198.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="610.0" y="224.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK U1</text>
+<text x="662.0" y="224.0" font-size="13" text-anchor="start" fill="#1f2933" >id_cancha</text>
+<text x="838.0" y="224.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="610.0" y="250.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="662.0" y="250.0" font-size="13" text-anchor="start" fill="#1f2933" >id_usuario</text>
+<text x="838.0" y="250.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="610.0" y="276.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">U1</text>
+<text x="662.0" y="276.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha</text>
+<text x="838.0" y="276.0" font-size="12" text-anchor="start" fill="#52606d" >date</text>
+<text x="610.0" y="302.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">U1</text>
+<text x="662.0" y="302.0" font-size="13" text-anchor="start" fill="#1f2933" >hora_inicio</text>
+<text x="838.0" y="302.0" font-size="12" text-anchor="start" fill="#52606d" >time</text>
+<text x="662.0" y="328.0" font-size="13" text-anchor="start" fill="#1f2933" >hora_fin</text>
+<text x="838.0" y="328.0" font-size="12" text-anchor="start" fill="#52606d" >time</text>
+<text x="662.0" y="354.0" font-size="13" text-anchor="start" fill="#1f2933" >estado_reserva</text>
+<text x="838.0" y="354.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(20)</text>
+<text x="662.0" y="380.0" font-size="13" text-anchor="start" fill="#1f2933" >estado_pago</text>
+<text x="838.0" y="380.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(30)</text>
+<text x="662.0" y="406.0" font-size="13" text-anchor="start" fill="#1f2933" >observaciones</text>
+<text x="838.0" y="406.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(max)</text>
+<text x="972.0" y="406.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="662.0" y="432.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_creacion</text>
+<text x="838.0" y="432.0" font-size="12" text-anchor="start" fill="#52606d" >datetime2</text>
+<text x="270.0" y="169.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Cliente</text>
+<text x="90.0" y="198.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="142.0" y="198.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_cliente</text><line x1="142.0" y1="200.5" x2="212.0" y2="200.5" stroke="#1f2933" stroke-width="1"/>
+<text x="318.0" y="198.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="142.0" y="224.0" font-size="13" text-anchor="start" fill="#1f2933" >nombre_completo</text>
+<text x="318.0" y="224.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(150)</text>
+<text x="90.0" y="250.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">UK</text>
+<text x="142.0" y="250.0" font-size="13" text-anchor="start" fill="#1f2933" >telefono</text>
+<text x="318.0" y="250.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(20)</text>
+<text x="142.0" y="276.0" font-size="13" text-anchor="start" fill="#1f2933" >observaciones</text>
+<text x="318.0" y="276.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(max)</text>
+<text x="452.0" y="276.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="142.0" y="302.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_alta</text>
+<text x="318.0" y="302.0" font-size="12" text-anchor="start" fill="#52606d" >date</text>
+<text x="270.0" y="403.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Cancha</text>
+<text x="90.0" y="432.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="142.0" y="432.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_cancha</text><line x1="142.0" y1="434.5" x2="213.7" y2="434.5" stroke="#1f2933" stroke-width="1"/>
+<text x="318.0" y="432.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="90.0" y="458.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">UK</text>
+<text x="142.0" y="458.0" font-size="13" text-anchor="start" fill="#1f2933" >nombre</text>
+<text x="318.0" y="458.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(100)</text>
+<text x="142.0" y="484.0" font-size="13" text-anchor="start" fill="#1f2933" >tipo_superficie</text>
+<text x="318.0" y="484.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(50)</text>
+<text x="452.0" y="484.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="142.0" y="510.0" font-size="13" text-anchor="start" fill="#1f2933" >precio_por_hora</text>
+<text x="318.0" y="510.0" font-size="12" text-anchor="start" fill="#52606d" >decimal(10,2)</text>
+<text x="142.0" y="536.0" font-size="13" text-anchor="start" fill="#1f2933" >activa</text>
+<text x="318.0" y="536.0" font-size="12" text-anchor="start" fill="#52606d" >bit</text>
+<text x="1310.0" y="221.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Usuario</text>
+<text x="1130.0" y="250.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="1182.0" y="250.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_usuario</text><line x1="1182.0" y1="252.5" x2="1257.1" y2="252.5" stroke="#1f2933" stroke-width="1"/>
+<text x="1358.0" y="250.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1182.0" y="276.0" font-size="13" text-anchor="start" fill="#1f2933" >nombre_completo</text>
+<text x="1358.0" y="276.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(150)</text>
+<text x="1130.0" y="302.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">UK</text>
+<text x="1182.0" y="302.0" font-size="13" text-anchor="start" fill="#1f2933" >username</text>
+<text x="1358.0" y="302.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(50)</text>
+<text x="1182.0" y="328.0" font-size="13" text-anchor="start" fill="#1f2933" >password_hash</text>
+<text x="1358.0" y="328.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(255)</text>
+<text x="1182.0" y="354.0" font-size="13" text-anchor="start" fill="#1f2933" >rol</text>
+<text x="1358.0" y="354.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(20)</text>
+<text x="1182.0" y="380.0" font-size="13" text-anchor="start" fill="#1f2933" >activo</text>
+<text x="1358.0" y="380.0" font-size="12" text-anchor="start" fill="#52606d" >bit</text>
+<text x="1182.0" y="406.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_creacion</text>
+<text x="1358.0" y="406.0" font-size="12" text-anchor="start" fill="#52606d" >datetime2</text>
+<text x="1830.0" y="195.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Notificacion</text>
+<text x="1650.0" y="224.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="1702.0" y="224.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_notificacion</text><line x1="1702.0" y1="226.5" x2="1807.6" y2="226.5" stroke="#1f2933" stroke-width="1"/>
+<text x="1878.0" y="224.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1650.0" y="250.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="1702.0" y="250.0" font-size="13" text-anchor="start" fill="#1f2933" >id_usuario</text>
+<text x="1878.0" y="250.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1702.0" y="276.0" font-size="13" text-anchor="start" fill="#1f2933" >tipo</text>
+<text x="1878.0" y="276.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(50)</text>
+<text x="1702.0" y="302.0" font-size="13" text-anchor="start" fill="#1f2933" >mensaje</text>
+<text x="1878.0" y="302.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(max)</text>
+<text x="1702.0" y="328.0" font-size="13" text-anchor="start" fill="#1f2933" >leida</text>
+<text x="1878.0" y="328.0" font-size="12" text-anchor="start" fill="#52606d" >bit</text>
+<text x="1702.0" y="354.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_creacion</text>
+<text x="1878.0" y="354.0" font-size="12" text-anchor="start" fill="#52606d" >datetime2</text>
+<text x="1310.0" y="527.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Cancelacion</text>
+<text x="1130.0" y="556.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="1182.0" y="556.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_cancelacion</text><line x1="1182.0" y1="558.5" x2="1288.1" y2="558.5" stroke="#1f2933" stroke-width="1"/>
+<text x="1358.0" y="556.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1130.0" y="582.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK UK</text>
+<text x="1182.0" y="582.0" font-size="13" text-anchor="start" fill="#1f2933" >id_reserva</text>
+<text x="1358.0" y="582.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1130.0" y="608.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="1182.0" y="608.0" font-size="13" text-anchor="start" fill="#1f2933" >id_usuario</text>
+<text x="1358.0" y="608.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1182.0" y="634.0" font-size="13" text-anchor="start" fill="#1f2933" >motivo</text>
+<text x="1358.0" y="634.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(max)</text>
+<text x="1492.0" y="634.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="1182.0" y="660.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_cancelacion</text>
+<text x="1358.0" y="660.0" font-size="12" text-anchor="start" fill="#52606d" >datetime2</text>
+<text x="1830.0" y="605.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Devolucion</text>
+<text x="1650.0" y="634.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="1702.0" y="634.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_devolucion</text><line x1="1702.0" y1="636.5" x2="1801.8" y2="636.5" stroke="#1f2933" stroke-width="1"/>
+<text x="1878.0" y="634.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1650.0" y="660.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK UK</text>
+<text x="1702.0" y="660.0" font-size="13" text-anchor="start" fill="#1f2933" >id_cancelacion</text>
+<text x="1878.0" y="660.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1702.0" y="686.0" font-size="13" text-anchor="start" fill="#1f2933" >monto_devuelto</text>
+<text x="1878.0" y="686.0" font-size="12" text-anchor="start" fill="#52606d" >decimal(10,2)</text>
+<text x="1702.0" y="712.0" font-size="13" text-anchor="start" fill="#1f2933" >metodo</text>
+<text x="1878.0" y="712.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(30)</text>
+<text x="1702.0" y="738.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha</text>
+<text x="1878.0" y="738.0" font-size="12" text-anchor="start" fill="#52606d" >date</text>
+<text x="1702.0" y="764.0" font-size="13" text-anchor="start" fill="#1f2933" >observaciones</text>
+<text x="1878.0" y="764.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(max)</text>
+<text x="2012.0" y="764.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="790.0" y="553.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Pago</text>
+<text x="610.0" y="582.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="662.0" y="582.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_pago</text><line x1="662.0" y1="584.5" x2="718.6" y2="584.5" stroke="#1f2933" stroke-width="1"/>
+<text x="838.0" y="582.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="610.0" y="608.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="662.0" y="608.0" font-size="13" text-anchor="start" fill="#1f2933" >id_reserva</text>
+<text x="838.0" y="608.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="662.0" y="634.0" font-size="13" text-anchor="start" fill="#1f2933" >monto</text>
+<text x="838.0" y="634.0" font-size="12" text-anchor="start" fill="#52606d" >decimal(10,2)</text>
+<text x="662.0" y="660.0" font-size="13" text-anchor="start" fill="#1f2933" >metodo_pago</text>
+<text x="838.0" y="660.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(30)</text>
+<text x="662.0" y="686.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_pago</text>
+<text x="838.0" y="686.0" font-size="12" text-anchor="start" fill="#52606d" >date</text>
+<text x="662.0" y="712.0" font-size="13" text-anchor="start" fill="#1f2933" >observaciones</text>
+<text x="838.0" y="712.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(max)</text>
+<text x="972.0" y="712.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="790.0" y="823.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Torneo</text>
+<text x="610.0" y="852.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="662.0" y="852.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_torneo</text><line x1="662.0" y1="854.5" x2="730.8" y2="854.5" stroke="#1f2933" stroke-width="1"/>
+<text x="838.0" y="852.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="662.0" y="878.0" font-size="13" text-anchor="start" fill="#1f2933" >nombre</text>
+<text x="838.0" y="878.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(150)</text>
+<text x="662.0" y="904.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_inicio</text>
+<text x="838.0" y="904.0" font-size="12" text-anchor="start" fill="#52606d" >date</text>
+<text x="662.0" y="930.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha_fin</text>
+<text x="838.0" y="930.0" font-size="12" text-anchor="start" fill="#52606d" >date</text>
+<text x="662.0" y="956.0" font-size="13" text-anchor="start" fill="#1f2933" >categoria</text>
+<text x="838.0" y="956.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(50)</text>
+<text x="972.0" y="956.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="662.0" y="982.0" font-size="13" text-anchor="start" fill="#1f2933" >estado</text>
+<text x="838.0" y="982.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(20)</text>
+<text x="790.0" y="1103.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Equipo</text>
+<text x="610.0" y="1132.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="662.0" y="1132.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_equipo</text><line x1="662.0" y1="1134.5" x2="732.3" y2="1134.5" stroke="#1f2933" stroke-width="1"/>
+<text x="838.0" y="1132.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="610.0" y="1158.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK U1</text>
+<text x="662.0" y="1158.0" font-size="13" text-anchor="start" fill="#1f2933" >id_torneo</text>
+<text x="838.0" y="1158.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="610.0" y="1184.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">U1</text>
+<text x="662.0" y="1184.0" font-size="13" text-anchor="start" fill="#1f2933" >nombre</text>
+<text x="838.0" y="1184.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(150)</text>
+<text x="662.0" y="1210.0" font-size="13" text-anchor="start" fill="#1f2933" >contacto_nombre</text>
+<text x="838.0" y="1210.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(150)</text>
+<text x="972.0" y="1210.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="662.0" y="1236.0" font-size="13" text-anchor="start" fill="#1f2933" >contacto_telefono</text>
+<text x="838.0" y="1236.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(20)</text>
+<text x="972.0" y="1236.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="270.0" y="1051.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Partido</text>
+<text x="90.0" y="1080.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="142.0" y="1080.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_partido</text><line x1="142.0" y1="1082.5" x2="215.7" y2="1082.5" stroke="#1f2933" stroke-width="1"/>
+<text x="318.0" y="1080.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="90.0" y="1106.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="142.0" y="1106.0" font-size="13" text-anchor="start" fill="#1f2933" >id_torneo</text>
+<text x="318.0" y="1106.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="90.0" y="1132.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="142.0" y="1132.0" font-size="13" text-anchor="start" fill="#1f2933" >id_equipo_local</text>
+<text x="318.0" y="1132.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="90.0" y="1158.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="142.0" y="1158.0" font-size="13" text-anchor="start" fill="#1f2933" >id_equipo_visitante</text>
+<text x="318.0" y="1158.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="90.0" y="1184.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK U1</text>
+<text x="142.0" y="1184.0" font-size="13" text-anchor="start" fill="#1f2933" >id_cancha</text>
+<text x="318.0" y="1184.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="90.0" y="1210.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">U1</text>
+<text x="142.0" y="1210.0" font-size="13" text-anchor="start" fill="#1f2933" >fecha</text>
+<text x="318.0" y="1210.0" font-size="12" text-anchor="start" fill="#52606d" >date</text>
+<text x="90.0" y="1236.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">U1</text>
+<text x="142.0" y="1236.0" font-size="13" text-anchor="start" fill="#1f2933" >hora_inicio</text>
+<text x="318.0" y="1236.0" font-size="12" text-anchor="start" fill="#52606d" >time</text>
+<text x="142.0" y="1262.0" font-size="13" text-anchor="start" fill="#1f2933" >goles_local</text>
+<text x="318.0" y="1262.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="452.0" y="1262.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="142.0" y="1288.0" font-size="13" text-anchor="start" fill="#1f2933" >goles_visitante</text>
+<text x="318.0" y="1288.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="452.0" y="1288.0" font-size="10" text-anchor="end" fill="#52606d" >NULL</text>
+<text x="142.0" y="1314.0" font-size="13" text-anchor="start" fill="#1f2933" >estado</text>
+<text x="318.0" y="1314.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(20)</text>
+<text x="1310.0" y="1155.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Integrante</text>
+<text x="1130.0" y="1184.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="1182.0" y="1184.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold" text-decoration="underline">id_integrante</text><line x1="1182.0" y1="1186.5" x2="1279.8" y2="1186.5" stroke="#1f2933" stroke-width="1"/>
+<text x="1358.0" y="1184.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1130.0" y="1210.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK U1</text>
+<text x="1182.0" y="1210.0" font-size="13" text-anchor="start" fill="#1f2933" >id_equipo</text>
+<text x="1358.0" y="1210.0" font-size="12" text-anchor="start" fill="#52606d" >int</text>
+<text x="1182.0" y="1236.0" font-size="13" text-anchor="start" fill="#1f2933" >nombre_completo</text>
+<text x="1358.0" y="1236.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(150)</text>
+<text x="1130.0" y="1262.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">U1</text>
+<text x="1182.0" y="1262.0" font-size="13" text-anchor="start" fill="#1f2933" >dni</text>
+<text x="1358.0" y="1262.0" font-size="12" text-anchor="start" fill="#52606d" >nvarchar(15)</text>
+<rect x="1120" y="1340.0" width="820" height="246" fill="#ffffff" stroke="#52606d" stroke-width="1"/>
+<text x="1132.0" y="1362.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">Referencias</text>
+<path d="M 1132.0 1391.0 L 1198.0 1391.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1140.0" y1="1399.0" x2="1140.0" y2="1383.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1146.0" y1="1399.0" x2="1146.0" y2="1383.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1184.0" y1="1391.0" x2="1198.0" y2="1382.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1184.0" y1="1391.0" x2="1198.0" y2="1400.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1184.0" y1="1391.0" x2="1198.0" y2="1391.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1174.0" cy="1391.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<text x="1212.0" y="1395.2" font-size="12" text-anchor="start" fill="#1f2933" >Uno (tabla referenciada)  —  cero o muchos (tabla que tiene la FK)</text>
+<path d="M 1132.0 1421.0 L 1198.0 1421.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1140.0" y1="1429.0" x2="1140.0" y2="1413.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1146.0" y1="1429.0" x2="1146.0" y2="1413.0" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1190.0" y1="1413.0" x2="1190.0" y2="1429.0" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="1177.0" cy="1421.0" r="5" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<text x="1212.0" y="1425.2" font-size="12" text-anchor="start" fill="#1f2933" >Uno  —  cero o uno (la FK además es única)</text>
+<text x="1152.0" y="1455.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">PK</text>
+<text x="1212.0" y="1455.2" font-size="12" text-anchor="start" fill="#1f2933" >Clave primaria (columna subrayada)</text>
+<text x="1152.0" y="1485.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">FK</text>
+<text x="1212.0" y="1485.2" font-size="12" text-anchor="start" fill="#1f2933" >Clave foránea: la línea sale de esa columna</text>
+<text x="1152.0" y="1515.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">UK</text>
+<text x="1212.0" y="1515.2" font-size="12" text-anchor="start" fill="#1f2933" >Valor único</text>
+<text x="1152.0" y="1545.0" font-size="11" text-anchor="start" fill="#1f6f4a" font-weight="bold">U1</text>
+<text x="1212.0" y="1545.2" font-size="12" text-anchor="start" fill="#1f2933" >Combinación única entre las columnas marcadas U1 (*)</text>
+<text x="1150.0" y="1575.0" font-size="10" text-anchor="start" fill="#52606d" >NULL</text>
+<text x="1212.0" y="1575.2" font-size="12" text-anchor="start" fill="#1f2933" >Admite valores nulos (el resto es NOT NULL)</text>
+<text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama Relacional de la Base de Datos — ComplejoDeportivoDB</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >SQL Server · 12 tablas · notación de pata de gallo (Information Engineering) · estructura generada desde el modelo EF Core del sistema</text>
+<text x="1120.0" y="1616.0" font-size="12" text-anchor="start" fill="#52606d" >(*) En Reserva la combinación cancha + fecha + hora de inicio es única sólo entre reservas no canceladas (índice filtrado).</text>
+</svg>

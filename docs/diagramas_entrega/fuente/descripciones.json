@@ -1,0 +1,118 @@
+{
+ "t": {
+  "Cliente": "Personas que reservan turnos en el complejo. Es el padrón sobre el que se apoya toda la operatoria de reservas y cobros.",
+  "Usuario": "Cuentas de acceso al sistema. Determinan quién puede operar y qué secciones puede ver según su rol.",
+  "Cancha": "Las canchas físicas del complejo: tres de fútbol 5 y una de fútbol 7, todas con iluminación nocturna.",
+  "Reserva": "Turno reservado sobre una cancha en una fecha y franja horaria determinadas. Es la entidad central del sistema.",
+  "Pago": "Cada cobro imputado a una reserva. Una reserva puede recibir varios pagos parciales hasta cubrir el total.",
+  "Cancelacion": "Registro de la baja de un turno, con trazabilidad de quién la ejecutó y por qué. Relación uno a uno con la reserva.",
+  "Devolucion": "Reintegro de dinero originado en una cancelación. Sólo puede existir si la reserva tenía pagos previos.",
+  "Notificacion": "Alertas internas que el sistema genera automáticamente para llamar la atención del personal sobre situaciones pendientes.",
+  "Torneo": "Campeonatos amateurs organizados por el complejo, que agrupan equipos y partidos.",
+  "Equipo": "Equipos inscriptos en un torneo, con su referente de contacto.",
+  "Integrante": "Jugadores que componen cada equipo. Permite controlar la nómina inscripta en el torneo.",
+  "Partido": "Encuentros programados dentro de un torneo, con su resultado una vez disputados."
+ },
+ "c": {
+  "Cliente": {
+   "id_cliente": "Identificador único del cliente. Autoincremental, generado por el motor.",
+   "nombre_completo": "Nombre y apellido del cliente tal como se lo identifica en el mostrador.",
+   "telefono": "Teléfono de contacto. Es el dato que evita altas duplicadas del mismo cliente.",
+   "observaciones": "Notas libres del personal sobre el cliente (preferencias, antecedentes de pago, etc.).",
+   "fecha_alta": "Fecha en que se registró al cliente. La completa el sistema con la fecha del día."
+  },
+  "Usuario": {
+   "id_usuario": "Identificador único de la cuenta de usuario.",
+   "nombre_completo": "Nombre y apellido de la persona propietaria de la cuenta.",
+   "username": "Nombre de usuario con el que inicia sesión. No puede repetirse.",
+   "password_hash": "Hash criptográfico de la contraseña. Nunca se almacena la contraseña en texto plano.",
+   "rol": "Perfil de acceso. Acotado por CHECK a 'administrador' o 'empleado'.",
+   "activo": "Indica si la cuenta puede iniciar sesión. Permite dar de baja sin borrar el historial.",
+   "fecha_creacion": "Fecha y hora de alta de la cuenta."
+  },
+  "Cancha": {
+   "id_cancha": "Identificador único de la cancha.",
+   "nombre": "Denominación de la cancha (por ejemplo, «Cancha 1 - Futbol 5»).",
+   "tipo_superficie": "Tipo de superficie de juego (césped sintético, cemento, etc.).",
+   "precio_por_hora": "Tarifa por hora de alquiler. Restringida por CHECK a valores mayores que cero.",
+   "activa": "Indica si la cancha está habilitada para recibir nuevas reservas."
+  },
+  "Reserva": {
+   "id_reserva": "Identificador único de la reserva.",
+   "id_cliente": "Cliente que reserva el turno. Referencia a Cliente(id_cliente).",
+   "id_cancha": "Cancha reservada. Referencia a Cancha(id_cancha).",
+   "id_usuario": "Usuario del sistema que registró la reserva. Referencia a Usuario(id_usuario).",
+   "fecha": "Día en que se juega el turno.",
+   "hora_inicio": "Hora de comienzo del turno. El sistema sólo acepta horas enteras (por ejemplo 18:00).",
+   "hora_fin": "Hora de finalización. Un CHECK obliga a que sea posterior a hora_inicio; el sistema sólo acepta horas enteras.",
+   "estado_reserva": "Estado del turno. Acotado por CHECK a 'Confirmada', 'Pendiente' o 'Cancelada'.",
+   "estado_pago": "Situación de cobro. Acotado a 'Pendiente', 'Parcialmente abonado' o 'Abonado'.",
+   "observaciones": "Notas escritas a mano por el personal sobre el turno (llegó tarde o temprano, pedido especial, etc.).",
+   "fecha_creacion": "Momento exacto en que se cargó la reserva en el sistema."
+  },
+  "Pago": {
+   "id_pago": "Identificador único del pago.",
+   "id_reserva": "Reserva a la que se imputa el pago. Referencia a Reserva(id_reserva).",
+   "monto": "Importe cobrado. Restringido por CHECK a valores mayores que cero.",
+   "metodo_pago": "Forma de pago utilizada (efectivo, transferencia, tarjeta, etc.).",
+   "fecha_pago": "Fecha en que se registró el pago. La completa el sistema con la fecha del día.",
+   "observaciones": "Detalle adicional del cobro (número de comprobante, quién pagó, etc.)."
+  },
+  "Cancelacion": {
+   "id_cancelacion": "Identificador único de la cancelación.",
+   "id_reserva": "Reserva cancelada. Es única: una reserva se cancela una sola",
+   "id_usuario": "Usuario que ejecutó la cancelación. Referencia a Usuario(id_usuario).",
+   "motivo": "Explicación de la baja (lluvia, el cliente no puede, error de carga, etc.).",
+   "fecha_cancelacion": "Momento exacto en que se registró la cancelación."
+  },
+  "Devolucion": {
+   "id_devolucion": "Identificador único de la devolución.",
+   "id_cancelacion": "Cancelación que origina el reintegro. Una cancelación",
+   "monto_devuelto": "Importe reintegrado al cliente. Restringido por CHECK a valores mayores que cero.",
+   "metodo": "Medio por el que se devolvió el dinero.",
+   "fecha": "Fecha en que se efectuó la devolución.",
+   "observaciones": "Comentarios sobre el reintegro."
+  },
+  "Notificacion": {
+   "id_notificacion": "Identificador único de la notificación.",
+   "id_usuario": "Usuario destinatario de la alerta. Referencia a Usuario(id_usuario).",
+   "tipo": "Categoría de la alerta (pago vencido, partido sin resultado, devolución pendiente).",
+   "mensaje": "Texto de la alerta tal como se muestra en el panel.",
+   "leida": "Indica si el usuario ya marcó la alerta como leída.",
+   "fecha_creacion": "Momento en que el sistema generó la alerta."
+  },
+  "Torneo": {
+   "id_torneo": "Identificador único del torneo.",
+   "nombre": "Denominación del torneo.",
+   "fecha_inicio": "Fecha de comienzo del campeonato.",
+   "fecha_fin": "Fecha de cierre. Un CHECK obliga a que no sea anterior a fecha_inicio.",
+   "categoria": "Categoría del torneo (libre, sub-18, femenino, etc.).",
+   "estado": "Situación del torneo. Acotado por CHECK a 'Planificado', 'En curso' o 'Finalizado'."
+  },
+  "Equipo": {
+   "id_equipo": "Identificador único del equipo.",
+   "id_torneo": "Torneo en el que participa. Referencia a Torneo(id_torneo).",
+   "nombre": "Nombre del equipo. Único dentro de cada torneo (UNIQUE id_torneo + nombre).",
+   "contacto_nombre": "Persona responsable o delegado del equipo.",
+   "contacto_telefono": "Teléfono del referente del equipo."
+  },
+  "Integrante": {
+   "id_integrante": "Identificador único del integrante.",
+   "id_equipo": "Equipo al que pertenece. Referencia a Equipo(id_equipo).",
+   "nombre_completo": "Nombre y apellido del jugador.",
+   "dni": "Documento del jugador. Único dentro de cada equipo (UNIQUE id_equipo + dni)."
+  },
+  "Partido": {
+   "id_partido": "Identificador único del partido.",
+   "id_torneo": "Torneo al que pertenece el encuentro.",
+   "id_equipo_local": "Equipo local. Un CHECK impide que coincida con el visitante.",
+   "id_equipo_visitante": "Equipo visitante.",
+   "id_cancha": "Cancha donde se disputa el partido.",
+   "fecha": "Día del encuentro.",
+   "hora_inicio": "Hora de comienzo del partido. El sistema sólo acepta horas enteras.",
+   "goles_local": "Goles del equipo local. Nulo hasta que se carga el resultado; CHECK ≥ 0.",
+   "goles_visitante": "Goles del equipo visitante. Nulo hasta que se carga el resultado; CHECK ≥ 0.",
+   "estado": "Situación del partido. Acotado por CHECK a 'Programado' o 'Jugado'."
+  }
+ }
+}

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="1170" viewBox="0 0 1720 1170" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="1720" height="1170" fill="#ffffff"/>
+<rect x="330" y="110" width="1060" height="930" rx="6" fill="#f7f9f8" stroke="#1f2933" stroke-width="1.4"/>
+<text x="860.0" y="136.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Sistema de Gestión Integral — Complejo Deportivo</text>
+<path d="M 210.0 478.0 L 390.0 210.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 210.0 492.7 L 390.0 318.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 210.0 507.4 L 390.0 426.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 210.0 522.1 L 390.0 534.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 210.0 536.9 L 390.0 642.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 210.0 551.6 L 390.0 750.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 210.0 566.3 L 390.0 858.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 210.0 581.0 L 390.0 966.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1498.5 828.0 L 1330.0 750.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1498.5 858.8 L 1330.0 858.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1498.5 889.5 L 1330.0 966.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1010.0 534.0 L 710.0 534.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="710.0" y1="534.0" x2="723.0" y2="540.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="710.0" y1="534.0" x2="723.0" y2="527.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1560.0 909.5 L 1560.0 1110.0 L 150.0 1110.0 L 150.0 589.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="150.0,589.0 141.0,606.0 159.0,606.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="210.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="318.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="426.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="534.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="642.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="750.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="858.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="550.0" cy="966.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1170.0" cy="534.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1170.0" cy="750.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1170.0" cy="858.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1170.0" cy="966.0" rx="160.0" ry="33.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<circle cx="150.0" cy="482" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="150.0" y1="493" x2="150.0" y2="522" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="130.0" y1="503" x2="170.0" y2="503" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="150.0" y1="522" x2="133.0" y2="546" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="150.0" y1="522" x2="167.0" y2="546" stroke="#1f2933" stroke-width="1.6"/>
+<circle cx="1560.0" cy="820.0" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="1560.0" y1="831.0" x2="1560.0" y2="860.0" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="1540.0" y1="841.0" x2="1580.0" y2="841.0" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="1560.0" y1="860.0" x2="1543.0" y2="884.0" stroke="#1f2933" stroke-width="1.6"/>
+<line x1="1560.0" y1="860.0" x2="1577.0" y2="884.0" stroke="#1f2933" stroke-width="1.6"/>
+<text x="550.0" y="206.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-10</text>
+<text x="550.0" y="222.6" font-size="13" text-anchor="middle" fill="#1f2933" >Iniciar sesión</text>
+<text x="550.0" y="314.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-05</text>
+<text x="550.0" y="330.6" font-size="13" text-anchor="middle" fill="#1f2933" >Registrar y consultar cliente</text>
+<text x="550.0" y="422.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-01</text>
+<text x="550.0" y="438.6" font-size="13" text-anchor="middle" fill="#1f2933" >Registrar reserva</text>
+<text x="550.0" y="530.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-02</text>
+<text x="550.0" y="546.6" font-size="13" text-anchor="middle" fill="#1f2933" >Cancelar reserva</text>
+<text x="550.0" y="638.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-03</text>
+<text x="550.0" y="654.6" font-size="13" text-anchor="middle" fill="#1f2933" >Registrar pago</text>
+<text x="550.0" y="746.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-06</text>
+<text x="550.0" y="762.6" font-size="13" text-anchor="middle" fill="#1f2933" >Crear torneo e inscribir equipos</text>
+<text x="550.0" y="854.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-07</text>
+<text x="550.0" y="870.6" font-size="13" text-anchor="middle" fill="#1f2933" >Programar partido y cargar resultado</text>
+<text x="550.0" y="962.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-12</text>
+<text x="550.0" y="978.6" font-size="13" text-anchor="middle" fill="#1f2933" >Recibir notificaciones automáticas</text>
+<text x="1170.0" y="530.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-04</text>
+<text x="1170.0" y="546.6" font-size="13" text-anchor="middle" fill="#1f2933" >Registrar devolución</text>
+<text x="1170.0" y="746.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-08</text>
+<text x="1170.0" y="762.6" font-size="13" text-anchor="middle" fill="#1f2933" >Consultar reportes administrativos</text>
+<text x="1170.0" y="854.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-09</text>
+<text x="1170.0" y="870.6" font-size="13" text-anchor="middle" fill="#1f2933" >Consultar estadísticas</text>
+<text x="1170.0" y="962.8" font-size="13" text-anchor="middle" fill="#1f2933" >CU-11</text>
+<text x="1170.0" y="978.6" font-size="13" text-anchor="middle" fill="#1f2933" >Gestionar canchas y usuarios</text>
+<text x="150.0" y="568.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Empleado /</text>
+<text x="150.0" y="585.5" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Recepcionista</text>
+<text x="1560.0" y="906.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Administrador</text>
+<text x="860.0" y="525.0" font-size="12" text-anchor="middle" fill="#1f2933" font-style="italic">«extend»</text>
+<text x="860.0" y="548.8" font-size="11" text-anchor="middle" fill="#52606d" >si la reserva tenía pagos</text>
+<text x="855.0" y="1125.6" font-size="12" text-anchor="middle" fill="#52606d" >generalización: el Administrador puede hacer todo lo del Empleado</text>
+<text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama de Casos de Uso — Sistema de Gestión Integral del Complejo Deportivo</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >UML · el Administrador hereda todos los casos de uso del Empleado (generalización) · numeración igual a la de los casos de uso narrados</text>
+</svg>

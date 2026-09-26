@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1400" viewBox="0 0 1920 1400" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="1920" height="1400" fill="#ffffff"/>
+<path d="M 560.0 221.5 L 400.0 221.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 560.0 242.5 L 490.0 242.5 L 490.0 462.5 L 400.0 462.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 880.0 263.5 L 1040.0 263.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1520.0 263.5 L 1360.0 263.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1040.0 587.5 L 970.0 587.5 L 970.0 417.0 L 880.0 417.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1360.0 608.5 L 1410.0 608.5 L 1410.0 386.0 L 1360.0 386.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1520.0 650.5 L 1360.0 650.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 560.0 608.5 L 510.0 608.5 L 510.0 417.0 L 560.0 417.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 400.0 1120.5 L 440.0 1120.5 L 440.0 971.0 L 560.0 971.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 400.0 1141.5 L 560.0 1141.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 400.0 1162.5 L 560.0 1162.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 80.0 1183.5 L 26.0 1183.5 L 26.0 553.0 L 80.0 553.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 880.0 1162.5 L 930.0 1162.5 L 930.0 971.0 L 880.0 971.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1040.0 1204.5 L 880.0 1204.5" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="560" y="150" width="320" height="297" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="560" y="150" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="560" y1="427" x2="880" y2="427" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="80" y="171.0" width="320" height="171" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="80" y="171.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="80" y1="322.0" x2="400" y2="322.0" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="80" y="412.0" width="320" height="171" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="80" y="412.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="80" y1="563.0" x2="400" y2="563.0" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="1040" y="213.0" width="320" height="213" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1040" y="213.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1040" y1="406.0" x2="1360" y2="406.0" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="1520" y="192.0" width="320" height="192" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1520" y="192.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1520" y1="364.0" x2="1840" y2="364.0" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="1040" y="516.0" width="320" height="171" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1040" y="516.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1040" y1="667.0" x2="1360" y2="667.0" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="1520" y="579.0" width="320" height="192" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1520" y="579.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1520" y1="751.0" x2="1840" y2="751.0" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="560" y="537" width="320" height="192" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="560" y="537" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="560" y1="709" x2="880" y2="709" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="560" y="809" width="320" height="192" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="560" y="809" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="560" y1="981" x2="880" y2="981" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="560" y="1091" width="320" height="171" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="560" y="1091" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="560" y1="1242" x2="880" y2="1242" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="80" y="1049.0" width="320" height="276" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="80" y="1049.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="80" y1="1305.0" x2="400" y2="1305.0" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="1040" y="1133.0" width="320" height="150" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<rect x="1040" y="1133.0" width="320" height="34" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1040" y1="1263.0" x2="1360" y2="1263.0" stroke="#1f2933" stroke-width="1.2"/>
+<text x="720.0" y="173.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Reserva</text>
+<text x="570.0" y="205.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdReserva: int</text>
+<text x="570.0" y="226.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdCliente: int</text>
+<text x="570.0" y="247.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdCancha: int</text>
+<text x="570.0" y="268.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdUsuario: int</text>
+<text x="570.0" y="289.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Fecha: DateOnly</text>
+<text x="570.0" y="310.0" font-size="12" text-anchor="start" fill="#1f2933" >+ HoraInicio: TimeOnly</text>
+<text x="570.0" y="331.0" font-size="12" text-anchor="start" fill="#1f2933" >+ HoraFin: TimeOnly</text>
+<text x="570.0" y="352.0" font-size="12" text-anchor="start" fill="#1f2933" >+ EstadoReserva: string</text>
+<text x="570.0" y="373.0" font-size="12" text-anchor="start" fill="#1f2933" >+ EstadoPago: string</text>
+<text x="570.0" y="394.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Observaciones: string [0..1]</text>
+<text x="570.0" y="415.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaCreacion: DateTime</text>
+<text x="240.0" y="194.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Cliente</text>
+<text x="90.0" y="226.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdCliente: int</text>
+<text x="90.0" y="247.0" font-size="12" text-anchor="start" fill="#1f2933" >+ NombreCompleto: string</text>
+<text x="90.0" y="268.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Telefono: string</text>
+<text x="90.0" y="289.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Observaciones: string [0..1]</text>
+<text x="90.0" y="310.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaAlta: DateOnly</text>
+<text x="240.0" y="435.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Cancha</text>
+<text x="90.0" y="467.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdCancha: int</text>
+<text x="90.0" y="488.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Nombre: string</text>
+<text x="90.0" y="509.0" font-size="12" text-anchor="start" fill="#1f2933" >+ TipoSuperficie: string [0..1]</text>
+<text x="90.0" y="530.0" font-size="12" text-anchor="start" fill="#1f2933" >+ PrecioPorHora: decimal</text>
+<text x="90.0" y="551.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Activa: bool</text>
+<text x="1200.0" y="236.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Usuario</text>
+<text x="1050.0" y="268.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdUsuario: int</text>
+<text x="1050.0" y="289.0" font-size="12" text-anchor="start" fill="#1f2933" >+ NombreCompleto: string</text>
+<text x="1050.0" y="310.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Username: string</text>
+<text x="1050.0" y="331.0" font-size="12" text-anchor="start" fill="#1f2933" >+ PasswordHash: string</text>
+<text x="1050.0" y="352.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Rol: string</text>
+<text x="1050.0" y="373.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Activo: bool</text>
+<text x="1050.0" y="394.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaCreacion: DateTime</text>
+<text x="1680.0" y="215.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Notificacion</text>
+<text x="1530.0" y="247.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdNotificacion: int</text>
+<text x="1530.0" y="268.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdUsuario: int</text>
+<text x="1530.0" y="289.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Tipo: string</text>
+<text x="1530.0" y="310.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Mensaje: string</text>
+<text x="1530.0" y="331.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Leida: bool</text>
+<text x="1530.0" y="352.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaCreacion: DateTime</text>
+<text x="1200.0" y="539.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Cancelacion</text>
+<text x="1050.0" y="571.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdCancelacion: int</text>
+<text x="1050.0" y="592.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdReserva: int</text>
+<text x="1050.0" y="613.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdUsuario: int</text>
+<text x="1050.0" y="634.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Motivo: string [0..1]</text>
+<text x="1050.0" y="655.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaCancelacion: DateTime</text>
+<text x="1680.0" y="602.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Devolucion</text>
+<text x="1530.0" y="634.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdDevolucion: int</text>
+<text x="1530.0" y="655.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdCancelacion: int</text>
+<text x="1530.0" y="676.0" font-size="12" text-anchor="start" fill="#1f2933" >+ MontoDevuelto: decimal</text>
+<text x="1530.0" y="697.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Metodo: string</text>
+<text x="1530.0" y="718.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Fecha: DateOnly</text>
+<text x="1530.0" y="739.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Observaciones: string [0..1]</text>
+<text x="720.0" y="560.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Pago</text>
+<text x="570.0" y="592.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdPago: int</text>
+<text x="570.0" y="613.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdReserva: int</text>
+<text x="570.0" y="634.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Monto: decimal</text>
+<text x="570.0" y="655.0" font-size="12" text-anchor="start" fill="#1f2933" >+ MetodoPago: string</text>
+<text x="570.0" y="676.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaPago: DateOnly</text>
+<text x="570.0" y="697.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Observaciones: string [0..1]</text>
+<text x="720.0" y="832.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Torneo</text>
+<text x="570.0" y="864.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdTorneo: int</text>
+<text x="570.0" y="885.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Nombre: string</text>
+<text x="570.0" y="906.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaInicio: DateOnly</text>
+<text x="570.0" y="927.0" font-size="12" text-anchor="start" fill="#1f2933" >+ FechaFin: DateOnly</text>
+<text x="570.0" y="948.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Categoria: string [0..1]</text>
+<text x="570.0" y="969.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Estado: string</text>
+<text x="720.0" y="1114.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Equipo</text>
+<text x="570.0" y="1146.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdEquipo: int</text>
+<text x="570.0" y="1167.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdTorneo: int</text>
+<text x="570.0" y="1188.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Nombre: string</text>
+<text x="570.0" y="1209.0" font-size="12" text-anchor="start" fill="#1f2933" >+ ContactoNombre: string [0..1]</text>
+<text x="570.0" y="1230.0" font-size="12" text-anchor="start" fill="#1f2933" >+ ContactoTelefono: string [0..1]</text>
+<text x="240.0" y="1072.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Partido</text>
+<text x="90.0" y="1104.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdPartido: int</text>
+<text x="90.0" y="1125.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdTorneo: int</text>
+<text x="90.0" y="1146.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdEquipoLocal: int</text>
+<text x="90.0" y="1167.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdEquipoVisitante: int</text>
+<text x="90.0" y="1188.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdCancha: int</text>
+<text x="90.0" y="1209.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Fecha: DateOnly</text>
+<text x="90.0" y="1230.0" font-size="12" text-anchor="start" fill="#1f2933" >+ HoraInicio: TimeOnly</text>
+<text x="90.0" y="1251.0" font-size="12" text-anchor="start" fill="#1f2933" >+ GolesLocal: int [0..1]</text>
+<text x="90.0" y="1272.0" font-size="12" text-anchor="start" fill="#1f2933" >+ GolesVisitante: int [0..1]</text>
+<text x="90.0" y="1293.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Estado: string</text>
+<text x="1200.0" y="1156.0" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">Integrante</text>
+<text x="1050.0" y="1188.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdIntegrante: int</text>
+<text x="1050.0" y="1209.0" font-size="12" text-anchor="start" fill="#1f2933" >+ IdEquipo: int</text>
+<text x="1050.0" y="1230.0" font-size="12" text-anchor="start" fill="#1f2933" >+ NombreCompleto: string</text>
+<text x="1050.0" y="1251.0" font-size="12" text-anchor="start" fill="#1f2933" >+ Dni: string</text>
+<text x="538.0" y="212.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="416.0" y="212.5" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="538.0" y="260.1" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="416.0" y="453.5" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="902.0" y="254.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="1024.0" y="254.5" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="1498.0" y="254.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="1376.0" y="254.5" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="1018.0" y="578.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..1</text>
+<text x="896.0" y="408.0" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="1382.0" y="599.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="1376.0" y="403.6" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="1498.0" y="641.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..1</text>
+<text x="1376.0" y="641.5" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="538.0" y="599.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="544.0" y="408.0" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="432.0" y="1102.5" font-size="12" text-anchor="end" fill="#1f2933" >0..*</text>
+<text x="544.0" y="988.6" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="475.0" y="1132.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="544.0" y="1132.5" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="422.0" y="1180.1" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="544.0" y="1180.1" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="58.0" y="1201.1" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="64.0" y="544.0" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="902.0" y="1153.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="896.0" y="988.6" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="1018.0" y="1195.5" font-size="12" text-anchor="middle" fill="#1f2933" >0..*</text>
+<text x="896.0" y="1195.5" font-size="12" text-anchor="middle" fill="#1f2933" >1</text>
+<text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama de Clases — modelo de dominio</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >UML · clases de SportsComplex.Api.Entities · asociaciones navegables en ambos sentidos · multiplicidad en cada extremo</text>
+</svg>

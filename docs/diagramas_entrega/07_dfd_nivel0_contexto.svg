@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="800" viewBox="0 0 1900 800" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="1900" height="800" fill="#ffffff"/>
+<path d="M 310.0 210.0 L 814.4 210.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="814.4,210.0 801.4,204.5 801.4,215.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 310.0 252.0 L 764.9 252.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="764.9,252.0 751.9,246.5 751.9,257.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 310.0 294.0 L 734.1 294.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="734.1,294.0 721.1,288.5 721.1,299.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 310.0 336.0 L 714.5 336.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="714.5,336.0 701.5,330.5 701.5,341.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 310.0 378.0 L 703.6 378.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="703.6,378.0 690.6,372.5 690.6,383.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 700.3 432.0 L 310.0 432.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="310.0,432.0 323.0,437.5 323.0,426.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 705.9 474.0 L 310.0 474.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="310.0,474.0 323.0,479.5 323.0,468.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 719.2 516.0 L 310.0 516.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="310.0,516.0 323.0,521.5 323.0,510.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 741.5 558.0 L 310.0 558.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="310.0,558.0 323.0,563.5 323.0,552.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 776.5 600.0 L 310.0 600.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="310.0,600.0 323.0,605.5 323.0,594.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1590.0 270.0 L 1150.0 270.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1150.0,270.0 1163.0,275.5 1163.0,264.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1590.0 320.0 L 1179.1 320.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1179.1,320.0 1192.1,325.5 1192.1,314.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1590.0 370.0 L 1194.9 370.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1194.9,370.0 1207.9,375.5 1207.9,364.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1590.0 420.0 L 1200.0 420.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1200.0,420.0 1213.0,425.5 1213.0,414.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1192.7 480.0 L 1590.0 480.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1590.0,480.0 1577.0,474.5 1577.0,485.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1174.5 530.0 L 1590.0 530.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1590.0,530.0 1577.0,524.5 1577.0,535.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<circle cx="950.0" cy="420.0" r="250.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.6"/><line x1="711.5" y1="345.0" x2="1188.5" y2="345.0" stroke="#1f2933" stroke-width="1"/>
+<rect x="60" y="170.0" width="250" height="500" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1590" y="240.0" width="250" height="360" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<text x="950.0" y="336.2" font-size="17" text-anchor="middle" fill="#1f2933" font-weight="bold">0</text>
+<text x="950.0" y="480.3" font-size="16" text-anchor="middle" fill="#1f2933" >Sistema de Gestión Integral</text>
+<text x="950.0" y="500.3" font-size="16" text-anchor="middle" fill="#1f2933" >del Complejo Deportivo</text>
+<text x="185.0" y="416.3" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Empleado /</text>
+<text x="185.0" y="433.8" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Recepcionista</text>
+<text x="1715.0" y="425.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Administrador</text>
+<text x="324.0" y="203.0" font-size="12" text-anchor="start" fill="#1f2933" >credenciales</text>
+<text x="324.0" y="245.0" font-size="12" text-anchor="start" fill="#1f2933" >datos de clientes</text>
+<text x="324.0" y="287.0" font-size="12" text-anchor="start" fill="#1f2933" >pedidos de reserva, modificación y cancelación</text>
+<text x="324.0" y="329.0" font-size="12" text-anchor="start" fill="#1f2933" >pagos y devoluciones</text>
+<text x="324.0" y="371.0" font-size="12" text-anchor="start" fill="#1f2933" >equipos, partidos y resultados</text>
+<text x="324.0" y="425.0" font-size="12" text-anchor="start" fill="#1f2933" >agenda y disponibilidad de canchas</text>
+<text x="324.0" y="467.0" font-size="12" text-anchor="start" fill="#1f2933" >confirmaciones y rechazos</text>
+<text x="324.0" y="509.0" font-size="12" text-anchor="start" fill="#1f2933" >estado de pagos y saldos</text>
+<text x="324.0" y="551.0" font-size="12" text-anchor="start" fill="#1f2933" >notificaciones internas</text>
+<text x="324.0" y="593.0" font-size="12" text-anchor="start" fill="#1f2933" >fixture y tabla de posiciones</text>
+<text x="1370.0" y="263.0" font-size="12" text-anchor="middle" fill="#1f2933" >datos de canchas y tarifas</text>
+<text x="1384.6" y="313.0" font-size="12" text-anchor="middle" fill="#1f2933" >datos de torneos</text>
+<text x="1392.5" y="363.0" font-size="12" text-anchor="middle" fill="#1f2933" >altas y bajas de usuarios</text>
+<text x="1395.0" y="413.0" font-size="12" text-anchor="middle" fill="#1f2933" >período a consultar</text>
+<text x="1391.3" y="473.0" font-size="12" text-anchor="middle" fill="#1f2933" >reportes de ocupación, ingresos y deudores</text>
+<text x="1382.2" y="523.0" font-size="12" text-anchor="middle" fill="#1f2933" >estadísticas del complejo</text>
+<text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama de Flujo de Datos — Nivel 0 (diagrama de contexto)</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >Notación Yourdon/DeMarco · el Administrador también puede enviar y recibir todos los flujos del Empleado</text>
+</svg>
