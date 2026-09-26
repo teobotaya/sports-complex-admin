@@ -5,6 +5,7 @@ import { clientesApi, Cliente } from '../api/clientes';
 import { canchasApi, Cancha } from '../api/canchas';
 import { reservasApi } from '../api/reservas';
 import { ApiError } from '../api/client';
+import { opcionesInicio, opcionesFin, ajustarFin, esHoraEntera } from '../components/horarios';
 
 const NuevaReserva: React.FC = () => {
   const history = useHistory();
@@ -19,8 +20,9 @@ const NuevaReserva: React.FC = () => {
   const [clienteId, setClienteId] = useState(clientePreseleccionado);
   const [canchaId, setCanchaId] = useState(canchaPreseleccionada);
   const [fecha, setFecha] = useState(fechaPreseleccionada);
-  const [horaInicio, setHoraInicio] = useState(horaPreseleccionada);
-  const [horaFin, setHoraFin] = useState('');
+  const inicioInicial = esHoraEntera(horaPreseleccionada) ? horaPreseleccionada.slice(0, 5) : '';
+  const [horaInicio, setHoraInicio] = useState(inicioInicial);
+  const [horaFin, setHoraFin] = useState(inicioInicial ? ajustarFin(inicioInicial, '') : '');
   const [observaciones, setObservaciones] = useState('');
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,15 +92,21 @@ const NuevaReserva: React.FC = () => {
                     </div>
                     <div className="col-md-4">
                       <label htmlFor="reserva-hora-inicio" className="form-label small text-muted-sc mb-1">Hora de inicio</label>
-                      <input id="reserva-hora-inicio" type="time" className="form-control" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)} required />
+                      <select id="reserva-hora-inicio" className="form-select" value={horaInicio} onChange={(e) => { setHoraInicio(e.target.value); setHoraFin(ajustarFin(e.target.value, horaFin)); }} required>
+                        <option value="">Elegir…</option>
+                        {opcionesInicio().map((h) => <option key={h} value={h}>{h}</option>)}
+                      </select>
                     </div>
                     <div className="col-md-4">
                       <label htmlFor="reserva-hora-fin" className="form-label small text-muted-sc mb-1">Hora de finalización</label>
-                      <input id="reserva-hora-fin" type="time" className="form-control" value={horaFin} onChange={(e) => setHoraFin(e.target.value)} required />
+                      <select id="reserva-hora-fin" className="form-select" value={horaFin} onChange={(e) => setHoraFin(e.target.value)} required disabled={!horaInicio}>
+                        <option value="">Elegir…</option>
+                        {opcionesFin(horaInicio).map((h) => <option key={h} value={h}>{h}</option>)}
+                      </select>
                     </div>
                     <div className="col-12">
                       <label htmlFor="reserva-obs" className="form-label small text-muted-sc mb-1">Observaciones</label>
-                      <textarea id="reserva-obs" className="form-control" rows={3} value={observaciones} onChange={(e) => setObservaciones(e.target.value)} placeholder="Opcional" />
+                      <textarea id="reserva-obs" className="form-control" rows={3} value={observaciones} onChange={(e) => setObservaciones(e.target.value)} placeholder="Opcional. Ej: llegó 5 minutos tarde, llegó 10 minutos antes, pidió pecheras…" />
                     </div>
                   </div>
 
@@ -124,6 +132,11 @@ const NuevaReserva: React.FC = () => {
               <p className="text-muted-sc" style={{ fontSize: 13 }}>
                 Seleccioná cliente, cancha, fecha y horario. El servidor valida la disponibilidad
                 real contra la base de datos e impide superposiciones de turnos.
+              </p>
+              <p className="text-muted-sc" style={{ fontSize: 13 }}>
+                Los turnos son siempre por horas enteras (18:00 a 19:00, 19:00 a 20:00…). No se
+                reservan ni se cobran fracciones de hora. Si el cliente llegó antes o después,
+                escribilo a mano en <strong>Observaciones</strong>.
               </p>
             </div>
           </div>

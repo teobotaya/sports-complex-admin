@@ -7,6 +7,7 @@ import EmptyState from '../components/EmptyState';
 import { torneosApi, equiposApi, partidosApi, Torneo, Equipo, Partido, Posicion } from '../api/torneos';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
+import { opcionesInicio } from '../components/horarios';
 
 const TorneoDetalle: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -368,7 +369,10 @@ const TorneoDetalle: React.FC = () => {
           </div>
           <div className="mb-2">
             <label className="form-label small text-muted-sc mb-1">Hora</label>
-            <input type="time" className="form-control form-control-sm" value={nuevoPartido.horaInicio} onChange={(e) => setNuevoPartido({ ...nuevoPartido, horaInicio: e.target.value })} />
+            <select className="form-select form-select-sm" value={nuevoPartido.horaInicio} onChange={(e) => setNuevoPartido({ ...nuevoPartido, horaInicio: e.target.value })}>
+              <option value="">Elegir…</option>
+              {opcionesInicio().map((h) => <option key={h} value={h}>{h}</option>)}
+            </select>
           </div>
         </Modal>
       )}

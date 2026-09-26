@@ -51,6 +51,7 @@ public class PartidoService
         if (!await _db.Canchas.AnyAsync(c => c.IdCancha == dto.IdCancha && c.Activa))
             throw new NotFoundException("Cancha no encontrada o inactiva.");
 
+        ReglasHorario.ValidarInicioPartido(dto.HoraInicio);
         await _disponibilidad.ValidarDisponibilidadPartidoAsync(dto.IdCancha, dto.Fecha, dto.HoraInicio);
 
         var partido = new Partido

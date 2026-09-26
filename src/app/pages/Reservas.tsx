@@ -9,8 +9,9 @@ import { isoDate } from '../../data/mock';
 import { reservasApi, Reserva } from '../api/reservas';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
+import { HORAS_GRILLA, opcionesInicio, opcionesFin, ajustarFin } from '../components/horarios';
 
-const HORAS = Array.from({ length: 14 }, (_, i) => 8 + i); // 08 a 21 hs
+const HORAS = HORAS_GRILLA;
 const POR_PAGINA = 10;
 
 type ModalMode = 'ver' | 'editar' | null;
@@ -408,15 +409,21 @@ const Reservas: React.FC = () => {
           </div>
           <div className="mb-2">
             <label className="form-label small text-muted-sc mb-1">Hora inicio</label>
-            <input type="time" className="form-control form-control-sm" value={seleccion.horaInicio} onChange={(e) => setSeleccion({ ...seleccion, horaInicio: e.target.value })} />
+            <select className="form-select form-select-sm" value={seleccion.horaInicio} onChange={(e) => setSeleccion({ ...seleccion, horaInicio: e.target.value, horaFin: ajustarFin(e.target.value, seleccion.horaFin) })}>
+              {!opcionesInicio().includes(seleccion.horaInicio) && <option value={seleccion.horaInicio}>{seleccion.horaInicio} (corregir)</option>}
+              {opcionesInicio().map((h) => <option key={h} value={h}>{h}</option>)}
+            </select>
           </div>
           <div className="mb-2">
             <label className="form-label small text-muted-sc mb-1">Hora fin</label>
-            <input type="time" className="form-control form-control-sm" value={seleccion.horaFin} onChange={(e) => setSeleccion({ ...seleccion, horaFin: e.target.value })} />
+            <select className="form-select form-select-sm" value={seleccion.horaFin} onChange={(e) => setSeleccion({ ...seleccion, horaFin: e.target.value })}>
+              {!opcionesFin(seleccion.horaInicio).includes(seleccion.horaFin) && <option value={seleccion.horaFin}>{seleccion.horaFin} (corregir)</option>}
+              {opcionesFin(seleccion.horaInicio).map((h) => <option key={h} value={h}>{h}</option>)}
+            </select>
           </div>
           <div className="mb-2">
             <label className="form-label small text-muted-sc mb-1">Observaciones</label>
-            <textarea className="form-control form-control-sm" rows={3} value={seleccion.observaciones ?? ''} onChange={(e) => setSeleccion({ ...seleccion, observaciones: e.target.value })} />
+            <textarea className="form-control form-control-sm" rows={3} placeholder="Ej: llegó 5 minutos tarde" value={seleccion.observaciones ?? ''} onChange={(e) => setSeleccion({ ...seleccion, observaciones: e.target.value })} />
           </div>
         </Modal>
       )}

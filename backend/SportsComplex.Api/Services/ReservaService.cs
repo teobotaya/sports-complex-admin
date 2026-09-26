@@ -91,11 +91,7 @@ public class ReservaService
         return await GetByIdAsync(id);
     }
 
-    private static void ValidarHorario(TimeOnly inicio, TimeOnly fin)
-    {
-        if (fin <= inicio)
-            throw new BusinessRuleException("La hora de fin debe ser posterior a la hora de inicio.");
-    }
+    private static void ValidarHorario(TimeOnly inicio, TimeOnly fin) => ReglasHorario.ValidarTurno(inicio, fin);
 
     private static ReservaDto ToDto(Reserva r) => new(
         r.IdReserva, r.IdCliente, r.Cliente?.NombreCompleto ?? string.Empty,

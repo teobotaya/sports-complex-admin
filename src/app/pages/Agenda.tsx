@@ -5,8 +5,9 @@ import { isoDate } from '../../data/mock';
 import { reservasApi, Reserva } from '../api/reservas';
 import { canchasApi, Cancha } from '../api/canchas';
 import { ApiError } from '../api/client';
+import { HORAS_GRILLA } from '../components/horarios';
 
-const HORAS = Array.from({ length: 14 }, (_, i) => 8 + i); // 08 a 21 hs
+const HORAS = HORAS_GRILLA;
 
 const toneClass: Record<Reserva['estadoReserva'], string> = {
   Confirmada: 'agenda-slot-confirmada',
