@@ -3,7 +3,9 @@ import { isoDate } from './dateHelpers';
 
 describe('isoDate', () => {
   it('devuelve la fecha de hoy en formato ISO cuando el offset es 0', () => {
-    const hoy = new Date().toISOString().slice(0, 10);
+    // Fecha LOCAL (no UTC): de 21 a 24 h en Argentina la fecha UTC ya es la del dia siguiente.
+    const d = new Date();
+    const hoy = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     expect(isoDate(0)).toBe(hoy);
   });
 
