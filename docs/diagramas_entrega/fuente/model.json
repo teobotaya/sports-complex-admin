@@ -1,5 +1,105 @@
 [
   {
+    "table": "Auditoria",
+    "entity": "Auditoria",
+    "columns": [
+      {
+        "name": "id_auditoria",
+        "prop": "IdAuditoria",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "accion",
+        "prop": "Accion",
+        "type": "nvarchar(20)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "detalle",
+        "prop": "Detalle",
+        "type": "nvarchar(max)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "entidad",
+        "prop": "Entidad",
+        "type": "nvarchar(30)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "fecha_hora",
+        "prop": "FechaHora",
+        "type": "datetime2",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_registro",
+        "prop": "IdRegistro",
+        "type": "int",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "id_usuario",
+        "prop": "IdUsuario",
+        "type": "int",
+        "nullable": true,
+        "pk": false,
+        "fk": true,
+        "def": null
+      }
+    ],
+    "fks": [
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "principal": "Usuario",
+        "unique": false,
+        "required": false,
+        "name": "FK_Auditoria_Usuario_id_usuario",
+        "delete": "Restrict"
+      }
+    ],
+    "indexes": [
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Auditoria_id_usuario"
+      },
+      {
+        "cols": [
+          "entidad",
+          "id_registro"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Auditoria_Entidad_Registro"
+      }
+    ]
+  },
+  {
     "table": "Cancelacion",
     "entity": "Cancelacion",
     "columns": [
@@ -246,6 +346,15 @@
         "def": null
       },
       {
+        "name": "id_usuario",
+        "prop": "IdUsuario",
+        "type": "int",
+        "nullable": true,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
         "name": "metodo",
         "prop": "Metodo",
         "type": "nvarchar(30)",
@@ -283,6 +392,16 @@
         "required": true,
         "name": "FK_Devolucion_Cancelacion_id_cancelacion",
         "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "principal": "Usuario",
+        "unique": false,
+        "required": false,
+        "name": "FK_Devolucion_Usuario_id_usuario",
+        "delete": "Restrict"
       }
     ],
     "indexes": [
@@ -293,6 +412,14 @@
         "unique": true,
         "filter": null,
         "name": "IX_Devolucion_id_cancelacion"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Devolucion_id_usuario"
       }
     ]
   },
@@ -458,6 +585,15 @@
         "def": null
       },
       {
+        "name": "id_referencia",
+        "prop": "IdReferencia",
+        "type": "int",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
         "name": "id_usuario",
         "prop": "IdUsuario",
         "type": "int",
@@ -509,11 +645,13 @@
     "indexes": [
       {
         "cols": [
-          "id_usuario"
+          "id_usuario",
+          "tipo",
+          "id_referencia"
         ],
-        "unique": false,
-        "filter": null,
-        "name": "IX_Notificacion_id_usuario"
+        "unique": true,
+        "filter": "[id_referencia] IS NOT NULL",
+        "name": "UX_Notificacion_Usuario_Evento"
       }
     ]
   },
@@ -544,6 +682,15 @@
         "prop": "IdReserva",
         "type": "int",
         "nullable": false,
+        "pk": false,
+        "fk": true,
+        "def": null
+      },
+      {
+        "name": "id_usuario",
+        "prop": "IdUsuario",
+        "type": "int",
+        "nullable": true,
         "pk": false,
         "fk": true,
         "def": null
@@ -586,6 +733,16 @@
         "required": true,
         "name": "FK_Pago_Reserva_id_reserva",
         "delete": "Restrict"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "principal": "Usuario",
+        "unique": false,
+        "required": false,
+        "name": "FK_Pago_Usuario_id_usuario",
+        "delete": "Restrict"
       }
     ],
     "indexes": [
@@ -596,6 +753,67 @@
         "unique": false,
         "filter": null,
         "name": "IX_Pago_id_reserva"
+      },
+      {
+        "cols": [
+          "id_usuario"
+        ],
+        "unique": false,
+        "filter": null,
+        "name": "IX_Pago_id_usuario"
+      }
+    ]
+  },
+  {
+    "table": "Parametro",
+    "entity": "Parametro",
+    "columns": [
+      {
+        "name": "id_parametro",
+        "prop": "IdParametro",
+        "type": "int",
+        "nullable": false,
+        "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "clave",
+        "prop": "Clave",
+        "type": "nvarchar(50)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "descripcion",
+        "prop": "Descripcion",
+        "type": "nvarchar(200)",
+        "nullable": true,
+        "pk": false,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "valor",
+        "prop": "Valor",
+        "type": "nvarchar(100)",
+        "nullable": false,
+        "pk": false,
+        "fk": false,
+        "def": null
+      }
+    ],
+    "fks": [],
+    "indexes": [
+      {
+        "cols": [
+          "clave"
+        ],
+        "unique": true,
+        "filter": null,
+        "name": "IX_Parametro_clave"
       }
     ]
   },
@@ -783,6 +1001,15 @@
         "type": "int",
         "nullable": false,
         "pk": true,
+        "fk": false,
+        "def": null
+      },
+      {
+        "name": "asistencia",
+        "prop": "Asistencia",
+        "type": "nvarchar(10)",
+        "nullable": true,
+        "pk": false,
         "fk": false,
         "def": null
       },

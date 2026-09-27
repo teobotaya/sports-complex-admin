@@ -19,6 +19,10 @@ def navs(cls):
     many = re.findall(r"public ICollection<(\w+)> (\w+) ", src)
     return [(t, n) for t, n in single if t not in CS_TYPES], many
 
+def opcional(cls, fkattr):
+    """FK que admite NULL (ej. Pago.IdUsuario): del lado del padre la multiplicidad es 0..1."""
+    return any(n == fkattr and nul for n, t, nul in props(cls if isinstance(cls, str) else cls.id))
+
 def attr_text(name, typ, nul):
     return f"+ {name}: {typ}" + (" [0..1]" if nul else "")
 
@@ -26,7 +30,7 @@ def build():
     OY = 90
     C0, C1, C2, C3 = 80, 560, 1040, 1520
     W = 320
-    d = Diagram(1920, 1400, title="Diagrama de Clases — modelo de dominio",
+    d = Diagram(1920, 1640, title="Diagrama de Clases — modelo de dominio",
                 subtitle="UML · clases de SportsComplex.Api.Entities · asociaciones navegables en ambos sentidos · multiplicidad en cada extremo")
     boxes = {}
     def C(name, x, y):
@@ -39,37 +43,45 @@ def build():
         return y - hdr - ClassBox.PAD - ClassBox.ROW * i - ClassBox.ROW / 2
     def ry(b, attr): return b.row_y(b.names.index(attr))
 
-    R = C("Reserva", C1, OY + 60)
+    # Misma disposición que el diagrama relacional: Cancelacion por arriba de Reserva–Usuario y Pago por debajo.
+    Dv = C("Devolucion", C3, OY + 60)
+    Cn = C("Cancelacion", C2, top_for("Cancelacion", "IdCancelacion", ry(Dv, "IdCancelacion")))
+    U = C("Usuario", C2, Cn.b + 100)
+    R = C("Reserva", C1, top_for("Reserva", "IdUsuario", ry(U, "IdUsuario")))
     Cl = C("Cliente", C0, top_for("Cliente", "IdCliente", ry(R, "IdCliente")))
     Ca = C("Cancha", C0, Cl.b + 70)
-    U = C("Usuario", C2, top_for("Usuario", "IdUsuario", ry(R, "IdUsuario")))
-    N = C("Notificacion", C3, top_for("Notificacion", "IdUsuario", ry(U, "IdUsuario")))
-    Cn = C("Cancelacion", C2, U.b + 90)
-    Dv = C("Devolucion", C3, top_for("Devolucion", "IdCancelacion", ry(Cn, "FechaCancelacion")))
+    N = C("Notificacion", C3, top_for("Notificacion", "IdUsuario", ry(U, "Rol")))
+    Au = C("Auditoria", C3, N.b + 70)
     Pg = C("Pago", C1, R.b + 90)
     To = C("Torneo", C1, Pg.b + 80)
     Eq = C("Equipo", C1, To.b + 90)
     Pa = C("Partido", C0, top_for("Partido", "IdEquipoLocal", ry(Eq, "IdEquipo")))
     It = C("Integrante", C2, top_for("Integrante", "IdEquipo", ry(Eq, "ContactoNombre")))
+    Pr = C("Parametro", C2, ry(Pg, "IdUsuario") + 120)
 
     def assoc(child, fkattr, parent, pts, many="0..*", role=None, sc="above", sp="above", dc=22):
         e = d.edge(child.id, parent.id, pts, id=f"{child.id}.{fkattr} → {parent.id}")
         near_label(e, many, "start", dc, sc)
-        near_label(e, "1", "end", 16, sp)
-        if role: near_label(e, role, "end", 70, "below" if sp == "above" else "above", size=11)
+        near_label(e, "1" if not opcional(child, fkattr) else "0..1", "end", 16 if not opcional(child, fkattr) else 22, sp)
         return e
     y = ry(R, "IdCliente"); assoc(R, "IdCliente", Cl, [(R.l, y), (Cl.r, y)])
     y = ry(R, "IdCancha"); yc = ry(Ca, "IdCancha")
     assoc(R, "IdCancha", Ca, [(R.l, y), (C1 - 70, y), (C1 - 70, yc), (Ca.r, yc)], sc="below")
     y = ry(R, "IdUsuario"); assoc(R, "IdUsuario", U, [(R.r, y), (U.l, y)])
-    y = ry(N, "IdUsuario"); assoc(N, "IdUsuario", U, [(N.l, y), (U.r, y)])
-    y = ry(Cn, "IdReserva"); ye = R.b - 30
-    assoc(Cn, "IdReserva", R, [(Cn.l, y), (C2 - 70, y), (C2 - 70, ye), (R.r, ye)], many="0..1")
-    y = ry(Cn, "IdUsuario"); ye = U.b - 40; xv = Cn.r + 50
-    assoc(Cn, "IdUsuario", U, [(Cn.r, y), (xv, y), (xv, ye), (U.r, ye)], sc="above", sp="below")
+    y = ry(Cn, "IdReserva"); ye = ry(R, "IdReserva")
+    assoc(Cn, "IdReserva", R, [(Cn.l, y), (C2 - 60, y), (C2 - 60, ye), (R.r, ye)], many="0..1")
+    y = ry(Cn, "IdUsuario"); xv = Cn.r + 55; yb = Cn.b + 40; xu = U.r - 100
+    assoc(Cn, "IdUsuario", U, [(Cn.r, y), (xv, y), (xv, yb), (xu, yb), (xu, U.t)], sp="right")
     y = ry(Dv, "IdCancelacion"); assoc(Dv, "IdCancelacion", Cn, [(Dv.l, y), (Cn.r, y)], many="0..1")
+    y = ry(Dv, "IdUsuario"); ye = ry(U, "IdUsuario"); xv = C3 - 60
+    assoc(Dv, "IdUsuario", U, [(Dv.l, y), (xv, y), (xv, ye), (U.r, ye)], sc="below")
+    y = ry(N, "IdUsuario"); assoc(N, "IdUsuario", U, [(N.l, y), (U.r, y)])
+    y = ry(Au, "IdUsuario"); ye = ry(U, "FechaCreacion"); xv = C3 - 60
+    assoc(Au, "IdUsuario", U, [(Au.l, y), (xv, y), (xv, ye), (U.r, ye)], sp="below")
     y = ry(Pg, "IdReserva"); ye = R.b - 30
     assoc(Pg, "IdReserva", R, [(Pg.l, y), (C1 - 50, y), (C1 - 50, ye), (R.l, ye)])
+    y = ry(Pg, "IdUsuario"); xu = U.l + 120
+    assoc(Pg, "IdUsuario", U, [(Pg.r, y), (xu, y), (xu, U.b)], sp="right")
     y = ry(Pa, "IdTorneo"); ye = To.b - 30
     e = d.edge(Pa.id, To.id, [(Pa.r, y), (Pa.r + 40, y), (Pa.r + 40, ye), (To.l, ye)], id="Partido.IdTorneo → Torneo")
     e.label_xy("0..*", Pa.r + 32, y - 18, 12, "end")

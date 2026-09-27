@@ -32,13 +32,14 @@ class DER:
 def build():
     X = [200, 660, 1120, 1580]
     Ym1, Y0, Y1, Y2, Y3 = 190, 460, 730, 1000, 1190
-    d = Diagram(1800, 1330, title="Diagrama de Entidad-Relación (DER) — vista general",
+    d = Diagram(1800, 1350, title="Diagrama de Entidad-Relación (DER) — vista general",
                 subtitle="Notación de Chen · cardinalidad (mín, máx) junto a cada entidad · el tipo de relación figura dentro del rombo")
     g = DER(d)
     CLI = g.ent("CLIENTE", X[0], Y0); RES = g.ent("RESERVA", X[1], Y0); USU = g.ent("USUARIO", X[2], Y0); NOT = g.ent("NOTIFICACION", X[3], Y0)
     PAG = g.ent("PAGO", X[1], Ym1)
     CAN = g.ent("CANCHA", X[0], Y1); INT = g.ent("INTEGRANTE", X[1], Y1); CNC = g.ent("CANCELACION", X[2], Y1); DEV = g.ent("DEVOLUCION", X[3], Y1)
     PAR = g.ent("PARTIDO", X[0], Y2); EQU = g.ent("EQUIPO", X[1], Y2); TOR = g.ent("TORNEO", X[2], Y2)
+    AUD = g.ent("AUDITORIA", X[3], Ym1); PRM = g.ent("PARAMETRO", X[3], Y2)
 
     def hrel(a, b, id, verb, kind, ca, cb, y=None):
         y = a.cy if y is None else y
@@ -75,6 +76,20 @@ def build():
     g.link(RES, m, [(RES.r - 30, RES.b), m.vertex("t")], "(0,1)", "left", ortho=False, dist=26)
     g.link(CNC, m, [(CNC.l, CNC.t + 14), m.vertex("r")], "(1,1)", "below", ortho=False, dist=34)
 
+    # usuario responsable de cada cobro y de cada operación (por arriba de USUARIO)
+    m = g.rel("cobra", (PAG.r + X[2] - 40) / 2 + 20, Ym1, "cobrado por", "N:1")
+    g.link(PAG, m, [(PAG.r, Ym1), (m.l, Ym1)], "(0,1)", "above")
+    g.link(USU, m, [(X[2] - 40, USU.t), (X[2] - 40, Ym1), (m.r, Ym1)], "(0,N)", "left")
+    m = g.rel("audita", (X[2] + 40 + AUD.l) / 2 + 20, Ym1, "realizada por", "N:1")
+    g.link(AUD, m, [(AUD.l, Ym1), (m.r, Ym1)], "(0,1)", "above")
+    g.link(USU, m, [(X[2] + 40, USU.t), (X[2] + 40, Ym1), (m.l, Ym1)], "(0,N)", "right")
+    # usuario que registró la devolución (diagonal, entre 'recibe' y 'genera')
+    m = g.rel("devuelve", (X[2] + X[3]) / 2, (Y0 + Y1) / 2, "registrada por", "N:1")
+    g.link(DEV, m, [(DEV.l + 30, DEV.t), m.vertex("r")], "(0,1)", "right", ortho=False, dist=30)
+    g.link(USU, m, [(USU.r - 20, USU.b), m.vertex("l")], "(0,N)", "left", ortho=False, dist=30)
+    d.text("PARAMETRO no se relaciona con otras entidades:", PRM.cx, PRM.b + 24, 12, anchor="middle", color=MUTED)
+    d.text("guarda valores generales (ej. minutos de inactividad).", PRM.cx, PRM.b + 42, 12, anchor="middle", color=MUTED)
+
     # PARTIDO–EQUIPO como visitante y PARTIDO–TORNEO, por debajo
     yv = Y2 + 110; yi = Y3 + 40
     m = g.rel("visitante", (PAR.cx + EQU.cx) / 2, yv, "tiene como", "visitante · N:1")
@@ -83,7 +98,7 @@ def build():
     m = g.rel("incluye", (EQU.cx + TOR.cx) / 2, yi, "pertenece a", "N:1")
     g.link(PAR, m, [(PAR.cx - 40, PAR.b), (PAR.cx - 40, yi), (m.l, yi)], "(1,1)", "left")
     g.link(TOR, m, [(TOR.cx, TOR.b), (TOR.cx, yi), (m.r, yi)], "(0,N)", "right")
-    der_legend(d, 1330, 1150)
+    der_legend(d, 1330, 1170)
     return d
 
 def der_legend(d, x, y):
@@ -94,11 +109,13 @@ def der_legend(d, x, y):
                          (card, "Mín. y máx. de veces que participa la entidad de al lado")], w=440)
 
 # relaciones esperadas según las FK reales: (entidad hija, entidad padre, única)
-from model import FKS
+from model import FKS, TABLES
+def fk_requerida(child, col):
+    return [f for f in TABLES[child]["fks"] if f["cols"][0] == col][0]["required"]
 def semantic_check(d):
     P = []
     ents = {s.id for s in d.shapes.values() if s.kind == "rect"}
-    exp_ents = {t.upper() for t, *_ in FKS} | {p.upper() for *_, p, _ in FKS}
+    exp_ents = {t.upper() for t in TABLES}
     if ents != exp_ents: P.append(f"ENTIDADES distintas: {ents ^ exp_ents}")
     rels = {}
     for e in d.edges: rels.setdefault(e.dst, []).append(e)
@@ -109,7 +126,8 @@ def semantic_check(d):
         pairs.append((rid, cards))
     for child, col, parent, uniq in FKS:
         C, Pn = child.upper(), parent.upper()
-        ok = [r for r, c in pairs if set(c) == {C, Pn} and c[C] == "(1,1)" and c[Pn] == ("(0,1)" if uniq else "(0,N)")]
+        cc = "(1,1)" if fk_requerida(child, col) else "(0,1)"   # FK opcional (NULL) → mínimo 0
+        ok = [r for r, c in pairs if set(c) == {C, Pn} and c[C] == cc and c[Pn] == ("(0,1)" if uniq else "(0,N)")]
         if not ok: P.append(f"FALTA/INCORRECTA relación para {child}.{col} → {parent}")
     if len(pairs) != len(FKS): P.append(f"{len(pairs)} relaciones dibujadas vs {len(FKS)} FK")
     return P

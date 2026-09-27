@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="1640" viewBox="0 0 2600 1640" font-family="DejaVu Sans, Arial, sans-serif">
-<rect x="0" y="0" width="2600" height="1640" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="1680" viewBox="0 0 2600 1680" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="2600" height="1680" fill="#ffffff"/>
 <path d="M 290.0 244.0 L 473.5 244.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
 <polygon points="473.5,244.0 460.5,238.5 460.5,249.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <path d="M 473.5 276.0 L 290.0 276.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
@@ -42,6 +42,18 @@
 <polygon points="2310.0,1316.0 2297.0,1310.5 2297.0,1321.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <path d="M 648.0 260.0 L 900.0 260.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
 <polygon points="648.0,260.0 661.0,265.5 661.0,254.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 645.1 282.5 L 900.0 350.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="645.1,282.5 656.2,291.2 659.0,280.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 647.4 489.7 L 900.0 460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="647.4,489.7 661.0,493.7 659.7,482.7" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<polygon points="900.0,460.0 886.4,456.1 887.7,467.0" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 647.8 744.8 L 900.0 730.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="647.8,744.8 661.1,749.6 660.5,738.6" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<polygon points="900.0,730.0 886.7,725.3 887.3,736.3" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 646.4 1026.5 L 900.0 1075.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="900.0,1075.0 888.3,1067.2 886.2,1078.0" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 637.8 1321.2 L 900.0 1460.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="900.0,1460.0 891.1,1449.1 885.9,1458.8" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <path d="M 646.1 518.2 L 900.0 572.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
 <polygon points="646.1,518.2 657.7,526.3 659.9,515.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <polygon points="900.0,572.0 888.4,563.9 886.1,574.7" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
@@ -68,8 +80,14 @@
 <polygon points="900.0,1280.0 887.0,1274.5 887.0,1285.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <path d="M 643.7 1307.1 L 900.0 1390.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
 <polygon points="900.0,1390.0 889.3,1380.8 885.9,1391.2" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1898.2 257.5 L 1640.0 155.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1640.0,155.0 1650.1,164.9 1654.1,154.7" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <path d="M 1893.3 274.7 L 1640.0 230.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
 <polygon points="1640.0,230.0 1651.8,237.7 1653.8,226.8" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1892.2 295.2 L 1640.0 310.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1640.0,310.0 1653.3,314.7 1652.7,303.7" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1892.2 586.5 L 1640.0 605.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1640.0,605.0 1653.4,609.5 1652.6,598.6" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <path d="M 1895.1 313.0 L 1640.0 382.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
 <polygon points="1640.0,382.0 1654.0,383.9 1651.1,373.3" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
 <path d="M 1902.4 538.5 L 1640.0 398.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
@@ -114,6 +132,16 @@
 <line x1="900" y1="278" x2="1180" y2="278" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="900" y1="242" x2="900" y2="278" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="944" y1="242" x2="944" y2="278" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="900" y="332" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="900" y1="332" x2="1180" y2="332" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="368" x2="1180" y2="368" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="332" x2="900" y2="368" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="944" y1="332" x2="944" y2="368" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="900" y="442" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="900" y1="442" x2="1180" y2="442" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="478" x2="1180" y2="478" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="442" x2="900" y2="478" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="944" y1="442" x2="944" y2="478" stroke="#1f2933" stroke-width="1.1"/>
 <rect x="900" y="562" width="280" height="36" fill="#ffffff" stroke="none"/>
 <line x1="900" y1="562" x2="1180" y2="562" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="900" y1="598" x2="1180" y2="598" stroke="#1f2933" stroke-width="1.5"/>
@@ -124,6 +152,12 @@
 <line x1="900" y1="698" x2="1180" y2="698" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="900" y1="662" x2="900" y2="698" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="944" y1="662" x2="944" y2="698" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="900" y="712" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="900" y1="712" x2="1180" y2="712" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="748" x2="1180" y2="748" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="712" x2="900" y2="748" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="944" y1="712" x2="944" y2="748" stroke="#1f2933" stroke-width="1.1"/>
+<line x1="906" y1="712" x2="906" y2="748" stroke="#1f2933" stroke-width="1.1"/>
 <rect x="900" y="762" width="280" height="36" fill="#ffffff" stroke="none"/>
 <line x1="900" y1="762" x2="1180" y2="762" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="900" y1="798" x2="1180" y2="798" stroke="#1f2933" stroke-width="1.5"/>
@@ -140,6 +174,12 @@
 <line x1="900" y1="992" x2="900" y2="1028" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="944" y1="992" x2="944" y2="1028" stroke="#1f2933" stroke-width="1.1"/>
 <line x1="906" y1="992" x2="906" y2="1028" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="900" y="1057" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="900" y1="1057" x2="1180" y2="1057" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="1093" x2="1180" y2="1093" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="1057" x2="900" y2="1093" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="944" y1="1057" x2="944" y2="1093" stroke="#1f2933" stroke-width="1.1"/>
+<line x1="906" y1="1057" x2="906" y2="1093" stroke="#1f2933" stroke-width="1.1"/>
 <rect x="900" y="1122" width="280" height="36" fill="#ffffff" stroke="none"/>
 <line x1="900" y1="1122" x2="1180" y2="1122" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="900" y1="1158" x2="1180" y2="1158" stroke="#1f2933" stroke-width="1.5"/>
@@ -156,12 +196,30 @@
 <line x1="900" y1="1408" x2="1180" y2="1408" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="900" y1="1372" x2="900" y2="1408" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="944" y1="1372" x2="944" y2="1408" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="900" y="1442" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="900" y1="1442" x2="1180" y2="1442" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="1478" x2="1180" y2="1478" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="900" y1="1442" x2="900" y2="1478" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="944" y1="1442" x2="944" y2="1478" stroke="#1f2933" stroke-width="1.1"/>
+<line x1="906" y1="1442" x2="906" y2="1478" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="1360" y="137" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="1360" y1="137" x2="1640" y2="137" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1360" y1="173" x2="1640" y2="173" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1360" y1="137" x2="1360" y2="173" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1404" y1="137" x2="1404" y2="173" stroke="#1f2933" stroke-width="1.1"/>
+<line x1="1366" y1="137" x2="1366" y2="173" stroke="#1f2933" stroke-width="1.1"/>
 <rect x="1360" y="212" width="280" height="36" fill="#ffffff" stroke="none"/>
 <line x1="1360" y1="212" x2="1640" y2="212" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="1360" y1="248" x2="1640" y2="248" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="1360" y1="212" x2="1360" y2="248" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="1404" y1="212" x2="1404" y2="248" stroke="#1f2933" stroke-width="1.1"/>
 <line x1="1366" y1="212" x2="1366" y2="248" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="1360" y="292" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="1360" y1="292" x2="1640" y2="292" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1360" y1="328" x2="1640" y2="328" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1360" y1="292" x2="1360" y2="328" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1404" y1="292" x2="1404" y2="328" stroke="#1f2933" stroke-width="1.1"/>
+<line x1="1366" y1="292" x2="1366" y2="328" stroke="#1f2933" stroke-width="1.1"/>
 <rect x="1360" y="372" width="280" height="36" fill="#ffffff" stroke="none"/>
 <line x1="1360" y1="372" x2="1640" y2="372" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="1360" y1="408" x2="1640" y2="408" stroke="#1f2933" stroke-width="1.5"/>
@@ -174,6 +232,12 @@
 <line x1="1360" y1="512" x2="1360" y2="548" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="1404" y1="512" x2="1404" y2="548" stroke="#1f2933" stroke-width="1.1"/>
 <line x1="1366" y1="512" x2="1366" y2="548" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="1360" y="587" width="280" height="36" fill="#ffffff" stroke="none"/>
+<line x1="1360" y1="587" x2="1640" y2="587" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1360" y1="623" x2="1640" y2="623" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1360" y1="587" x2="1360" y2="623" stroke="#1f2933" stroke-width="1.5"/>
+<line x1="1404" y1="587" x2="1404" y2="623" stroke="#1f2933" stroke-width="1.1"/>
+<line x1="1366" y1="587" x2="1366" y2="623" stroke="#1f2933" stroke-width="1.1"/>
 <rect x="1360" y="662" width="280" height="36" fill="#ffffff" stroke="none"/>
 <line x1="1360" y1="662" x2="1640" y2="662" stroke="#1f2933" stroke-width="1.5"/>
 <line x1="1360" y1="698" x2="1640" y2="698" stroke="#1f2933" stroke-width="1.5"/>
@@ -254,9 +318,9 @@
 <text x="560.0" y="1308.7" font-size="13" text-anchor="middle" fill="#1f2933" >y registrar</text>
 <text x="560.0" y="1324.9" font-size="13" text-anchor="middle" fill="#1f2933" >devolución</text>
 <text x="1980.0" y="256.5" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">9</text>
-<text x="1980.0" y="302.4" font-size="13" text-anchor="middle" fill="#1f2933" >Administrar</text>
-<text x="1980.0" y="318.7" font-size="13" text-anchor="middle" fill="#1f2933" >canchas y</text>
-<text x="1980.0" y="334.9" font-size="13" text-anchor="middle" fill="#1f2933" >usuarios</text>
+<text x="1980.0" y="302.4" font-size="13" text-anchor="middle" fill="#1f2933" >Administrar canchas,</text>
+<text x="1980.0" y="318.7" font-size="13" text-anchor="middle" fill="#1f2933" >usuarios y</text>
+<text x="1980.0" y="334.9" font-size="13" text-anchor="middle" fill="#1f2933" >parámetros</text>
 <text x="1980.0" y="546.5" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">6</text>
 <text x="1980.0" y="600.6" font-size="13" text-anchor="middle" fill="#1f2933" >Gestionar</text>
 <text x="1980.0" y="616.8" font-size="13" text-anchor="middle" fill="#1f2933" >torneos</text>
@@ -268,28 +332,44 @@
 <text x="1980.0" y="1336.8" font-size="13" text-anchor="middle" fill="#1f2933" >y estadísticas</text>
 <text x="922.0" y="265.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D1</text>
 <text x="950.0" y="265.0" font-size="13" text-anchor="start" fill="#1f2933" >Usuarios</text>
+<text x="922.0" y="355.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D10</text>
+<text x="950.0" y="355.0" font-size="13" text-anchor="start" fill="#1f2933" >Parámetros</text>
+<text x="922.0" y="465.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D9</text>
+<text x="950.0" y="465.0" font-size="13" text-anchor="start" fill="#1f2933" >Auditoría</text>
 <text x="922.0" y="585.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D2</text>
 <text x="950.0" y="585.0" font-size="13" text-anchor="start" fill="#1f2933" >Clientes</text>
 <text x="922.0" y="685.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D8</text>
 <text x="950.0" y="685.0" font-size="13" text-anchor="start" fill="#1f2933" >Torneos, equipos y partidos</text>
+<text x="922.0" y="735.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D9</text>
+<text x="950.0" y="735.0" font-size="13" text-anchor="start" fill="#1f2933" >Auditoría</text>
 <text x="922.0" y="785.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D3</text>
 <text x="950.0" y="785.0" font-size="13" text-anchor="start" fill="#1f2933" >Canchas</text>
 <text x="922.0" y="885.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D4</text>
 <text x="950.0" y="885.0" font-size="13" text-anchor="start" fill="#1f2933" >Reservas</text>
 <text x="922.0" y="1015.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D3</text>
 <text x="950.0" y="1015.0" font-size="13" text-anchor="start" fill="#1f2933" >Canchas</text>
+<text x="922.0" y="1080.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D9</text>
+<text x="950.0" y="1080.0" font-size="13" text-anchor="start" fill="#1f2933" >Auditoría</text>
 <text x="922.0" y="1145.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D5</text>
 <text x="950.0" y="1145.0" font-size="13" text-anchor="start" fill="#1f2933" >Pagos</text>
 <text x="922.0" y="1285.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D4</text>
 <text x="950.0" y="1285.0" font-size="13" text-anchor="start" fill="#1f2933" >Reservas</text>
 <text x="922.0" y="1395.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D6</text>
 <text x="950.0" y="1395.0" font-size="13" text-anchor="start" fill="#1f2933" >Cancelaciones y devoluciones</text>
+<text x="922.0" y="1465.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D9</text>
+<text x="950.0" y="1465.0" font-size="13" text-anchor="start" fill="#1f2933" >Auditoría</text>
+<text x="1382.0" y="160.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D9</text>
+<text x="1410.0" y="160.0" font-size="13" text-anchor="start" fill="#1f2933" >Auditoría</text>
 <text x="1382.0" y="235.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D1</text>
 <text x="1410.0" y="235.0" font-size="13" text-anchor="start" fill="#1f2933" >Usuarios</text>
+<text x="1382.0" y="315.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D10</text>
+<text x="1410.0" y="315.0" font-size="13" text-anchor="start" fill="#1f2933" >Parámetros</text>
 <text x="1382.0" y="395.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D3</text>
 <text x="1410.0" y="395.0" font-size="13" text-anchor="start" fill="#1f2933" >Canchas</text>
 <text x="1382.0" y="535.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D8</text>
 <text x="1410.0" y="535.0" font-size="13" text-anchor="start" fill="#1f2933" >Torneos, equipos y partidos</text>
+<text x="1382.0" y="610.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D9</text>
+<text x="1410.0" y="610.0" font-size="13" text-anchor="start" fill="#1f2933" >Auditoría</text>
 <text x="1382.0" y="685.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D4</text>
 <text x="1410.0" y="685.0" font-size="13" text-anchor="start" fill="#1f2933" >Reservas</text>
 <text x="1382.0" y="805.0" font-size="13" text-anchor="middle" fill="#1f2933" font-weight="bold">D8</text>
@@ -335,7 +415,7 @@
 <text x="381.7" y="1041.6" font-size="12" text-anchor="middle" fill="#1f2933" >estado de pago</text>
 <text x="381.7" y="1255.0" font-size="12" text-anchor="middle" fill="#1f2933" >pedido de cancelación</text>
 <text x="381.7" y="1311.6" font-size="12" text-anchor="middle" fill="#1f2933" >cancelación registrada</text>
-<text x="2188.3" y="265.0" font-size="12" text-anchor="middle" fill="#1f2933" >datos de canchas y usuarios</text>
+<text x="2188.3" y="265.0" font-size="12" text-anchor="middle" fill="#1f2933" >canchas, usuarios y parámetros</text>
 <text x="2188.3" y="321.6" font-size="12" text-anchor="middle" fill="#1f2933" >confirmación</text>
 <text x="2175.2" y="507.0" font-size="12" text-anchor="middle" fill="#1f2933" >datos del torneo</text>
 <text x="2185.1" y="559.6" font-size="12" text-anchor="middle" fill="#1f2933" >torneo registrado</text>
@@ -346,18 +426,26 @@
 <text x="2188.3" y="1275.0" font-size="12" text-anchor="middle" fill="#1f2933" >período a consultar</text>
 <text x="2188.3" y="1331.6" font-size="12" text-anchor="middle" fill="#1f2933" >reportes y estadísticas</text>
 <text x="799.2" y="251.2" font-size="11" text-anchor="middle" fill="#1f2933" >datos de usuario</text>
+<text x="790.7" y="354.6" font-size="11" text-anchor="middle" fill="#1f2933" >minutos de inactividad</text>
+<text x="796.8" y="457.4" font-size="11" text-anchor="middle" fill="#1f2933" >cambios / historial</text>
+<text x="874.0" y="721.5" font-size="11" text-anchor="middle" fill="#1f2933" >historial</text>
+<text x="868.4" y="1051.8" font-size="11" text-anchor="middle" fill="#1f2933" >cobro y usuario</text>
+<text x="846.4" y="1476.3" font-size="11" text-anchor="middle" fill="#1f2933" >cambios y usuario</text>
 <text x="801.8" y="538.3" font-size="11" text-anchor="middle" fill="#1f2933" >cliente</text>
 <text x="804.6" y="660.1" font-size="11" text-anchor="middle" fill="#1f2933" >cliente</text>
 <text x="795.0" y="688.0" font-size="11" text-anchor="middle" fill="#1f2933" >partidos</text>
-<text x="800.3" y="760.7" font-size="11" text-anchor="middle" fill="#1f2933" >cancha</text>
+<text x="797.8" y="789.2" font-size="11" text-anchor="middle" fill="#1f2933" >cancha</text>
 <text x="803.7" y="820.5" font-size="11" text-anchor="middle" fill="#1f2933" >reserva</text>
 <text x="803.7" y="947.2" font-size="11" text-anchor="middle" fill="#1f2933" >reserva</text>
 <text x="799.2" y="1001.2" font-size="11" text-anchor="middle" fill="#1f2933" >precio por hora</text>
 <text x="791.3" y="1115.2" font-size="11" text-anchor="middle" fill="#1f2933" >pago</text>
 <text x="790.1" y="1174.6" font-size="11" text-anchor="middle" fill="#1f2933" >pagos</text>
 <text x="799.2" y="1271.2" font-size="11" text-anchor="middle" fill="#1f2933" >reserva</text>
-<text x="787.2" y="1392.5" font-size="11" text-anchor="middle" fill="#1f2933" >cancelación / devolución</text>
+<text x="859.1" y="1345.4" font-size="11" text-anchor="middle" fill="#1f2933" >cancelación / devolución</text>
+<text x="1754.8" y="171.0" font-size="11" text-anchor="middle" fill="#1f2933" >cambios y usuario</text>
 <text x="1744.1" y="235.8" font-size="11" text-anchor="middle" fill="#1f2933" >usuario</text>
+<text x="1741.7" y="322.4" font-size="11" text-anchor="middle" fill="#1f2933" >parámetros</text>
+<text x="1764.9" y="583.3" font-size="11" text-anchor="middle" fill="#1f2933" >cambios y usuario</text>
 <text x="1737.4" y="341.1" font-size="11" text-anchor="middle" fill="#1f2933" >cancha</text>
 <text x="1734.0" y="478.6" font-size="11" text-anchor="middle" fill="#1f2933" >canchas</text>
 <text x="1744.3" y="527.1" font-size="11" text-anchor="middle" fill="#1f2933" >torneo, equipo, partido</text>

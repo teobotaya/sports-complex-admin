@@ -71,7 +71,7 @@ def build_operacion():
     g.link(CNC, m, [(CNC.l, CNC.t + 14), m.vertex("r")], "(1,1)", "below", ortho=False, dist=34)
 
     fan(d, CLI, attrs_of("Cliente"), 195, 322, A=270, B=300)
-    fan(d, RES, attrs_of("Reserva"), 205, 327, A=470, B=440)
+    fan(d, RES, attrs_of("Reserva"), 199, 341, A=500, B=450)
     fan(d, USU, attrs_of("Usuario"), 216, 334, A=430, B=400)
     fan(d, NOT, attrs_of("Notificacion"), 222, 350, A=260, B=310)
     fan(d, CAN, attrs_of("Cancha"), 25, 165, A=270, B=280)
@@ -113,6 +113,29 @@ def build_torneos():
     fan(d, EQU, attrs_of("Equipo"), 296, 338, A=350, B=330)
     return d
 
+# ---------------------------------------------------------------- hoja 3: auditoría y administración
+def build_administracion():
+    d = Diagram(2300, 1310, title="DER con atributos — hoja 3: auditoría y administración",
+                subtitle="Notación de Chen · atributo subrayado = identificador · USUARIO, PAGO y DEVOLUCION son las mismas entidades de la hoja 1 (sus atributos están allí)")
+    g = DER(d)
+    PAG = g.ent("PAGO", 380, 260); DEV = g.ent("DEVOLUCION", 380, 820)
+    USU = g.ent("USUARIO", 1060, 540); AUD = g.ent("AUDITORIA", 1720, 540); PRM = g.ent("PARAMETRO", 1720, 1080)
+    xu = USU.cx - 40
+    m = g.rel("cobra", 720, PAG.cy, "cobrado por", "N:1")
+    g.link(PAG, m, [(PAG.r, PAG.cy), (m.l, PAG.cy)], "(0,1)", "above", dist=40)
+    g.link(USU, m, [(xu, USU.t), (xu, PAG.cy), (m.r, PAG.cy)], "(0,N)", "left")
+    m = g.rel("devuelve", 720, DEV.cy, "registrada por", "N:1")
+    g.link(DEV, m, [(DEV.r, DEV.cy), (m.l, DEV.cy)], "(0,1)", "above", dist=40)
+    g.link(USU, m, [(xu, USU.b), (xu, DEV.cy), (m.r, DEV.cy)], "(0,N)", "left")
+    y = USU.cy; m = g.rel("audita", (USU.r + AUD.l) / 2, y, "realizada por", "N:1")
+    g.link(USU, m, [(USU.r, y), (m.l, y)], "(0,N)", "above", dist=40)
+    g.link(AUD, m, [(AUD.l, y), (m.r, y)], "(0,1)", "above", dist=40)
+    fan(d, AUD, attrs_of("Auditoria"), -80, 62, A=330, B=330)
+    fan(d, PRM, attrs_of("Parametro"), -20, 110, A=330, B=180)
+    d.text("PARAMETRO no se relaciona con otras entidades: guarda valores generales del sistema.", 1060, 1250, 13, anchor="middle", color=MUTED)
+    d.text("AUDITORIA: una fila por cada alta, modificación o baja, con el usuario que la hizo (vacío = el propio sistema).", 1060, 1274, 13, anchor="middle", color=MUTED)
+    return d
+
 def semantic_check(d, tables):
     P = []
     for t in tables:
@@ -128,7 +151,8 @@ def semantic_check(d, tables):
 if __name__ == "__main__":
     out = "/home/claude/out/"
     for name, fn, tabs in (("03_der_atributos_operacion", build_operacion, ["Cliente", "Reserva", "Usuario", "Notificacion", "Cancha", "Pago", "Cancelacion", "Devolucion"]),
-                           ("04_der_atributos_torneos", build_torneos, ["Partido", "Equipo", "Torneo", "Cancha", "Integrante"])):
+                           ("04_der_atributos_torneos", build_torneos, ["Partido", "Equipo", "Torneo", "Cancha", "Integrante"]),
+                           ("04b_der_atributos_administracion", build_administracion, ["Auditoria", "Parametro"])):
         d = fn()
         P = d.verify(verbose=True) + semantic_check(d, tabs)
         print(name, "\n".join(P) or "OK")

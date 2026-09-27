@@ -21,6 +21,16 @@ CREATE TABLE [Cliente] (
 GO
 
 
+CREATE TABLE [Parametro] (
+    [id_parametro] int NOT NULL IDENTITY,
+    [clave] nvarchar(50) NOT NULL,
+    [valor] nvarchar(100) NOT NULL,
+    [descripcion] nvarchar(200) NULL,
+    CONSTRAINT [PK_Parametro] PRIMARY KEY ([id_parametro])
+);
+GO
+
+
 CREATE TABLE [Torneo] (
     [id_torneo] int NOT NULL IDENTITY,
     [nombre] nvarchar(150) NOT NULL,
@@ -61,10 +71,26 @@ CREATE TABLE [Equipo] (
 GO
 
 
+CREATE TABLE [Auditoria] (
+    [id_auditoria] int NOT NULL IDENTITY,
+    [fecha_hora] datetime2 NOT NULL,
+    [id_usuario] int NULL,
+    [entidad] nvarchar(30) NOT NULL,
+    [id_registro] int NOT NULL,
+    [accion] nvarchar(20) NOT NULL,
+    [detalle] nvarchar(max) NULL,
+    CONSTRAINT [PK_Auditoria] PRIMARY KEY ([id_auditoria]),
+    CONSTRAINT [CK_Auditoria_Accion] CHECK (accion IN ('Alta','Modificación','Baja')),
+    CONSTRAINT [FK_Auditoria_Usuario_id_usuario] FOREIGN KEY ([id_usuario]) REFERENCES [Usuario] ([id_usuario]) ON DELETE NO ACTION
+);
+GO
+
+
 CREATE TABLE [Notificacion] (
     [id_notificacion] int NOT NULL IDENTITY,
     [id_usuario] int NOT NULL,
     [tipo] nvarchar(50) NOT NULL,
+    [id_referencia] int NULL,
     [mensaje] nvarchar(max) NOT NULL,
     [leida] bit NOT NULL,
     [fecha_creacion] datetime2 NOT NULL,
@@ -84,9 +110,11 @@ CREATE TABLE [Reserva] (
     [hora_fin] time NOT NULL,
     [estado_reserva] nvarchar(20) NOT NULL,
     [estado_pago] nvarchar(30) NOT NULL,
+    [asistencia] nvarchar(10) NULL,
     [observaciones] nvarchar(max) NULL,
     [fecha_creacion] datetime2 NOT NULL,
     CONSTRAINT [PK_Reserva] PRIMARY KEY ([id_reserva]),
+    CONSTRAINT [CK_Reserva_Asistencia] CHECK (asistencia IS NULL OR asistencia IN ('Presente','Ausente')),
     CONSTRAINT [CK_Reserva_EstadoPago] CHECK (estado_pago IN ('Pendiente','Parcialmente abonado','Abonado')),
     CONSTRAINT [CK_Reserva_EstadoReserva] CHECK (estado_reserva IN ('Confirmada','Pendiente','Cancelada')),
     CONSTRAINT [CK_Reserva_Horario] CHECK (hora_fin > hora_inicio),
@@ -148,13 +176,15 @@ GO
 CREATE TABLE [Pago] (
     [id_pago] int NOT NULL IDENTITY,
     [id_reserva] int NOT NULL,
+    [id_usuario] int NULL,
     [monto] decimal(10,2) NOT NULL,
     [metodo_pago] nvarchar(30) NOT NULL,
     [fecha_pago] date NOT NULL,
     [observaciones] nvarchar(max) NULL,
     CONSTRAINT [PK_Pago] PRIMARY KEY ([id_pago]),
     CONSTRAINT [CK_Pago_Monto] CHECK (monto > 0),
-    CONSTRAINT [FK_Pago_Reserva_id_reserva] FOREIGN KEY ([id_reserva]) REFERENCES [Reserva] ([id_reserva]) ON DELETE NO ACTION
+    CONSTRAINT [FK_Pago_Reserva_id_reserva] FOREIGN KEY ([id_reserva]) REFERENCES [Reserva] ([id_reserva]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_Pago_Usuario_id_usuario] FOREIGN KEY ([id_usuario]) REFERENCES [Usuario] ([id_usuario]) ON DELETE NO ACTION
 );
 GO
 
@@ -162,14 +192,33 @@ GO
 CREATE TABLE [Devolucion] (
     [id_devolucion] int NOT NULL IDENTITY,
     [id_cancelacion] int NOT NULL,
+    [id_usuario] int NULL,
     [monto_devuelto] decimal(10,2) NOT NULL,
     [metodo] nvarchar(30) NOT NULL,
     [fecha] date NOT NULL,
     [observaciones] nvarchar(max) NULL,
     CONSTRAINT [PK_Devolucion] PRIMARY KEY ([id_devolucion]),
     CONSTRAINT [CK_Devolucion_Monto] CHECK (monto_devuelto > 0),
-    CONSTRAINT [FK_Devolucion_Cancelacion_id_cancelacion] FOREIGN KEY ([id_cancelacion]) REFERENCES [Cancelacion] ([id_cancelacion]) ON DELETE NO ACTION
+    CONSTRAINT [FK_Devolucion_Cancelacion_id_cancelacion] FOREIGN KEY ([id_cancelacion]) REFERENCES [Cancelacion] ([id_cancelacion]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_Devolucion_Usuario_id_usuario] FOREIGN KEY ([id_usuario]) REFERENCES [Usuario] ([id_usuario]) ON DELETE NO ACTION
 );
+GO
+
+
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'id_parametro', N'clave', N'descripcion', N'valor') AND [object_id] = OBJECT_ID(N'[Parametro]'))
+    SET IDENTITY_INSERT [Parametro] ON;
+INSERT INTO [Parametro] ([id_parametro], [clave], [descripcion], [valor])
+VALUES (1, N'minutos_inactividad', N'Minutos sin actividad antes de cerrar la sesión automáticamente', N'30');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'id_parametro', N'clave', N'descripcion', N'valor') AND [object_id] = OBJECT_ID(N'[Parametro]'))
+    SET IDENTITY_INSERT [Parametro] OFF;
+GO
+
+
+CREATE INDEX [IX_Auditoria_Entidad_Registro] ON [Auditoria] ([entidad], [id_registro]);
+GO
+
+
+CREATE INDEX [IX_Auditoria_id_usuario] ON [Auditoria] ([id_usuario]);
 GO
 
 
@@ -193,6 +242,10 @@ CREATE UNIQUE INDEX [IX_Devolucion_id_cancelacion] ON [Devolucion] ([id_cancelac
 GO
 
 
+CREATE INDEX [IX_Devolucion_id_usuario] ON [Devolucion] ([id_usuario]);
+GO
+
+
 CREATE UNIQUE INDEX [IX_Equipo_id_torneo_nombre] ON [Equipo] ([id_torneo], [nombre]);
 GO
 
@@ -201,11 +254,19 @@ CREATE UNIQUE INDEX [IX_Integrante_id_equipo_dni] ON [Integrante] ([id_equipo], 
 GO
 
 
-CREATE INDEX [IX_Notificacion_id_usuario] ON [Notificacion] ([id_usuario]);
+CREATE UNIQUE INDEX [UX_Notificacion_Usuario_Evento] ON [Notificacion] ([id_usuario], [tipo], [id_referencia]) WHERE [id_referencia] IS NOT NULL;
 GO
 
 
 CREATE INDEX [IX_Pago_id_reserva] ON [Pago] ([id_reserva]);
+GO
+
+
+CREATE INDEX [IX_Pago_id_usuario] ON [Pago] ([id_usuario]);
+GO
+
+
+CREATE UNIQUE INDEX [IX_Parametro_clave] ON [Parametro] ([clave]);
 GO
 
 

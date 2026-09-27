@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2300" height="1310" viewBox="0 0 2300 1310" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="2300" height="1310" fill="#ffffff"/>
+<path d="M 475.0 260.0 L 635.0 260.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1020.0 512.0 L 1020.0 260.0 L 805.0 260.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 475.0 820.0 L 635.0 820.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1020.0 568.0 L 1020.0 820.0 L 805.0 820.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1155.0 540.0 L 1305.0 540.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1625.0 540.0 L 1475.0 540.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1724.9 512.0 L 1773.8 235.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1742.2 512.0 L 1909.9 300.5" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1785.3 512.0 L 1989.9 424.3" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1815.0 548.6 L 2001.3 565.6" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1762.1 568.0 L 1969.4 705.7" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1734.9 568.0 L 1864.5 811.8" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1815.0 1061.1 L 1977.3 1028.9" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1815.0 1102.4 L 1981.2 1141.5" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1742.1 1108.0 L 1835.7 1226.3" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1701.3 1108.0 L 1620.0 1229.8" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<rect x="285.0" y="232.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="285.0" y="792.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="965.0" y="512.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1625.0" y="512.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1625.0" y="1052.0" width="190" height="56" rx="0" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="720.0,221.0 805.0,260.0 720.0,299.0 635.0,260.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="720.0,781.0 805.0,820.0 720.0,859.0 635.0,820.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<polygon points="1390.0,501.0 1475.0,540.0 1390.0,579.0 1305.0,540.0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<ellipse cx="1777.3" cy="215.0" rx="57.1" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1925.0" cy="281.4" rx="50.2" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="2023.3" cy="410.0" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="2048.6" cy="569.9" rx="48.5" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1994.9" cy="722.6" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1874.9" cy="831.4" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="2030.1" cy="1018.4" rx="62.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="2023.0" cy="1151.3" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1850.7" cy="1245.3" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1607.1" cy="1249.1" rx="51.3" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<text x="380.0" y="265.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">PAGO</text>
+<text x="380.0" y="825.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">DEVOLUCION</text>
+<text x="1060.0" y="545.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">USUARIO</text>
+<text x="1720.0" y="545.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">AUDITORIA</text>
+<text x="1720.0" y="1085.4" font-size="15" text-anchor="middle" fill="#1f2933" font-weight="bold">PARAMETRO</text>
+<text x="720.0" y="256.9" font-size="13" text-anchor="middle" fill="#1f2933" >cobrado por</text>
+<text x="720.0" y="272.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="720.0" y="816.9" font-size="13" text-anchor="middle" fill="#1f2933" >registrada por</text>
+<text x="720.0" y="832.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="1390.0" y="536.9" font-size="13" text-anchor="middle" fill="#1f2933" >realizada por</text>
+<text x="1390.0" y="552.5" font-size="13" text-anchor="middle" fill="#1f2933" >N:1</text>
+<text x="1777.3" y="219.3" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold" text-decoration="underline">id_auditoria</text><line x1="1737.2" y1="221.8" x2="1817.4" y2="221.8" stroke="#1f2933" stroke-width="1"/>
+<text x="1925.0" y="285.7" font-size="12" text-anchor="middle" fill="#1f2933" >fecha_hora</text>
+<text x="2023.3" y="414.3" font-size="12" text-anchor="middle" fill="#1f2933" >entidad</text>
+<text x="2048.6" y="574.2" font-size="12" text-anchor="middle" fill="#1f2933" >id_registro</text>
+<text x="1994.9" y="726.9" font-size="12" text-anchor="middle" fill="#1f2933" >accion</text>
+<text x="1874.9" y="835.7" font-size="12" text-anchor="middle" fill="#1f2933" >detalle</text>
+<text x="2030.1" y="1022.8" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold" text-decoration="underline">id_parametro</text><line x1="1985.1" y1="1025.3" x2="2075.1" y2="1025.3" stroke="#1f2933" stroke-width="1"/>
+<text x="2023.0" y="1155.6" font-size="12" text-anchor="middle" fill="#1f2933" >clave</text>
+<text x="1850.7" y="1249.6" font-size="12" text-anchor="middle" fill="#1f2933" >valor</text>
+<text x="1607.1" y="1253.5" font-size="12" text-anchor="middle" fill="#1f2933" >descripcion</text>
+<text x="515.0" y="251.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,1)</text>
+<text x="998.1" y="486.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="515.0" y="811.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,1)</text>
+<text x="998.1" y="602.3" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="1195.0" y="531.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,N)</text>
+<text x="1585.0" y="531.0" font-size="12" text-anchor="middle" fill="#1f2933" >(0,1)</text>
+<text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">DER con atributos — hoja 3: auditoría y administración</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >Notación de Chen · atributo subrayado = identificador · USUARIO, PAGO y DEVOLUCION son las mismas entidades de la hoja 1 (sus atributos están allí)</text>
+<text x="1060.0" y="1250.0" font-size="13" text-anchor="middle" fill="#52606d" >PARAMETRO no se relaciona con otras entidades: guarda valores generales del sistema.</text>
+<text x="1060.0" y="1274.0" font-size="13" text-anchor="middle" fill="#52606d" >AUDITORIA: una fila por cada alta, modificación o baja, con el usuario que la hizo (vacío = el propio sistema).</text>
+</svg>

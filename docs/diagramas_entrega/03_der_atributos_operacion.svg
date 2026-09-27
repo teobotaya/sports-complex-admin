@@ -21,14 +21,15 @@
 <path d="M 394.9 692.0 L 349.8 446.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 409.3 692.0 L 486.9 458.4" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 432.3 692.0 L 592.0 553.3" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1145.9 692.0 L 818.4 549.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1177.3 692.0 L 884.1 441.1" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1192.6 692.0 L 986.0 358.9" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1203.3 692.0 L 1111.4 310.7" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1212.5 692.0 L 1246.9 301.5" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1222.2 692.0 L 1378.6 332.2" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1234.7 692.0 L 1492.5 400.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 1256.1 692.0 L 1575.1 498.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1119.6 692.0 L 777.7 586.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1168.3 692.0 L 834.7 467.8" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1187.8 692.0 L 934.7 372.7" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1200.0 692.0 L 1064.6 311.2" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1210.0 692.0 L 1210.0 290.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1220.0 692.0 L 1355.4 311.3" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1232.2 692.0 L 1485.3 372.6" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1251.7 692.0 L 1583.9 468.7" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 1300.4 692.0 L 1638.0 587.4" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 2058.6 692.0 L 1777.8 502.2" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 2079.4 692.0 L 1871.9 409.3" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 2092.1 692.0 L 1996.7 352.9" fill="none" stroke="#1f2933" stroke-width="1.1"/>
@@ -37,9 +38,10 @@
 <path d="M 2129.4 692.0 L 2381.3 452.2" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 2161.7 692.0 L 2450.5 561.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 2803.9 692.0 L 2654.7 531.8" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 2823.3 692.0 L 2763.1 441.9" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 2836.7 692.0 L 2896.9 441.9" fill="none" stroke="#1f2933" stroke-width="1.1"/>
-<path d="M 2856.1 692.0 L 3005.9 531.2" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 2820.3 692.0 L 2737.8 453.2" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 2831.3 692.0 L 2843.6 430.5" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 2842.9 692.0 L 2946.2 468.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
+<path d="M 2862.8 692.0 L 3020.4 557.5" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 2925.0 700.0 L 3034.1 677.1" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 457.9 1258.0 L 612.8 1332.9" fill="none" stroke="#1f2933" stroke-width="1.1"/>
 <path d="M 415.6 1258.0 L 524.2 1453.0" fill="none" stroke="#1f2933" stroke-width="1.1"/>
@@ -80,14 +82,15 @@
 <ellipse cx="346.2" cy="426.0" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="493.5" cy="438.5" rx="60.3" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="612.8" cy="535.3" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="784.0" cy="534.0" rx="51.9" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="863.1" cy="423.1" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="974.0" cy="339.5" rx="49.4" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="1106.6" cy="290.8" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="1248.6" cy="281.5" rx="62.9" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="1387.2" cy="312.5" rx="55.3" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="1509.4" cy="380.8" rx="60.3" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="1604.2" cy="480.4" rx="62.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="737.2" cy="573.5" rx="51.9" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="809.4" cy="450.8" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="919.6" cy="353.6" rx="49.4" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1057.6" cy="291.4" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1210.0" cy="270.0" rx="62.9" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1362.4" cy="291.4" rx="55.3" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1500.4" cy="353.6" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1610.6" cy="450.8" rx="60.3" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="1682.8" cy="573.5" rx="62.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="1752.1" cy="484.9" rx="51.7" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="1857.5" cy="389.7" rx="71.2" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="1991.1" cy="333.0" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
@@ -96,9 +99,10 @@
 <ellipse cx="2400.5" cy="433.9" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="2486.5" cy="544.7" rx="62.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="2636.8" cy="512.6" rx="65.7" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="2758.3" cy="422.0" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="2901.7" cy="422.0" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
-<ellipse cx="3023.2" cy="512.6" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="2730.9" cy="433.4" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="2844.5" cy="410.5" rx="55.8" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="2955.3" cy="448.3" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
+<ellipse cx="3041.4" cy="539.5" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="3086.1" cy="666.2" rx="62.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="644.7" cy="1348.3" rx="50.1" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
 <ellipse cx="535.0" cy="1472.5" rx="48.0" ry="20.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.4"/>
@@ -147,14 +151,15 @@
 <text x="346.2" y="430.3" font-size="12" text-anchor="middle" fill="#1f2933" >telefono</text>
 <text x="493.5" y="442.9" font-size="12" text-anchor="middle" fill="#1f2933" >observaciones</text>
 <text x="612.8" y="539.6" font-size="12" text-anchor="middle" fill="#1f2933" >fecha_alta</text>
-<text x="784.0" y="538.4" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold" text-decoration="underline">id_reserva</text><line x1="749.1" y1="540.9" x2="819.0" y2="540.9" stroke="#1f2933" stroke-width="1"/>
-<text x="863.1" y="427.5" font-size="12" text-anchor="middle" fill="#1f2933" >fecha</text>
-<text x="974.0" y="343.8" font-size="12" text-anchor="middle" fill="#1f2933" >hora_inicio</text>
-<text x="1106.6" y="295.1" font-size="12" text-anchor="middle" fill="#1f2933" >hora_fin</text>
-<text x="1248.6" y="285.8" font-size="12" text-anchor="middle" fill="#1f2933" >estado_reserva</text>
-<text x="1387.2" y="316.8" font-size="12" text-anchor="middle" fill="#1f2933" >estado_pago</text>
-<text x="1509.4" y="385.2" font-size="12" text-anchor="middle" fill="#1f2933" >observaciones</text>
-<text x="1604.2" y="484.7" font-size="12" text-anchor="middle" fill="#1f2933" >fecha_creacion</text>
+<text x="737.2" y="577.8" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold" text-decoration="underline">id_reserva</text><line x1="702.3" y1="580.3" x2="772.2" y2="580.3" stroke="#1f2933" stroke-width="1"/>
+<text x="809.4" y="455.1" font-size="12" text-anchor="middle" fill="#1f2933" >fecha</text>
+<text x="919.6" y="358.0" font-size="12" text-anchor="middle" fill="#1f2933" >hora_inicio</text>
+<text x="1057.6" y="295.7" font-size="12" text-anchor="middle" fill="#1f2933" >hora_fin</text>
+<text x="1210.0" y="274.3" font-size="12" text-anchor="middle" fill="#1f2933" >estado_reserva</text>
+<text x="1362.4" y="295.7" font-size="12" text-anchor="middle" fill="#1f2933" >estado_pago</text>
+<text x="1500.4" y="358.0" font-size="12" text-anchor="middle" fill="#1f2933" >asistencia</text>
+<text x="1610.6" y="455.1" font-size="12" text-anchor="middle" fill="#1f2933" >observaciones</text>
+<text x="1682.8" y="577.8" font-size="12" text-anchor="middle" fill="#1f2933" >fecha_creacion</text>
 <text x="1752.1" y="489.2" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold" text-decoration="underline">id_usuario</text><line x1="1717.5" y1="491.7" x2="1786.8" y2="491.7" stroke="#1f2933" stroke-width="1"/>
 <text x="1857.5" y="394.0" font-size="12" text-anchor="middle" fill="#1f2933" >nombre_completo</text>
 <text x="1991.1" y="337.4" font-size="12" text-anchor="middle" fill="#1f2933" >username</text>
@@ -163,9 +168,10 @@
 <text x="2400.5" y="438.2" font-size="12" text-anchor="middle" fill="#1f2933" >activo</text>
 <text x="2486.5" y="549.0" font-size="12" text-anchor="middle" fill="#1f2933" >fecha_creacion</text>
 <text x="2636.8" y="516.9" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold" text-decoration="underline">id_notificacion</text><line x1="2588.1" y1="519.4" x2="2685.5" y2="519.4" stroke="#1f2933" stroke-width="1"/>
-<text x="2758.3" y="426.3" font-size="12" text-anchor="middle" fill="#1f2933" >tipo</text>
-<text x="2901.7" y="426.3" font-size="12" text-anchor="middle" fill="#1f2933" >mensaje</text>
-<text x="3023.2" y="516.9" font-size="12" text-anchor="middle" fill="#1f2933" >leida</text>
+<text x="2730.9" y="437.7" font-size="12" text-anchor="middle" fill="#1f2933" >tipo</text>
+<text x="2844.5" y="414.8" font-size="12" text-anchor="middle" fill="#1f2933" >id_referencia</text>
+<text x="2955.3" y="452.7" font-size="12" text-anchor="middle" fill="#1f2933" >mensaje</text>
+<text x="3041.4" y="543.9" font-size="12" text-anchor="middle" fill="#1f2933" >leida</text>
 <text x="3086.1" y="670.5" font-size="12" text-anchor="middle" fill="#1f2933" >fecha_creacion</text>
 <text x="644.7" y="1352.7" font-size="12" text-anchor="middle" fill="#1f2933" font-weight="bold" text-decoration="underline">id_cancha</text><line x1="611.6" y1="1355.2" x2="677.8" y2="1355.2" stroke="#1f2933" stroke-width="1"/>
 <text x="535.0" y="1476.8" font-size="12" text-anchor="middle" fill="#1f2933" >nombre</text>

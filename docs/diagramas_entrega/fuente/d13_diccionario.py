@@ -3,7 +3,7 @@ import sys, json, html, re; sys.path.insert(0, "/home/claude/diagkit")
 from model import TABLES, FKS
 D = json.load(open("/home/claude/diagkit/descripciones.json"))
 ORDER = ["Cliente", "Usuario", "Cancha", "Reserva", "Pago", "Cancelacion", "Devolucion", "Notificacion",
-         "Torneo", "Equipo", "Integrante", "Partido"]
+         "Torneo", "Equipo", "Integrante", "Partido", "Auditoria", "Parametro"]
 SIZE = {"int": "4 bytes", "bit": "1 bit", "date": "3 bytes", "time": "5 bytes", "datetime2": "8 bytes"}
 e = html.escape
 
@@ -42,7 +42,7 @@ def build():
     .nota { border:1px solid #c7cfd6; padding:8px 10px; background:#f7f9f8; margin-bottom: 10px; }
     </style></head><body>
     <h1>Diccionario de Datos — ComplejoDeportivoDB</h1>
-    <p class="sub">SQL Server · 12 tablas · tipos, nulabilidad y restricciones tomados del modelo real que usa el sistema (Entity Framework Core)</p>
+    <p class="sub">SQL Server · 14 tablas · tipos, nulabilidad y restricciones tomados del modelo real que usa el sistema (Entity Framework Core)</p>
     <div class="nota"><b>Cómo leerlo.</b> «Tamaño»: longitud declarada en los tipos de largo variable (NVARCHAR, DECIMAL) o espacio en disco en los de largo fijo; MAX = texto libre.
     «Nulo»: No = el dato es obligatorio (NOT NULL). En «Restricciones» figuran la clave primaria, las claves foráneas y las reglas CHECK/UNIQUE que aplica el motor.
     Todas las FK usan ON DELETE NO ACTION: no se puede borrar un registro que tenga otros que dependan de él.</div>"""]

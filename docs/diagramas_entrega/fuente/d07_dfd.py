@@ -2,7 +2,8 @@ import sys, math; sys.path.insert(0, "/home/claude/diagkit")
 from diagkit import *
 
 STORES = {"D1": "Usuarios", "D2": "Clientes", "D3": "Canchas", "D4": "Reservas", "D5": "Pagos",
-          "D6": "Cancelaciones y devoluciones", "D7": "Notificaciones", "D8": "Torneos, equipos y partidos"}
+          "D6": "Cancelaciones y devoluciones", "D7": "Notificaciones", "D8": "Torneos, equipos y partidos",
+          "D9": "Auditoría", "D10": "Parámetros"}
 
 def ext_box(d, id, x, y, lines, dup=False, w=230, h=70):
     b = d.add(Rect(id, x, y - h / 2, w, h, lines, size=14, fill=HEAD))
@@ -42,7 +43,7 @@ def sflow(d, proc, store, label, mode, side, t=0.6, lside="above", attach=None):
     return e
 
 def build():
-    d = Diagram(2600, 1640, title="Diagrama de Flujo de Datos — Nivel 1",
+    d = Diagram(2600, 1680, title="Diagrama de Flujo de Datos — Nivel 1",
                 subtitle="Notación Yourdon/DeMarco · los almacenes y entidades externas se repiten para evitar cruces (repetido = línea extra) · 'Empleado / Administrador' = cualquier usuario del sistema")
     PL, PR = 560, 1980
     SL, SR = 900, 1360          # x izquierda de las columnas de almacenes
@@ -56,7 +57,7 @@ def build():
     proc("P3", PL, OY + 690, "3", ["Gestionar", "reservas"])
     proc("P4", PL, OY + 950, "4", ["Registrar", "pagos"])
     proc("P5", PL, OY + 1220, "5", ["Cancelar reserva", "y registrar", "devolución"])
-    proc("P9", PR, OY + 230, "9", ["Administrar", "canchas y", "usuarios"])
+    proc("P9", PR, OY + 230, "9", ["Administrar canchas,", "usuarios y", "parámetros"])
     proc("P6", PR, OY + 520, "6", ["Gestionar", "torneos"])
     proc("P7", PR, OY + 880, "7", ["Generar", "notificaciones"])
     proc("P8", PR, OY + 1240, "8", ["Emitir reportes", "y estadísticas"])
@@ -68,18 +69,26 @@ def build():
         S[id] = d.add(Store(id, x, y - 18, SW, code, STORES[code], size=13, duplicate=dup)); return S[id]
     # columna izquierda (procesos 1 a 5)
     store("S1", "D1", SL, OY + 200)
+    store("A0", "D10", SL, OY + 290)
+    store("A2", "D9", SL, OY + 400)
     store("S2", "D2", SL, OY + 520)
     store("S3", "D8", SL, OY + 620)
+    store("A3", "D9", SL, OY + 670)
     store("S4", "D3", SL, OY + 720)
     store("S5", "D4", SL, OY + 820)
     store("S6", "D3", SL, OY + 950)
+    store("A4", "D9", SL, OY + 1015)
     store("S7", "D5", SL, OY + 1080)
     store("S8", "D4", SL, OY + 1220)
     store("S9", "D6", SL, OY + 1330)
+    store("A5", "D9", SL, OY + 1400)
     # columna derecha (procesos 9, 6, 7, 8)
+    store("B9", "D9", SR, OY + 95)
     store("R1", "D1", SR, OY + 170)
+    store("B10", "D10", SR, OY + 250)
     store("R2", "D3", SR, OY + 330)
     store("R3", "D8", SR, OY + 470)
+    store("B6", "D9", SR, OY + 545)
     store("R4", "D4", SR, OY + 620)
     store("R5", "D8", SR, OY + 740)
     store("R6", "D7", SR, OY + 850)
@@ -107,7 +116,7 @@ def build():
     hpair(d, sh["E1-P3"], P["P3"], "pedido de turno", "confirmación / rechazo", "left")
     hpair(d, sh["E1-P4"], P["P4"], "pago recibido", "estado de pago", "left")
     hpair(d, sh["E1-P5"], P["P5"], "pedido de cancelación", "cancelación registrada", "left")
-    hpair(d, sh["E2-P9"], P["P9"], "datos de canchas y usuarios", "confirmación", "right")
+    hpair(d, sh["E2-P9"], P["P9"], "canchas, usuarios y parámetros", "confirmación", "right")
     # P6: dos entidades apiladas → flujos a la altura de cada caja
     def hflow(ext, proc, lab, y, inbound, side, lside):
         r = proc.w / 2
@@ -126,19 +135,27 @@ def build():
 
     # almacenes — izquierda
     sflow(d, P["P1"], S["S1"], "datos de usuario", "r", "left")
+    sflow(d, P["P1"], S["A0"], "minutos de inactividad", "r", "left", lside="below")
+    sflow(d, P["P2"], S["A2"], "cambios / historial", "rw", "left", lside="above")
+    sflow(d, P["P3"], S["A3"], "historial", "rw", "left", lside="above", t=0.9)
+    sflow(d, P["P4"], S["A4"], "cobro y usuario", "w", "left", lside="above", t=0.86)
+    sflow(d, P["P5"], S["A5"], "cambios y usuario", "w", "left", lside="below", t=0.86)
     sflow(d, P["P2"], S["S2"], "cliente", "rw", "left", attach=-8, lside="above")
     sflow(d, P["P3"], S["S2"], "cliente", "r", "left", attach=8, lside="below")
     sflow(d, P["P3"], S["S3"], "partidos", "r", "left", lside="above")
-    sflow(d, P["P3"], S["S4"], "cancha", "r", "left", lside="above")
+    sflow(d, P["P3"], S["S4"], "cancha", "r", "left", lside="below", t=0.6)
     sflow(d, P["P3"], S["S5"], "reserva", "rw", "left", attach=-8, lside="above")
     sflow(d, P["P4"], S["S5"], "reserva", "rw", "left", attach=8, lside="below")
     sflow(d, P["P4"], S["S6"], "precio por hora", "r", "left", lside="above")
     sflow(d, P["P4"], S["S7"], "pago", "w", "left", attach=-8, lside="below")
     sflow(d, P["P5"], S["S7"], "pagos", "r", "left", attach=8, lside="above")
     sflow(d, P["P5"], S["S8"], "reserva", "rw", "left", lside="above")
-    sflow(d, P["P5"], S["S9"], "cancelación / devolución", "w", "left", lside="below")
+    sflow(d, P["P5"], S["S9"], "cancelación / devolución", "w", "left", lside="above", t=0.8)
     # almacenes — derecha
+    sflow(d, P["P9"], S["B9"], "cambios y usuario", "w", "right", lside="above")
     sflow(d, P["P9"], S["R1"], "usuario", "w", "right", lside="above")
+    sflow(d, P["P9"], S["B10"], "parámetros", "w", "right", lside="below")
+    sflow(d, P["P6"], S["B6"], "cambios y usuario", "w", "right", lside="above", t=0.5)
     sflow(d, P["P9"], S["R2"], "cancha", "w", "right", attach=-8, lside="above")
     sflow(d, P["P6"], S["R2"], "canchas", "r", "right", attach=8, lside="below")
     sflow(d, P["P6"], S["R3"], "torneo, equipo, partido", "rw", "right", lside="above")
@@ -173,7 +190,7 @@ def build_contexto():
     ys = [c.cy - 210 + 42 * i for i in range(10)]
     for lab, y in zip(inn, ys[:5]): fl(E, lab, y, True, "left")
     for lab, y in zip(out, ys[5:]): fl(E, lab, y + 12, False, "left")
-    ain = ["datos de canchas y tarifas", "datos de torneos", "altas y bajas de usuarios", "período a consultar"]
+    ain = ["datos de canchas y tarifas", "datos de torneos", "usuarios y parámetros", "período a consultar"]
     aout = ["reportes de ocupación, ingresos y deudores", "estadísticas del complejo"]
     ys2 = [c.cy - 150 + 50 * i for i in range(6)]
     for lab, y in zip(ain, ys2[:4]): fl(A, lab, y, True, "right")

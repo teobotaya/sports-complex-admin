@@ -1,137 +1,140 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2479" height="1753" viewBox="0 0 2479 1753" font-family="DejaVu Sans, Arial, sans-serif">
-<rect x="0" y="0" width="2479" height="1753" fill="#ffffff"/>
-<line x1="141.4609375" y1="229.0" x2="141.4609375" y2="1693.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
-<line x1="509.3984375" y1="192" x2="509.3984375" y2="1693.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
-<line x1="950.5546875" y1="192" x2="950.5546875" y2="1693.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
-<line x1="1272.4453125" y1="174" x2="1272.4453125" y2="1693.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
-<line x1="1702.4140625" y1="192" x2="1702.4140625" y2="1693.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
-<line x1="1927.53125" y1="174" x2="1927.53125" y2="1693.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
-<line x1="2338.9375" y1="192" x2="2338.9375" y2="1693.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
-<rect x="21.4609375" y="499.0" width="2437.4765625" height="416.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2529" height="1799" viewBox="0 0 2529 1799" font-family="DejaVu Sans, Arial, sans-serif">
+<rect x="0" y="0" width="2529" height="1799" fill="#ffffff"/>
+<line x1="141.4609375" y1="229.0" x2="141.4609375" y2="1739.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="541.7265625" y1="192" x2="541.7265625" y2="1739.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="982.8828125" y1="192" x2="982.8828125" y2="1739.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1304.7734375" y1="174" x2="1304.7734375" y2="1739.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1734.7421875" y1="192" x2="1734.7421875" y2="1739.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="1976.9921875" y1="174" x2="1976.9921875" y2="1739.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<line x1="2388.3984375" y1="192" x2="2388.3984375" y2="1739.0" stroke="#52606d" stroke-width="1.2" stroke-dasharray="6 5"/>
+<rect x="21.4609375" y="499.0" width="2486.9375" height="462.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
 <path d="M 21.4609375 525.0 L 54.8984375 525.0 L 62.8984375 517.0 L 62.8984375 499.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.2"/>
-<line x1="21.4609375" y1="689.0" x2="2458.9375" y2="689.0" stroke="#1f2933" stroke-width="1.1" stroke-dasharray="7 5"/>
-<rect x="21.4609375" y="925.0" width="2437.4765625" height="708.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
-<path d="M 21.4609375 951.0 L 59.9296875 951.0 L 67.9296875 943.0 L 67.9296875 925.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.2"/>
-<rect x="35.4609375" y="1203.0" width="2409.4765625" height="416.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
-<path d="M 35.4609375 1229.0 L 68.8984375 1229.0 L 76.8984375 1221.0 L 76.8984375 1203.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.2"/>
-<line x1="35.4609375" y1="1393.0" x2="2444.9375" y2="1393.0" stroke="#1f2933" stroke-width="1.1" stroke-dasharray="7 5"/>
+<line x1="21.4609375" y1="689.0" x2="2508.3984375" y2="689.0" stroke="#1f2933" stroke-width="1.1" stroke-dasharray="7 5"/>
+<rect x="21.4609375" y="971.0" width="2486.9375" height="708.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
+<path d="M 21.4609375 997.0 L 59.9296875 997.0 L 67.9296875 989.0 L 67.9296875 971.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.2"/>
+<rect x="35.4609375" y="1249.0" width="2458.9375" height="416.0" fill="none" stroke="#1f2933" stroke-width="1.3"/>
+<path d="M 35.4609375 1275.0 L 68.8984375 1275.0 L 76.8984375 1267.0 L 76.8984375 1249.0" fill="#ffffff" stroke="#1f2933" stroke-width="1.2"/>
+<line x1="35.4609375" y1="1439.0" x2="2494.3984375" y2="1439.0" stroke="#1f2933" stroke-width="1.1" stroke-dasharray="7 5"/>
 <text x="30.5" y="517.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">alt</text>
 <text x="155.5" y="518.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[ya estaba cancelada]</text>
 <text x="155.5" y="708.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[reserva activa]</text>
-<text x="30.5" y="943.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">opt</text>
-<text x="155.5" y="944.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[la reserva cancelada tenía pagos]</text>
-<text x="44.5" y="1221.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">alt</text>
-<text x="155.5" y="1222.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[no corresponde]</text>
-<text x="155.5" y="1412.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[corresponde]</text>
-<path d="M 141.5 279.0 L 509.4 279.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="509.4,279.0 496.4,273.5 496.4,284.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 509.4 325.0 L 950.6 325.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="950.6,325.0 937.6,319.5 937.6,330.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 950.6 371.0 L 1272.4 371.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="1272.4,371.0 1259.4,365.5 1259.4,376.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 1272.4 417.0 L 2338.9 417.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="2338.9,417.0 2325.9,411.5 2325.9,422.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 2338.9 463.0 L 1272.4 463.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="1272.4" y1="463.0" x2="1285.4" y2="469.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="1272.4" y1="463.0" x2="1285.4" y2="456.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 1272.4 557.0 L 950.6 557.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="950.6" y1="557.0" x2="963.6" y2="563.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="950.6" y1="557.0" x2="963.6" y2="550.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 950.6 603.0 L 509.4 603.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="509.4" y1="603.0" x2="522.4" y2="609.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="509.4" y1="603.0" x2="522.4" y2="596.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 509.4 649.0 L 141.5 649.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="30.5" y="989.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">opt</text>
+<text x="155.5" y="990.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[la reserva cancelada tenía pagos]</text>
+<text x="44.5" y="1267.0" font-size="13" text-anchor="start" fill="#1f2933" font-weight="bold">alt</text>
+<text x="155.5" y="1268.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[no corresponde]</text>
+<text x="155.5" y="1458.0" font-size="12" text-anchor="start" fill="#1f2933" font-style="italic">[corresponde]</text>
+<path d="M 141.5 279.0 L 541.7 279.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="541.7,279.0 528.7,273.5 528.7,284.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 541.7 325.0 L 982.9 325.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="982.9,325.0 969.9,319.5 969.9,330.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 982.9 371.0 L 1304.8 371.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1304.8,371.0 1291.8,365.5 1291.8,376.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1304.8 417.0 L 2388.4 417.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="2388.4,417.0 2375.4,411.5 2375.4,422.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 2388.4 463.0 L 1304.8 463.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="1304.8" y1="463.0" x2="1317.8" y2="469.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1304.8" y1="463.0" x2="1317.8" y2="456.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1304.8 557.0 L 982.9 557.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="982.9" y1="557.0" x2="995.9" y2="563.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="982.9" y1="557.0" x2="995.9" y2="550.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 982.9 603.0 L 541.7 603.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="541.7" y1="603.0" x2="554.7" y2="609.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="541.7" y1="603.0" x2="554.7" y2="596.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 541.7 649.0 L 141.5 649.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
 <line x1="141.5" y1="649.0" x2="154.5" y2="655.5" stroke="#1f2933" stroke-width="1.4"/>
 <line x1="141.5" y1="649.0" x2="154.5" y2="642.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 1272.4 737.0 L 2338.9 737.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="2338.9,737.0 2325.9,731.5 2325.9,742.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 1272.4 783.0 L 950.6 783.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="950.6" y1="783.0" x2="963.6" y2="789.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="950.6" y1="783.0" x2="963.6" y2="776.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 950.6 829.0 L 509.4 829.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="509.4" y1="829.0" x2="522.4" y2="835.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="509.4" y1="829.0" x2="522.4" y2="822.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 509.4 875.0 L 141.5 875.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="141.5" y1="875.0" x2="154.5" y2="881.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="141.5" y1="875.0" x2="154.5" y2="868.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 141.5 983.0 L 509.4 983.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="509.4,983.0 496.4,977.5 496.4,988.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 509.4 1029.0 L 1702.4 1029.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="1702.4,1029.0 1689.4,1023.5 1689.4,1034.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 1702.4 1075.0 L 1927.5 1075.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="1927.5,1075.0 1914.5,1069.5 1914.5,1080.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 1927.5 1121.0 L 2338.9 1121.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="2338.9,1121.0 2325.9,1115.5 2325.9,1126.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 2338.9 1167.0 L 1927.5 1167.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="1927.5" y1="1167.0" x2="1940.5" y2="1173.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="1927.5" y1="1167.0" x2="1940.5" y2="1160.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 1927.5 1261.0 L 1702.4 1261.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="1702.4" y1="1261.0" x2="1715.4" y2="1267.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="1702.4" y1="1261.0" x2="1715.4" y2="1254.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 1702.4 1307.0 L 509.4 1307.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="509.4" y1="1307.0" x2="522.4" y2="1313.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="509.4" y1="1307.0" x2="522.4" y2="1300.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 509.4 1353.0 L 141.5 1353.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="141.5" y1="1353.0" x2="154.5" y2="1359.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="141.5" y1="1353.0" x2="154.5" y2="1346.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 1927.5 1441.0 L 2338.9 1441.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
-<polygon points="2338.9,1441.0 2325.9,1435.5 2325.9,1446.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
-<path d="M 1927.5 1487.0 L 1702.4 1487.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="1702.4" y1="1487.0" x2="1715.4" y2="1493.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="1702.4" y1="1487.0" x2="1715.4" y2="1480.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 1702.4 1533.0 L 509.4 1533.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="509.4" y1="1533.0" x2="522.4" y2="1539.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="509.4" y1="1533.0" x2="522.4" y2="1526.5" stroke="#1f2933" stroke-width="1.4"/>
-<path d="M 509.4 1579.0 L 141.5 1579.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
-<line x1="141.5" y1="1579.0" x2="154.5" y2="1585.5" stroke="#1f2933" stroke-width="1.4"/>
-<line x1="141.5" y1="1579.0" x2="154.5" y2="1572.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1304.8 737.0 L 2388.4 737.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="2388.4,737.0 2375.4,731.5 2375.4,742.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1304.8 783.0 L 2388.4 783.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="2388.4,783.0 2375.4,777.5 2375.4,788.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1304.8 829.0 L 982.9 829.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="982.9" y1="829.0" x2="995.9" y2="835.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="982.9" y1="829.0" x2="995.9" y2="822.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 982.9 875.0 L 541.7 875.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="541.7" y1="875.0" x2="554.7" y2="881.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="541.7" y1="875.0" x2="554.7" y2="868.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 541.7 921.0 L 141.5 921.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="141.5" y1="921.0" x2="154.5" y2="927.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="141.5" y1="921.0" x2="154.5" y2="914.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 141.5 1029.0 L 541.7 1029.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="541.7,1029.0 528.7,1023.5 528.7,1034.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 541.7 1075.0 L 1734.7 1075.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1734.7,1075.0 1721.7,1069.5 1721.7,1080.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1734.7 1121.0 L 1977.0 1121.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="1977.0,1121.0 1964.0,1115.5 1964.0,1126.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1977.0 1167.0 L 2388.4 1167.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="2388.4,1167.0 2375.4,1161.5 2375.4,1172.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 2388.4 1213.0 L 1977.0 1213.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="1977.0" y1="1213.0" x2="1990.0" y2="1219.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1977.0" y1="1213.0" x2="1990.0" y2="1206.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1977.0 1307.0 L 1734.7 1307.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="1734.7" y1="1307.0" x2="1747.7" y2="1313.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1734.7" y1="1307.0" x2="1747.7" y2="1300.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1734.7 1353.0 L 541.7 1353.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="541.7" y1="1353.0" x2="554.7" y2="1359.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="541.7" y1="1353.0" x2="554.7" y2="1346.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 541.7 1399.0 L 141.5 1399.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="141.5" y1="1399.0" x2="154.5" y2="1405.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="141.5" y1="1399.0" x2="154.5" y2="1392.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1977.0 1487.0 L 2388.4 1487.0" fill="none" stroke="#1f2933" stroke-width="1.4"/>
+<polygon points="2388.4,1487.0 2375.4,1481.5 2375.4,1492.5" fill="#1f2933" stroke="#1f2933" stroke-width="1"/>
+<path d="M 1977.0 1533.0 L 1734.7 1533.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="1734.7" y1="1533.0" x2="1747.7" y2="1539.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="1734.7" y1="1533.0" x2="1747.7" y2="1526.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 1734.7 1579.0 L 541.7 1579.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="541.7" y1="1579.0" x2="554.7" y2="1585.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="541.7" y1="1579.0" x2="554.7" y2="1572.5" stroke="#1f2933" stroke-width="1.4"/>
+<path d="M 541.7 1625.0 L 141.5 1625.0" fill="none" stroke="#1f2933" stroke-width="1.4" stroke-dasharray="7 5"/>
+<line x1="141.5" y1="1625.0" x2="154.5" y2="1631.5" stroke="#1f2933" stroke-width="1.4"/>
+<line x1="141.5" y1="1625.0" x2="154.5" y2="1618.5" stroke="#1f2933" stroke-width="1.4"/>
 <circle cx="141.4609375" cy="122" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.6"/>
 <line x1="141.4609375" y1="133" x2="141.4609375" y2="162" stroke="#1f2933" stroke-width="1.6"/>
 <line x1="121.4609375" y1="143" x2="161.4609375" y2="143" stroke="#1f2933" stroke-width="1.6"/>
 <line x1="141.4609375" y1="162" x2="124.4609375" y2="186" stroke="#1f2933" stroke-width="1.6"/>
 <line x1="141.4609375" y1="162" x2="158.4609375" y2="186" stroke="#1f2933" stroke-width="1.6"/>
-<rect x="365.4140625" y="130" width="287.96875" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
-<rect x="849.3984375" y="130" width="202.3125" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
-<rect x="1181.125" y="130" width="182.640625" height="44" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
-<rect x="1595.0625" y="130" width="214.703125" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
-<rect x="1839.765625" y="130" width="175.53125" height="44" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
-<rect x="2268.2734375" y="130" width="141.328125" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="397.7421875" y="130" width="287.96875" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="881.7265625" y="130" width="202.3125" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1213.453125" y="130" width="182.640625" height="44" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1627.390625" y="130" width="214.703125" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="1889.2265625" y="130" width="175.53125" height="44" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
+<rect x="2317.734375" y="130" width="141.328125" height="62" rx="0" fill="#e4ebe6" stroke="#1f2933" stroke-width="1.5"/>
 <text x="141.5" y="208.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Empleado /</text>
 <text x="141.5" y="225.5" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Administrador</text>
-<text x="509.4" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Frontend</text>
-<text x="509.4" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >Reservas.tsx · Cancelaciones.tsx</text>
-<text x="950.6" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">ReservasController</text>
-<text x="950.6" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >POST …/{id}/cancelar</text>
-<text x="1272.4" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">CancelacionService</text>
-<text x="1702.4" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">DevolucionesController</text>
-<text x="1702.4" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >POST /api/devoluciones</text>
-<text x="1927.5" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">DevolucionService</text>
-<text x="2338.9" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Base de datos</text>
-<text x="2338.9" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >SQL Server</text>
+<text x="541.7" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Frontend</text>
+<text x="541.7" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >Reservas.tsx · Cancelaciones.tsx</text>
+<text x="982.9" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">ReservasController</text>
+<text x="982.9" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >POST …/{id}/cancelar</text>
+<text x="1304.8" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">CancelacionService</text>
+<text x="1734.7" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">DevolucionesController</text>
+<text x="1734.7" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >POST /api/devoluciones</text>
+<text x="1977.0" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">DevolucionService</text>
+<text x="2388.4" y="152.0" font-size="14" text-anchor="middle" fill="#1f2933" font-weight="bold">Base de datos</text>
+<text x="2388.4" y="170.0" font-size="12" text-anchor="middle" fill="#52606d" >SQL Server</text>
 <text x="153.5" y="272.0" font-size="12" text-anchor="start" fill="#1f2933" >1. toca «Cancelar» y confirma</text>
-<text x="521.4" y="318.0" font-size="12" text-anchor="start" fill="#1f2933" >2. POST /api/reservas/{id}/cancelar</text>
-<text x="962.6" y="364.0" font-size="12" text-anchor="start" fill="#1f2933" >3. CancelarReservaAsync(id, idUsuario, motivo)</text>
-<text x="1284.4" y="410.0" font-size="12" text-anchor="start" fill="#1f2933" >4. buscar la reserva</text>
-<text x="2326.9" y="456.0" font-size="12" text-anchor="end" fill="#1f2933" >5. reserva</text>
-<text x="1260.4" y="550.0" font-size="12" text-anchor="end" fill="#1f2933" >6. BusinessRuleException</text>
-<text x="938.6" y="596.0" font-size="12" text-anchor="end" fill="#1f2933" >7. 400 · «Una reserva ya cancelada no puede volver a cancelarse.»</text>
-<text x="497.4" y="642.0" font-size="12" text-anchor="end" fill="#1f2933" >8. muestra el error</text>
-<text x="1284.4" y="730.0" font-size="12" text-anchor="start" fill="#1f2933" >9. UPDATE estado = Cancelada · INSERT Cancelacion</text>
-<text x="1260.4" y="776.0" font-size="12" text-anchor="end" fill="#1f2933" >10. CancelacionDto</text>
-<text x="938.6" y="822.0" font-size="12" text-anchor="end" fill="#1f2933" >11. 200 OK</text>
-<text x="497.4" y="868.0" font-size="12" text-anchor="end" fill="#1f2933" >12. la reserva figura Cancelada y el horario queda libre</text>
-<text x="153.5" y="976.0" font-size="12" text-anchor="start" fill="#1f2933" >13. «Registrar devolución» y elige el método</text>
-<text x="521.4" y="1022.0" font-size="12" text-anchor="start" fill="#1f2933" >14. POST /api/devoluciones {idCancelacion, monto, método}</text>
-<text x="1714.4" y="1068.0" font-size="12" text-anchor="start" fill="#1f2933" >15. RegistrarAsync(dto)</text>
-<text x="1939.5" y="1114.0" font-size="12" text-anchor="start" fill="#1f2933" >16. ¿existe la cancelación? ¿ya tiene devolución? total pagado</text>
-<text x="2326.9" y="1160.0" font-size="12" text-anchor="end" fill="#1f2933" >17. datos</text>
-<text x="1915.5" y="1254.0" font-size="12" text-anchor="end" fill="#1f2933" >18. excepción</text>
-<text x="1690.4" y="1300.0" font-size="12" text-anchor="end" fill="#1f2933" >19. 400 / 409 · sin pagos, ya devuelta o monto mayor al abonado</text>
-<text x="497.4" y="1346.0" font-size="12" text-anchor="end" fill="#1f2933" >20. muestra el error</text>
-<text x="1939.5" y="1434.0" font-size="12" text-anchor="start" fill="#1f2933" >21. INSERT Devolucion</text>
-<text x="1915.5" y="1480.0" font-size="12" text-anchor="end" fill="#1f2933" >22. DevolucionDto</text>
-<text x="1690.4" y="1526.0" font-size="12" text-anchor="end" fill="#1f2933" >23. 200 OK</text>
-<text x="497.4" y="1572.0" font-size="12" text-anchor="end" fill="#1f2933" >24. la devolución figura Realizada</text>
+<text x="553.7" y="318.0" font-size="12" text-anchor="start" fill="#1f2933" >2. POST /api/reservas/{id}/cancelar</text>
+<text x="994.9" y="364.0" font-size="12" text-anchor="start" fill="#1f2933" >3. CancelarReservaAsync(id, idUsuario, motivo)</text>
+<text x="1316.8" y="410.0" font-size="12" text-anchor="start" fill="#1f2933" >4. buscar la reserva</text>
+<text x="2376.4" y="456.0" font-size="12" text-anchor="end" fill="#1f2933" >5. reserva</text>
+<text x="1292.8" y="550.0" font-size="12" text-anchor="end" fill="#1f2933" >6. BusinessRuleException</text>
+<text x="970.9" y="596.0" font-size="12" text-anchor="end" fill="#1f2933" >7. 400 · «Una reserva ya cancelada no puede volver a cancelarse.»</text>
+<text x="529.7" y="642.0" font-size="12" text-anchor="end" fill="#1f2933" >8. muestra el error</text>
+<text x="1316.8" y="730.0" font-size="12" text-anchor="start" fill="#1f2933" >9. UPDATE estado = Cancelada · INSERT Cancelacion (usuario)</text>
+<text x="1316.8" y="776.0" font-size="12" text-anchor="start" fill="#1f2933" >10. INSERT Auditoria (cambio de estado y alta de la cancelación)</text>
+<text x="1292.8" y="822.0" font-size="12" text-anchor="end" fill="#1f2933" >11. CancelacionDto</text>
+<text x="970.9" y="868.0" font-size="12" text-anchor="end" fill="#1f2933" >12. 200 OK</text>
+<text x="529.7" y="914.0" font-size="12" text-anchor="end" fill="#1f2933" >13. la reserva figura Cancelada y el horario queda libre</text>
+<text x="153.5" y="1022.0" font-size="12" text-anchor="start" fill="#1f2933" >14. «Registrar devolución»: monto (total o parcial) y método</text>
+<text x="553.7" y="1068.0" font-size="12" text-anchor="start" fill="#1f2933" >15. POST /api/devoluciones {idCancelacion, monto, método}</text>
+<text x="1746.7" y="1114.0" font-size="12" text-anchor="start" fill="#1f2933" >16. RegistrarAsync(dto, idUsuario)</text>
+<text x="1989.0" y="1160.0" font-size="12" text-anchor="start" fill="#1f2933" >17. ¿existe la cancelación? ¿ya tiene devolución? total pagado</text>
+<text x="2376.4" y="1206.0" font-size="12" text-anchor="end" fill="#1f2933" >18. datos</text>
+<text x="1965.0" y="1300.0" font-size="12" text-anchor="end" fill="#1f2933" >19. excepción</text>
+<text x="1722.7" y="1346.0" font-size="12" text-anchor="end" fill="#1f2933" >20. 400 / 409 · sin pagos, ya devuelta o monto mayor al abonado</text>
+<text x="529.7" y="1392.0" font-size="12" text-anchor="end" fill="#1f2933" >21. muestra el error</text>
+<text x="1989.0" y="1480.0" font-size="12" text-anchor="start" fill="#1f2933" >22. INSERT Devolucion (usuario) + INSERT Auditoria</text>
+<text x="1965.0" y="1526.0" font-size="12" text-anchor="end" fill="#1f2933" >23. DevolucionDto</text>
+<text x="1722.7" y="1572.0" font-size="12" text-anchor="end" fill="#1f2933" >24. 200 OK</text>
+<text x="529.7" y="1618.0" font-size="12" text-anchor="end" fill="#1f2933" >25. la devolución figura Realizada</text>
 <text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama de Secuencia — CU-02 Cancelar reserva y CU-04 Registrar devolución</text>
 <text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >UML · la devolución es opcional: sólo corresponde si la reserva cancelada tenía pagos (extensión del CU-02)</text>
 </svg>

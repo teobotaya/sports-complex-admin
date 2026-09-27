@@ -11,7 +11,9 @@
   "Torneo": "Campeonatos amateurs organizados por el complejo, que agrupan equipos y partidos.",
   "Equipo": "Equipos inscriptos en un torneo, con su referente de contacto.",
   "Integrante": "Jugadores que componen cada equipo. Permite controlar la nómina inscripta en el torneo.",
-  "Partido": "Encuentros programados dentro de un torneo, con su resultado una vez disputados."
+  "Partido": "Encuentros programados dentro de un torneo, con su resultado una vez disputados.",
+  "Auditoria": "Registro automático de cada alta, modificación o baja: qué registro cambió, qué campos, cuándo y qué usuario lo hizo. Lo completa el sistema; no se edita.",
+  "Parametro": "Parámetros operativos que ajusta el administrador, como los minutos de inactividad antes de cerrar la sesión."
  },
  "c": {
   "Cliente": {
@@ -48,7 +50,8 @@
    "estado_reserva": "Estado del turno. Acotado por CHECK a 'Confirmada', 'Pendiente' o 'Cancelada'.",
    "estado_pago": "Situación de cobro. Acotado a 'Pendiente', 'Parcialmente abonado' o 'Abonado'.",
    "observaciones": "Notas escritas a mano por el personal sobre el turno (llegó tarde o temprano, pedido especial, etc.).",
-   "fecha_creacion": "Momento exacto en que se cargó la reserva en el sistema."
+   "fecha_creacion": "Momento exacto en que se cargó la reserva en el sistema.",
+   "asistencia": "Asistencia del cliente al turno, marcada por el empleado: 'Presente' o 'Ausente' (no se presentó). Vacío mientras no se registre. Acotado por CHECK."
   },
   "Pago": {
    "id_pago": "Identificador único del pago.",
@@ -56,7 +59,8 @@
    "monto": "Importe cobrado. Restringido por CHECK a valores mayores que cero.",
    "metodo_pago": "Forma de pago utilizada (efectivo, transferencia, tarjeta, etc.).",
    "fecha_pago": "Fecha en que se registró el pago. La completa el sistema con la fecha del día.",
-   "observaciones": "Detalle adicional del cobro (número de comprobante, quién pagó, etc.)."
+   "observaciones": "Detalle adicional del cobro (número de comprobante, quién pagó, etc.).",
+   "id_usuario": "Usuario que registró el cobro (auditoría). Referencia a Usuario(id_usuario). Vacío solo en pagos cargados antes de existir esta columna."
   },
   "Cancelacion": {
    "id_cancelacion": "Identificador único de la cancelación.",
@@ -71,7 +75,8 @@
    "monto_devuelto": "Importe reintegrado al cliente. Restringido por CHECK a valores mayores que cero.",
    "metodo": "Medio por el que se devolvió el dinero.",
    "fecha": "Fecha en que se efectuó la devolución.",
-   "observaciones": "Comentarios sobre el reintegro."
+   "observaciones": "Comentarios sobre el reintegro.",
+   "id_usuario": "Usuario que registró la devolución (auditoría). Referencia a Usuario(id_usuario). Vacío solo en devoluciones anteriores a esta columna."
   },
   "Notificacion": {
    "id_notificacion": "Identificador único de la notificación.",
@@ -79,7 +84,8 @@
    "tipo": "Categoría de la alerta (pago vencido, partido sin resultado, devolución pendiente).",
    "mensaje": "Texto de la alerta tal como se muestra en el panel.",
    "leida": "Indica si el usuario ya marcó la alerta como leída.",
-   "fecha_creacion": "Momento en que el sistema generó la alerta."
+   "fecha_creacion": "Momento en que el sistema generó la alerta.",
+   "id_referencia": "Número de la reserva, partido o cancelación que originó el aviso. Junto con usuario y tipo es único: impide avisos duplicados del mismo evento."
   },
   "Torneo": {
    "id_torneo": "Identificador único del torneo.",
@@ -113,6 +119,21 @@
    "goles_local": "Goles del equipo local. Nulo hasta que se carga el resultado; CHECK ≥ 0.",
    "goles_visitante": "Goles del equipo visitante. Nulo hasta que se carga el resultado; CHECK ≥ 0.",
    "estado": "Situación del partido. Acotado por CHECK a 'Programado' o 'Jugado'."
+  },
+  "Auditoria": {
+   "id_auditoria": "Identificador único del registro de auditoría.",
+   "fecha_hora": "Fecha y hora en que se realizó la operación (hora de Argentina).",
+   "id_usuario": "Usuario que realizó la operación. Referencia a Usuario(id_usuario). Vacío cuando la hizo el propio sistema (ej. creación del administrador inicial).",
+   "entidad": "Tabla afectada por la operación (Reserva, Cliente, Pago, Cancelacion, etc.).",
+   "id_registro": "Identificador del registro afectado dentro de esa tabla.",
+   "accion": "Tipo de operación. Acotado por CHECK a 'Alta', 'Modificación' o 'Baja'.",
+   "detalle": "En las modificaciones, los campos que cambiaron con su valor anterior y el nuevo (ej. \"Hora de fin: 19:00 → 20:00\")."
+  },
+  "Parametro": {
+   "id_parametro": "Identificador único del parámetro.",
+   "clave": "Nombre interno del parámetro, único (ej. 'minutos_inactividad').",
+   "valor": "Valor configurado por el administrador (ej. 30 minutos).",
+   "descripcion": "Explicación del parámetro para el administrador."
   }
  }
 }
