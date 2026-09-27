@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { ApiError } from '../api/client';
@@ -8,11 +8,8 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // Si la sesión se cerró sola (inactividad o usuario desactivado), se explica el motivo.
-  const [error, setError] = useState<string | null>(() => {
-    const motivo = sessionStorage.getItem('sc_motivo_logout');
-    sessionStorage.removeItem('sc_motivo_logout');
-    return motivo;
-  });
+  const [error, setError] = useState<string | null>(() => sessionStorage.getItem('sc_motivo_logout'));
+  useEffect(() => { sessionStorage.removeItem('sc_motivo_logout'); }, []);
 
   if (usuario) return <Redirect to="/" />;
 
