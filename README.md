@@ -30,6 +30,10 @@ Este sistema centraliza esa operación:
 - La **regla de no superposición vive en la base de datos**, no en el formulario: un índice único
   filtrado garantiza la integridad incluso si la reserva entra por otra vía.
 - Cada reserva arrastra su **estado de pago**, sus **cancelaciones** y, si corresponde, su **devolución**.
+- **Auditoría automática**: cada alta, modificación y baja queda registrada con fecha, hora y usuario,
+  y se ve como historial de cambios en la reserva y en la ficha del cliente.
+- **Asistencia** de los clientes (se presentó / no se presentó) y **cierre de sesión por inactividad**
+  configurable por el administrador.
 
 ## Arquitectura
 
@@ -42,7 +46,7 @@ Este sistema centraliza esa operación:
                                                                 │ EF Core 8
                                                    ┌────────────▼──────────────┐
                                                    │  SQL Server 2022          │
-                                                   │  12 tablas · constraints  │
+                                                   │  14 tablas · constraints  │
                                                    └───────────────────────────┘
 ```
 
@@ -52,11 +56,11 @@ se garantiza en la base** mediante constraints e índices.
 
 | Capa | Contenido |
 |---|---|
-| API | 12 controllers · 48 endpoints REST · autenticación JWT · CORS · Swagger |
-| Dominio | 16 servicios (reservas, disponibilidad, pagos, cancelaciones, devoluciones, torneos, estadísticas, reportes…) |
-| Datos | 12 entidades EF Core · 12 tablas · migraciones versionadas · scripts de schema y seed |
+| API | 13 controllers · 55 endpoints REST · autenticación JWT · CORS · Swagger |
+| Dominio | 18 servicios (reservas, disponibilidad, pagos, cancelaciones, devoluciones, torneos, estadísticas, reportes, auditoría…) |
+| Datos | 14 entidades EF Core · 14 tablas · auditoría automática · migraciones versionadas · scripts de schema y seed |
 | Frontend | 19 páginas · layout con sidebar por rol · sistema de diseño propio en CSS |
-| Calidad | 24 pruebas unitarias xUnit sobre los servicios · pruebas de componentes con Vitest · integración continua en GitHub Actions |
+| Calidad | 54 pruebas unitarias xUnit sobre los servicios · 14 pruebas con Vitest · integración continua en GitHub Actions |
 
 ## Reglas de negocio destacadas
 
@@ -85,17 +89,24 @@ integrantes · Partidos y tabla de posiciones · Usuarios · Notificaciones · R
 
 ## Documentación técnica
 
-En [`docs/diagramas`](docs/diagramas) están los diagramas del sistema, versionados como código
-fuente Mermaid (`.mmd`) además de la imagen renderizada:
+En [`docs/diagramas_entrega`](docs/diagramas_entrega) están los diagramas del sistema. Se generan
+con código a partir del modelo real de la base (Entity Framework Core) y se verifican
+automáticamente: ninguna línea se cruza y tablas, columnas, claves y clases coinciden con el código.
+Los scripts que los generan están en [`docs/diagramas_entrega/fuente`](docs/diagramas_entrega/fuente).
 
 | Diagrama | Archivo |
 |---|---|
-| Relacional de la base de datos | `01_relacional.png` |
-| Entidad-Relación | `03_der.png` |
-| Clases | `08b_clases.png` |
-| Casos de uso | `08a_casos_uso.png` |
-| Flujo (alta y cierre de reserva) | `08c1_flujo_alta.png`, `08c2_flujo_cierre.png` |
-| Secuencia (login, reserva, cancelación) | `08d`, `08e`, `08f` |
+| Relacional de la base de datos | `01_relacional` |
+| Entidad-Relación (general y con atributos) | `02_der_general`, `03`, `04`, `04b` |
+| Clases | `05_clases_dominio` |
+| Casos de uso | `06_casos_de_uso` |
+| Flujo de datos (nivel 0 y 1) | `07_dfd_nivel0_contexto`, `08_dfd_nivel1` |
+| Secuencia (login, reserva, pago, cancelación) | `09` a `12` |
+| Diccionario de datos | `13_diccionario_de_datos.pdf` |
+| Todos, en A3 con numeración y epígrafe | `Diagramas_Entrega_A3.pdf` |
+
+El [manual de usuario](docs/Manual_de_Usuario_Sports_Complex.pdf) explica cada pantalla con capturas reales.
+La versión anterior de los diagramas, en Mermaid, queda en [`docs/diagramas`](docs/diagramas).
 
 ## Puesta en marcha
 
@@ -129,6 +140,8 @@ La primera vez que arranca, la API crea el schema y el usuario administrador ini
 
 Si preferís crear la base a mano, los scripts están en [`database/`](database):
 `schema.sql` (estructura), `seed.sql` (datos de prueba) y `script_entrega_bd.sql` (script completo).
+Si tu base ya existía y la creaste a mano, ejecutá una vez `actualizacion_2026_09_auditoria.sql` para sumar
+auditoría, asistencia y parámetros (si la creó la API, las migraciones se aplican solas).
 
 > Ni `appsettings.json` ni `.env` se versionan, porque contienen credenciales.
 > Usá `appsettings.example.json` y `.env.example` como plantillas.
@@ -140,8 +153,8 @@ npm run test                                                  # frontend (Vitest
 dotnet test backend/SportsComplex.Api.Tests                   # backend (xUnit)
 ```
 
-24 pruebas unitarias cubren los servicios de dominio críticos: disponibilidad de canchas,
-reservas, pagos, devoluciones, partidos, clientes y usuarios, usando una base en memoria.
+54 pruebas unitarias cubren los servicios de dominio críticos: disponibilidad de canchas,
+reservas, pagos, devoluciones, partidos, clientes, usuarios, auditoría y reportes, usando una base en memoria.
 Ambas suites, más la compilación y el chequeo de tipos, corren en cada push mediante
 GitHub Actions ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
 
@@ -152,15 +165,15 @@ sports-complex-admin
 ├── .github/workflows/ # integración continua
 ├── docker-compose.yml # base de datos + API + frontend
 ├── backend/SportsComplex.Api
-│   ├── Controllers/   # 12 controllers REST
-│   ├── Services/      # 16 servicios de dominio
-│   ├── Entities/      # 12 entidades EF Core
+│   ├── Controllers/   # 13 controllers REST
+│   ├── Services/      # 18 servicios de dominio
+│   ├── Entities/      # 14 entidades EF Core
 │   ├── Dtos/          # contratos de entrada y salida
 │   ├── Data/          # DbContext y configuración
 │   └── Migrations/    # migraciones EF Core
 ├── backend/SportsComplex.Api.Tests   # pruebas unitarias (xUnit)
-├── database/          # schema.sql · seed.sql · script completo
-├── docs/              # diagramas y documentación técnica
+├── database/          # schema.sql · seed.sql · script completo · actualización
+├── docs/              # diagramas, manual de usuario y documentación técnica
 └── src/               # SPA React + TypeScript
     └── app/
         ├── api/       # clientes HTTP tipados
