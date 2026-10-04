@@ -3,9 +3,10 @@ import { useHistory, useLocation } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { clientesApi, Cliente } from '../api/clientes';
 import { canchasApi, Cancha } from '../api/canchas';
-import { reservasApi } from '../api/reservas';
+import { reservasApi, Reserva } from '../api/reservas';
+import { partidosApi, Partido } from '../api/torneos';
 import { ApiError } from '../api/client';
-import { opcionesInicio, opcionesFin, ajustarFin, esHoraEntera } from '../components/horarios';
+import { opcionesInicio, opcionesFin, ajustarFin, esHoraEntera, ocupaFranja, partidoEnFranja } from '../components/horarios';
 
 const NuevaReserva: React.FC = () => {
   const history = useHistory();
@@ -26,6 +27,42 @@ const NuevaReserva: React.FC = () => {
   const [observaciones, setObservaciones] = useState('');
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Ocupación de la cancha elegida en la fecha elegida: reservas y partidos de torneo.
+  const [reservasDia, setReservasDia] = useState<Reserva[]>([]);
+  const [partidosDia, setPartidosDia] = useState<Partido[]>([]);
+
+  useEffect(() => {
+    if (!canchaId || !fecha) { setReservasDia([]); setPartidosDia([]); return; }
+    let vigente = true;
+    Promise.all([reservasApi.getAll({ fecha, idCancha: Number(canchaId) }), partidosApi.getByFecha(fecha)])
+      .then(([rs, ps]) => {
+        if (!vigente) return;
+        setReservasDia(rs.filter((r) => r.estadoReserva !== 'Cancelada'));
+        setPartidosDia(ps.filter((p) => p.idCancha === Number(canchaId)));
+      })
+      .catch(() => { if (vigente) { setReservasDia([]); setPartidosDia([]); } });
+    return () => { vigente = false; };
+  }, [canchaId, fecha]);
+
+  /** Motivo por el que una hora está ocupada (o null si está libre). */
+  const ocupacion = (hora: string): string | null => {
+    const p = partidosDia.find((x) => partidoEnFranja(x, hora));
+    if (p) return `Reservada por torneo (${p.torneoNombre}: ${p.equipoLocalNombre} vs ${p.equipoVisitanteNombre})`;
+    const r = reservasDia.find((x) => ocupaFranja(x, hora));
+    if (r) return `Reservada por ${r.clienteNombre}`;
+    return null;
+  };
+  // Un turno no puede atravesar una hora ocupada: el fin llega como máximo hasta la próxima ocupación.
+  const finesValidos = (inicio: string): string[] => {
+    const res: string[] = [];
+    for (const f of opcionesFin(inicio)) {
+      const anterior = `${String(parseInt(f, 10) - 1).padStart(2, '0')}:00`;
+      if (ocupacion(anterior)) break;
+      res.push(f);
+    }
+    return res;
+  };
+  const franjasOcupadas = opcionesInicio().map((h) => ({ hora: h, motivo: ocupacion(h) })).filter((x) => x.motivo);
 
   useEffect(() => {
     Promise.all([clientesApi.getAll(), canchasApi.getAll()])
@@ -92,16 +129,19 @@ const NuevaReserva: React.FC = () => {
                     </div>
                     <div className="col-md-4">
                       <label htmlFor="reserva-hora-inicio" className="form-label small text-muted-sc mb-1">Hora de inicio</label>
-                      <select id="reserva-hora-inicio" className="form-select" value={horaInicio} onChange={(e) => { setHoraInicio(e.target.value); setHoraFin(ajustarFin(e.target.value, horaFin)); }} required>
+                      <select id="reserva-hora-inicio" className="form-select" value={horaInicio} onChange={(e) => { setHoraInicio(e.target.value); setHoraFin(finesValidos(e.target.value).includes(horaFin) ? horaFin : finesValidos(e.target.value)[0] ?? ''); }} required>
                         <option value="">Elegir…</option>
-                        {opcionesInicio().map((h) => <option key={h} value={h}>{h}</option>)}
+                        {opcionesInicio().map((h) => {
+                          const motivo = ocupacion(h);
+                          return <option key={h} value={h} disabled={!!motivo}>{motivo ? `${h} — ${motivo.startsWith('Reservada por torneo') ? 'Reservada por torneo' : 'Ocupada'}` : h}</option>;
+                        })}
                       </select>
                     </div>
                     <div className="col-md-4">
                       <label htmlFor="reserva-hora-fin" className="form-label small text-muted-sc mb-1">Hora de finalización</label>
                       <select id="reserva-hora-fin" className="form-select" value={horaFin} onChange={(e) => setHoraFin(e.target.value)} required disabled={!horaInicio}>
                         <option value="">Elegir…</option>
-                        {opcionesFin(horaInicio).map((h) => <option key={h} value={h}>{h}</option>)}
+                        {finesValidos(horaInicio).map((h) => <option key={h} value={h}>{h}</option>)}
                       </select>
                     </div>
                     <div className="col-12">
@@ -124,6 +164,31 @@ const NuevaReserva: React.FC = () => {
         </div>
 
         <div className="col-lg-5">
+          {canchaId && fecha && (
+            <div className="sc-card mb-3">
+              <div className="sc-card-header">
+                <h2>Ocupación de la cancha</h2>
+              </div>
+              <div className="sc-card-body">
+                {franjasOcupadas.length === 0 ? (
+                  <p className="text-muted-sc mb-0" style={{ fontSize: 13 }}>La cancha está libre todo el día.</p>
+                ) : (
+                  <ul className="list-unstyled mb-0" style={{ fontSize: 13 }}>
+                    {franjasOcupadas.map(({ hora, motivo }) => (
+                      <li key={hora} className="d-flex gap-2 align-items-start mb-1">
+                        <span className="fw-600" style={{ minWidth: 44 }}>{hora}</span>
+                        {motivo!.startsWith('Reservada por torneo') ? (
+                          <span><span className="badge badge-torneo">Reservada por torneo</span> {motivo!.replace('Reservada por torneo (', '').replace(/\)$/, '').replace(': ', ' · ')}</span>
+                        ) : (
+                          <span className="text-muted-sc">{motivo}</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          )}
           <div className="sc-card">
             <div className="sc-card-header">
               <h2>Ayuda</h2>

@@ -27,13 +27,15 @@ public class DisponibilidadService
         if (solapaReserva)
             throw new ConflictException("Ya existe una reserva en esa cancha, fecha y horario.");
 
-        var solapaPartido = await _db.Partidos.AnyAsync(p =>
-            p.IdCancha == idCancha &&
-            p.Fecha == fecha &&
-            p.HoraInicio >= horaInicio && p.HoraInicio < horaFin);
+        var partido = await _db.Partidos.Include(p => p.Torneo).Include(p => p.EquipoLocal).Include(p => p.EquipoVisitante)
+            .Where(p => p.IdCancha == idCancha && p.Fecha == fecha && p.HoraInicio >= horaInicio && p.HoraInicio < horaFin)
+            .OrderBy(p => p.HoraInicio)
+            .FirstOrDefaultAsync();
 
-        if (solapaPartido)
-            throw new ConflictException("Ya existe un partido programado en esa cancha, fecha y horario.");
+        if (partido is not null)
+            throw new ConflictException(
+                $"La cancha está reservada por torneo: «{partido.Torneo?.Nombre}» juega {partido.EquipoLocal?.Nombre} vs " +
+                $"{partido.EquipoVisitante?.Nombre} a las {partido.HoraInicio:HH:mm}. Elegí otro horario u otra cancha.");
     }
 
     public async Task ValidarDisponibilidadPartidoAsync(int idCancha, DateOnly fecha, TimeOnly horaInicio, int? idPartidoExcluir = null)

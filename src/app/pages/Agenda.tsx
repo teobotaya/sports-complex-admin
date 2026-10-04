@@ -64,7 +64,7 @@ const Agenda: React.FC = () => {
       <div className="d-flex gap-3 mb-3 no-print" style={{ fontSize: 12.5 }}>
         <span className="d-flex align-items-center gap-1"><span className="status-dot-disponible" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Confirmada</span>
         <span className="d-flex align-items-center gap-1"><span className="status-dot-mantenimiento" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Pendiente</span>
-        <span className="d-flex align-items-center gap-1"><span className="status-dot-proxima" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Partido de torneo</span>
+        <span className="d-flex align-items-center gap-1"><span className="status-dot-proxima" style={{ width: 9, height: 9, borderRadius: '50%', display: 'inline-block' }} /> Reservada por torneo</span>
         <span className="text-muted-sc">Hacé clic en un horario libre para reservarlo</span>
       </div>
 
@@ -94,8 +94,8 @@ const Agenda: React.FC = () => {
                             {r.clienteNombre}
                           </div>
                         ) : p ? (
-                          <div className="agenda-slot agenda-slot-partido" title={`${p.torneoNombre}: ${p.equipoLocalNombre} vs ${p.equipoVisitanteNombre}`}>
-                            {p.equipoLocalNombre} vs {p.equipoVisitanteNombre}
+                          <div className="agenda-slot agenda-slot-partido" title={`Reservada por torneo — ${p.torneoNombre}: ${p.equipoLocalNombre} vs ${p.equipoVisitanteNombre}`}>
+                            Torneo · {p.equipoLocalNombre} vs {p.equipoVisitanteNombre}
                           </div>
                         ) : (
                           <button type="button" className="agenda-slot agenda-slot-free" onClick={() => irANuevaReserva(c.idCancha, hora)}>

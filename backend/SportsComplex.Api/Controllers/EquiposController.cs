@@ -19,6 +19,9 @@ public class EquiposController : ControllerBase
         _integranteService = integranteService;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<List<EquipoDto>>> GetAll() => Ok(await _equipoService.GetAllAsync());
+
     [HttpGet("{id:int}")]
     public async Task<ActionResult<EquipoDto>> GetById(int id) => Ok(await _equipoService.GetByIdAsync(id));
 

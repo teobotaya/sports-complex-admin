@@ -24,6 +24,15 @@ public class EquipoService
             .ToListAsync();
     }
 
+    /// <summary>Todos los equipos registrados, de cualquier torneo (para reutilizarlos al inscribir).</summary>
+    public async Task<List<EquipoDto>> GetAllAsync()
+    {
+        return await _db.Equipos.Include(e => e.Torneo).Include(e => e.Integrantes)
+            .OrderBy(e => e.Nombre).ThenByDescending(e => e.IdTorneo)
+            .Select(e => ToDto(e))
+            .ToListAsync();
+    }
+
     public async Task<EquipoDto> GetByIdAsync(int id)
     {
         var equipo = await _db.Equipos.Include(e => e.Torneo).Include(e => e.Integrantes)
@@ -47,6 +56,16 @@ public class EquipoService
             ContactoNombre = dto.ContactoNombre,
             ContactoTelefono = dto.ContactoTelefono
         };
+
+        // Equipo ya registrado en otro torneo: se inscribe con los mismos integrantes.
+        if (dto.IdEquipoOrigen is int idOrigen)
+        {
+            var origen = await _db.Equipos.Include(e => e.Integrantes).FirstOrDefaultAsync(e => e.IdEquipo == idOrigen)
+                ?? throw new NotFoundException("El equipo que querés reutilizar no existe.");
+            foreach (var i in origen.Integrantes)
+                equipo.Integrantes.Add(new Integrante { NombreCompleto = i.NombreCompleto, Dni = i.Dni });
+        }
+
         _db.Equipos.Add(equipo);
         await _db.SaveChangesAsync();
 

@@ -375,7 +375,7 @@ const Reservas: React.FC = () => {
                                 </button>
                               ) : p ? (
                                 <span className="badge-sc badge-info" title={p.torneoNombre} style={{ fontSize: 12 }}>
-                                  Partido: {p.equipoLocalNombre} vs {p.equipoVisitanteNombre}
+                                  Reservada por torneo: {p.equipoLocalNombre} vs {p.equipoVisitanteNombre}
                                 </span>
                               ) : (
                                 <span className="text-muted-sc" style={{ fontSize: 12 }}>—</span>

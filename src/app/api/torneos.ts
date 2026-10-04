@@ -43,6 +43,8 @@ export interface CrearEquipoInput {
   nombre: string;
   contactoNombre: string | null;
   contactoTelefono: string | null;
+  /** Equipo ya registrado en otro torneo: se copian sus integrantes. */
+  idEquipoOrigen?: number | null;
 }
 
 export interface Integrante {
@@ -96,6 +98,8 @@ export const torneosApi = {
 
 export const equiposApi = {
   getById: (id: number) => api.get<Equipo>(`/equipos/${id}`),
+  /** Todos los equipos dados de alta, de cualquier torneo. */
+  getAll: () => api.get<Equipo[]>('/equipos'),
   quitar: (id: number) => api.delete<void>(`/equipos/${id}`),
   getIntegrantes: (id: number) => api.get<Integrante[]>(`/equipos/${id}/integrantes`),
   agregarIntegrante: (id: number, dto: CrearIntegranteInput) => api.post<Integrante>(`/equipos/${id}/integrantes`, dto),

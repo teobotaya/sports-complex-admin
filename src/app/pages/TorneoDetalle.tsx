@@ -25,6 +25,33 @@ const TorneoDetalle: React.FC = () => {
 
   const [agregandoEquipo, setAgregandoEquipo] = useState(false);
   const [nuevoEquipo, setNuevoEquipo] = useState({ nombre: '', contactoNombre: '', contactoTelefono: '' });
+  // Equipos ya dados de alta (en cualquier torneo) para reutilizarlos con sus integrantes.
+  const [registrados, setRegistrados] = useState<Equipo[]>([]);
+  const [buscarEquipo, setBuscarEquipo] = useState('');
+  const [equipoOrigen, setEquipoOrigen] = useState<Equipo | null>(null);
+
+  const abrirAgregarEquipo = () => {
+    setNuevoEquipo({ nombre: '', contactoNombre: '', contactoTelefono: '' });
+    setEquipoOrigen(null);
+    setBuscarEquipo('');
+    setAgregandoEquipo(true);
+    equiposApi.getAll().then(setRegistrados).catch(() => setRegistrados([]));
+  };
+
+  const elegirRegistrado = (e: Equipo) => {
+    setEquipoOrigen(e);
+    setNuevoEquipo({ nombre: e.nombre, contactoNombre: e.contactoNombre ?? '', contactoTelefono: e.contactoTelefono ?? '' });
+  };
+
+  // Un equipo por nombre (el más reciente), sin los que ya están inscriptos en este torneo.
+  const yaInscriptos = new Set(equipos.map((e) => e.nombre.trim().toLowerCase()));
+  const candidatos = registrados
+    .filter((e) => e.idTorneo !== idTorneo && !yaInscriptos.has(e.nombre.trim().toLowerCase()))
+    .filter((e, i, arr) => arr.findIndex((x) => x.nombre.trim().toLowerCase() === e.nombre.trim().toLowerCase()) === i)
+    .filter((e) => {
+      const q = buscarEquipo.trim().toLowerCase();
+      return !q || e.nombre.toLowerCase().includes(q) || (e.contactoNombre ?? '').toLowerCase().includes(q);
+    });
   const [programando, setProgramando] = useState(false);
   const [nuevoPartido, setNuevoPartido] = useState({ idEquipoLocal: '', idEquipoVisitante: '', idCancha: '', fecha: '', horaInicio: '' });
   const [cargandoResultado, setCargandoResultado] = useState<Partido | null>(null);
@@ -88,8 +115,10 @@ const TorneoDetalle: React.FC = () => {
         nombre: nuevoEquipo.nombre,
         contactoNombre: nuevoEquipo.contactoNombre || null,
         contactoTelefono: nuevoEquipo.contactoTelefono || null,
+        idEquipoOrigen: equipoOrigen ? equipoOrigen.idEquipo : null,
       });
       setNuevoEquipo({ nombre: '', contactoNombre: '', contactoTelefono: '' });
+      setEquipoOrigen(null);
       setAgregandoEquipo(false);
       cargar();
     } catch (e) {
@@ -196,7 +225,7 @@ const TorneoDetalle: React.FC = () => {
           <div className="sc-card h-100">
             <div className="sc-card-header d-flex justify-content-between align-items-center">
               <h2>Equipos participantes</h2>
-              <button type="button" className="btn btn-sm btn-sc-primary text-white" onClick={() => setAgregandoEquipo(true)}>Agregar equipo</button>
+              <button type="button" className="btn btn-sm btn-sc-primary text-white" onClick={abrirAgregarEquipo}>Agregar equipo</button>
             </div>
             <div className="table-responsive-sc">
               <table className="table-sc mb-0">
@@ -209,7 +238,7 @@ const TorneoDetalle: React.FC = () => {
                           title="Sin equipos"
                           message="Todavía no se inscribieron equipos en este torneo."
                           actionLabel="Agregar equipo"
-                          onAction={() => setAgregandoEquipo(true)}
+                          onAction={abrirAgregarEquipo}
                         />
                       </td>
                     </tr>
@@ -380,6 +409,33 @@ const TorneoDetalle: React.FC = () => {
             </>
           }
         >
+          <div className="mb-3">
+            <label htmlFor="equipo-buscar" className="form-label small text-muted-sc mb-1">Equipo ya registrado (opcional)</label>
+            <input id="equipo-buscar" type="search" className="form-control form-control-sm" placeholder="Buscar por nombre del equipo o del contacto…" value={buscarEquipo} onChange={(e) => setBuscarEquipo(e.target.value)} />
+            <div className="equipos-registrados" role="listbox" aria-label="Equipos ya registrados">
+              {candidatos.length === 0 ? (
+                <div className="text-muted-sc p-2" style={{ fontSize: 12.5 }}>
+                  {registrados.length === 0 ? 'Todavía no hay equipos de otros torneos.' : 'Ningún equipo coincide con la búsqueda.'}
+                </div>
+              ) : candidatos.slice(0, 30).map((e) => (
+                <button key={e.idEquipo} type="button" role="option" aria-selected={equipoOrigen?.idEquipo === e.idEquipo}
+                  className={`equipo-registrado ${equipoOrigen?.idEquipo === e.idEquipo ? 'activo' : ''}`} onClick={() => elegirRegistrado(e)}>
+                  <span className="fw-600">{e.nombre}</span>
+                  <span className="text-muted-sc" style={{ fontSize: 12 }}>
+                    {e.cantidadIntegrantes} integrante{e.cantidadIntegrantes === 1 ? '' : 's'} · último torneo: {e.torneoNombre}
+                  </span>
+                </button>
+              ))}
+            </div>
+            {equipoOrigen ? (
+              <div className="d-flex justify-content-between align-items-center mt-1" style={{ fontSize: 12.5 }}>
+                <span>Se inscribe «{equipoOrigen.nombre}» con sus {equipoOrigen.cantidadIntegrantes} integrantes.</span>
+                <button type="button" className="btn btn-sm btn-link p-0" onClick={() => { setEquipoOrigen(null); setNuevoEquipo({ nombre: '', contactoNombre: '', contactoTelefono: '' }); }}>Cargar uno nuevo</button>
+              </div>
+            ) : (
+              <div className="text-muted-sc mt-1" style={{ fontSize: 12 }}>O completá los datos de abajo para dar de alta un equipo nuevo.</div>
+            )}
+          </div>
           <div className="mb-2">
             <label htmlFor="equipo-nuevo-nombre" className="form-label small text-muted-sc mb-1">Nombre del equipo</label>
             <input id="equipo-nuevo-nombre" type="text" className={`form-control form-control-sm ${error && !nuevoEquipo.nombre ? 'is-invalid' : ''}`} value={nuevoEquipo.nombre} onChange={(e) => setNuevoEquipo({ ...nuevoEquipo, nombre: e.target.value })} />

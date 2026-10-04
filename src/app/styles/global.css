@@ -1446,3 +1446,11 @@ a:hover { color: var(--sc-blue-dark); }
     scroll-behavior: auto !important;
   }
 }
+
+/* selector de equipos ya registrados (Agregar equipo al torneo) */
+.equipos-registrados{max-height:180px;overflow-y:auto;border:1px solid var(--sc-border);border-radius:8px;margin-top:6px}
+.equipo-registrado{display:flex;flex-direction:column;align-items:flex-start;width:100%;padding:7px 10px;border:0;border-bottom:1px solid var(--sc-border);background:transparent;text-align:left;font-size:13px}
+.equipo-registrado:last-child{border-bottom:0}
+.equipo-registrado:hover{background:var(--sc-success-bg)}
+.equipo-registrado.activo{background:var(--sc-success-bg);box-shadow:inset 3px 0 0 var(--sc-success)}
+.badge-torneo{background:var(--sc-success-bg);color:var(--sc-success-text);border:1px solid rgba(14,138,85,.18);font-weight:600}
