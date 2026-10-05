@@ -6,7 +6,7 @@
   "Reserva": "Turno reservado sobre una cancha en una fecha y franja horaria determinadas. Es la entidad central del sistema.",
   "Pago": "Cada cobro imputado a una reserva. Una reserva puede recibir varios pagos parciales hasta cubrir el total.",
   "Cancelacion": "Registro de la baja de un turno, con trazabilidad de quién la ejecutó y por qué. Relación uno a uno con la reserva.",
-  "Devolucion": "Reintegro de dinero originado en una cancelación. Sólo puede existir si la reserva tenía pagos previos.",
+  "Devolucion": "Reintegro de dinero originado en una cancelación. Solo puede existir si la reserva tenía pagos previos.",
   "Notificacion": "Alertas internas que el sistema genera automáticamente para llamar la atención del personal sobre situaciones pendientes.",
   "Torneo": "Campeonatos amateurs organizados por el complejo, que agrupan equipos y partidos.",
   "Equipo": "Equipos inscriptos en un torneo, con su referente de contacto.",
@@ -34,7 +34,7 @@
   },
   "Cancha": {
    "id_cancha": "Identificador único de la cancha.",
-   "nombre": "Denominación de la cancha (por ejemplo, «Cancha 1 - Futbol 5»).",
+   "nombre": "Denominación de la cancha (por ejemplo, «Cancha 1 - Fútbol 5»).",
    "tipo_superficie": "Tipo de superficie de juego (césped sintético, cemento, etc.).",
    "precio_por_hora": "Tarifa por hora de alquiler. Restringida por CHECK a valores mayores que cero.",
    "activa": "Indica si la cancha está habilitada para recibir nuevas reservas."
@@ -45,8 +45,8 @@
    "id_cancha": "Cancha reservada. Referencia a Cancha(id_cancha).",
    "id_usuario": "Usuario del sistema que registró la reserva. Referencia a Usuario(id_usuario).",
    "fecha": "Día en que se juega el turno.",
-   "hora_inicio": "Hora de comienzo del turno. El sistema sólo acepta horas enteras (por ejemplo 18:00).",
-   "hora_fin": "Hora de finalización. Un CHECK obliga a que sea posterior a hora_inicio; el sistema sólo acepta horas enteras.",
+   "hora_inicio": "Hora de comienzo del turno. El sistema solo acepta horas enteras (por ejemplo 18:00).",
+   "hora_fin": "Hora de finalización. Un CHECK obliga a que sea posterior a hora_inicio; el sistema solo acepta horas enteras.",
    "estado_reserva": "Estado del turno. Acotado por CHECK a 'Confirmada', 'Pendiente' o 'Cancelada'.",
    "estado_pago": "Situación de cobro. Acotado a 'Pendiente', 'Parcialmente abonado' o 'Abonado'.",
    "observaciones": "Notas escritas a mano por el personal sobre el turno (llegó tarde o temprano, pedido especial, etc.).",
@@ -64,14 +64,14 @@
   },
   "Cancelacion": {
    "id_cancelacion": "Identificador único de la cancelación.",
-   "id_reserva": "Reserva cancelada. Es única: una reserva se cancela una sola",
+   "id_reserva": "Reserva cancelada. Referencia a Reserva(id_reserva). Es única: una reserva se cancela una sola vez.",
    "id_usuario": "Usuario que ejecutó la cancelación. Referencia a Usuario(id_usuario).",
    "motivo": "Explicación de la baja (lluvia, el cliente no puede, error de carga, etc.).",
    "fecha_cancelacion": "Momento exacto en que se registró la cancelación."
   },
   "Devolucion": {
    "id_devolucion": "Identificador único de la devolución.",
-   "id_cancelacion": "Cancelación que origina el reintegro. Una cancelación",
+   "id_cancelacion": "Cancelación que origina el reintegro. Referencia a Cancelacion(id_cancelacion). Es única: una cancelación admite una sola devolución.",
    "monto_devuelto": "Importe reintegrado al cliente. Restringido por CHECK a valores mayores que cero.",
    "metodo": "Medio por el que se devolvió el dinero.",
    "fecha": "Fecha en que se efectuó la devolución.",
@@ -115,7 +115,7 @@
    "id_equipo_visitante": "Equipo visitante.",
    "id_cancha": "Cancha donde se disputa el partido.",
    "fecha": "Día del encuentro.",
-   "hora_inicio": "Hora de comienzo del partido. El sistema sólo acepta horas enteras.",
+   "hora_inicio": "Hora de comienzo del partido. El sistema solo acepta horas enteras.",
    "goles_local": "Goles del equipo local. Nulo hasta que se carga el resultado; CHECK ≥ 0.",
    "goles_visitante": "Goles del equipo visitante. Nulo hasta que se carga el resultado; CHECK ≥ 0.",
    "estado": "Situación del partido. Acotado por CHECK a 'Programado' o 'Jugado'."
@@ -123,16 +123,16 @@
   "Auditoria": {
    "id_auditoria": "Identificador único del registro de auditoría.",
    "fecha_hora": "Fecha y hora en que se realizó la operación (hora de Argentina).",
-   "id_usuario": "Usuario que realizó la operación. Referencia a Usuario(id_usuario). Vacío cuando la hizo el propio sistema (ej. creación del administrador inicial).",
+   "id_usuario": "Usuario que realizó la operación. Referencia a Usuario(id_usuario). Vacío cuando la hizo el propio sistema (p. ej., creación del administrador inicial).",
    "entidad": "Tabla afectada por la operación (Reserva, Cliente, Pago, Cancelacion, etc.).",
    "id_registro": "Identificador del registro afectado dentro de esa tabla.",
    "accion": "Tipo de operación. Acotado por CHECK a 'Alta', 'Modificación' o 'Baja'.",
-   "detalle": "En las modificaciones, los campos que cambiaron con su valor anterior y el nuevo (ej. \"Hora de fin: 19:00 → 20:00\")."
+   "detalle": "En las modificaciones, los campos que cambiaron con su valor anterior y el nuevo (p. ej., «Hora de fin: 19:00 → 20:00»)."
   },
   "Parametro": {
    "id_parametro": "Identificador único del parámetro.",
-   "clave": "Nombre interno del parámetro, único (ej. 'minutos_inactividad').",
-   "valor": "Valor configurado por el administrador (ej. 30 minutos).",
+   "clave": "Nombre interno del parámetro, único (p. ej., 'minutos_inactividad').",
+   "valor": "Valor configurado por el administrador (p. ej., 30 minutos).",
    "descripcion": "Explicación del parámetro para el administrador."
   }
  }

@@ -1,4 +1,4 @@
-import sys; sys.path.insert(0, "/home/claude/diagkit")
+import sys; sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from seqkit import Seq
 
 def login():
@@ -59,7 +59,7 @@ def reserva():
         def ocupado():
             s.ret("D", "S", "ConflictException")
             s.ret("S", "C", "conflicto")
-            s.ret("C", "F", "409 · «Ya existe una reserva en esa cancha, fecha y horario.»")
+            s.ret("C", "F", "409 · «Ya existe una reserva…» o «La cancha está reservada por torneo…»")
             s.ret("F", "E", "pide elegir otra hora o cancha")
         def libre():
             s.ret("D", "S", "sin superposición")
@@ -119,7 +119,7 @@ def pago():
 
 def cancelacion():
     s = Seq("Diagrama de Secuencia — CU-02 Cancelar reserva y CU-04 Registrar devolución",
-            "UML · la devolución es opcional: sólo corresponde si la reserva cancelada tenía pagos (extensión del CU-02)")
+            "UML · la devolución es opcional: solo corresponde si la reserva cancelada tenía pagos (extensión del CU-02)")
     s.actor("E", ["Empleado /", "Administrador"])
     s.part("F", ["Frontend", "Reservas.tsx · Cancelaciones.tsx"])
     s.part("RC", ["ReservasController", "POST …/{id}/cancelar"])

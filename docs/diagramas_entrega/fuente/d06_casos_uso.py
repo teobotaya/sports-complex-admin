@@ -1,16 +1,17 @@
-import sys; sys.path.insert(0, "/home/claude/diagkit")
+import sys; sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from diagkit import *
 
-# Casos de uso: los mismos 12 CU narrados en la Entrega Complementaria (sección 8.2)
+# Casos de uso: los 12 CU narrados en la Entrega Complementaria (sección 8.2), con CU-06 separado:
+# inscribir equipos (empleado) y CU-13 crear y editar torneo (solo administrador).
 SHARED = [("CU-10", "Iniciar sesión"), ("CU-05", "Registrar y consultar cliente"), ("CU-01", "Registrar reserva"),
-          ("CU-02", "Cancelar reserva"), ("CU-03", "Registrar pago"), ("CU-06", "Crear torneo e inscribir equipos"),
+          ("CU-02", "Cancelar reserva"), ("CU-03", "Registrar pago"), ("CU-06", "Inscribir equipos en un torneo"),
           ("CU-07", "Programar partido y cargar resultado"), ("CU-12", "Recibir notificaciones automáticas")]
-ADMIN = [("CU-08", "Consultar reportes administrativos"), ("CU-09", "Consultar estadísticas"), ("CU-11", "Gestionar canchas y usuarios")]
+ADMIN = [("CU-13", "Crear y editar torneo"), ("CU-08", "Consultar reportes administrativos"), ("CU-09", "Consultar estadísticas"), ("CU-11", "Gestionar canchas y usuarios")]
 EXT = ("CU-04", "Registrar devolución")
 
 def build():
     d = Diagram(1720, 1170, title="Diagrama de Casos de Uso — Sistema de Gestión Integral del Complejo Deportivo",
-                subtitle="UML · el Administrador hereda todos los casos de uso del Empleado (generalización) · numeración igual a la de los casos de uso narrados")
+                subtitle="UML · el Administrador hereda todos los casos de uso del Empleado (generalización)")
     bx, by, bw, bh = 330, 110, 1060, 930
     d.add(Container("sistema", bx, by, bw, bh, "Sistema de Gestión Integral — Complejo Deportivo"))
     EW, EH = 320, 66
@@ -22,12 +23,12 @@ def build():
         uc[code] = d.add(Ellipse(code, x1, y, EW, EH, [code, name], size=13))
     y_cu02 = uc["CU-02"].cy
     uc["CU-04"] = d.add(Ellipse("CU-04", x2, y_cu02, EW, EH, list(EXT), size=13))
-    ya = [uc["CU-06"].cy, uc["CU-07"].cy, uc["CU-12"].cy]
+    ya = [uc["CU-03"].cy, uc["CU-06"].cy, uc["CU-07"].cy, uc["CU-12"].cy]
     for (code, name), y in zip(ADMIN, ya):
         uc[code] = d.add(Ellipse(code, x2, y, EW, EH, [code, name], size=13))
 
     emp = d.add(Actor("Empleado", 150, 470, ["Empleado /", "Recepcionista"]))
-    adm = d.add(Actor("Administrador", 1560, ya[1] - 50, ["Administrador"]))
+    adm = d.add(Actor("Administrador", 1560, (ya[1] + ya[2]) / 2 - 50, ["Administrador"]))
 
     # asociaciones Empleado -> casos compartidos (anclas escalonadas sobre el actor)
     n = len(SHARED)
@@ -56,7 +57,7 @@ if __name__ == "__main__":
     d = build()
     P = d.verify(verbose=True)
     codes = {s.id for s in d.shapes.values() if s.kind == "ellipse"}
-    exp = {f"CU-{i:02d}" for i in range(1, 13)}
+    exp = {f"CU-{i:02d}" for i in range(1, 14)}
     if codes != exp: P.append(f"CU distintos: {codes ^ exp}")
     print("\n".join(P) or "OK")
     d.save("/home/claude/out/06_casos_de_uso")

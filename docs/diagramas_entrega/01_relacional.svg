@@ -533,6 +533,6 @@
 <text x="1212.0" y="1839.2" font-size="12" text-anchor="start" fill="#1f2933" >Admite valores nulos (el resto es NOT NULL)</text>
 <text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama Relacional de la Base de Datos — ComplejoDeportivoDB</text>
 <text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >SQL Server · 14 tablas · notación de pata de gallo (Information Engineering) · estructura generada desde el modelo EF Core del sistema</text>
-<text x="1120.0" y="1880.0" font-size="12" text-anchor="start" fill="#52606d" >(*) En Reserva: cancha + fecha + hora de inicio, única sólo entre reservas no canceladas.</text>
+<text x="1120.0" y="1880.0" font-size="12" text-anchor="start" fill="#52606d" >(*) En Reserva: cancha + fecha + hora de inicio, única solo entre reservas no canceladas.</text>
 <text x="1120.0" y="1900.0" font-size="12" text-anchor="start" fill="#52606d" >     En Notificacion: usuario + tipo + referencia, única cuando hay referencia (índices filtrados).</text>
 </svg>

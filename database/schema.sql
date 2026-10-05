@@ -25,8 +25,8 @@ GO
 -- =========================================================
 CREATE TABLE dbo.Cliente (
     id_cliente      INT IDENTITY(1,1) PRIMARY KEY,
-    nombre_completo VARCHAR(150)  NOT NULL,
-    telefono        VARCHAR(20)   NOT NULL UNIQUE,
+    nombre_completo NVARCHAR(150)  NOT NULL,
+    telefono        NVARCHAR(20)   NOT NULL UNIQUE,
     observaciones   NVARCHAR(MAX) NULL,
     fecha_alta      DATE          NOT NULL DEFAULT CAST(GETDATE() AS DATE)
 );
@@ -37,10 +37,10 @@ GO
 -- =========================================================
 CREATE TABLE dbo.Usuario (
     id_usuario      INT IDENTITY(1,1) PRIMARY KEY,
-    nombre_completo VARCHAR(150)  NOT NULL,
-    username        VARCHAR(50)   NOT NULL UNIQUE,
-    password_hash   VARCHAR(255)  NOT NULL,
-    rol             VARCHAR(20)   NOT NULL
+    nombre_completo NVARCHAR(150)  NOT NULL,
+    username        NVARCHAR(50)   NOT NULL UNIQUE,
+    password_hash   NVARCHAR(255)  NOT NULL,
+    rol             NVARCHAR(20)   NOT NULL
         CHECK (rol IN ('administrador', 'empleado')),
     activo          BIT           NOT NULL DEFAULT 1,
     fecha_creacion  DATETIME2     NOT NULL DEFAULT SYSDATETIME()
@@ -52,8 +52,8 @@ GO
 -- =========================================================
 CREATE TABLE dbo.Cancha (
     id_cancha       INT IDENTITY(1,1) PRIMARY KEY,
-    nombre          VARCHAR(100)  NOT NULL UNIQUE,
-    tipo_superficie VARCHAR(50)   NULL,
+    nombre          NVARCHAR(100)  NOT NULL UNIQUE,
+    tipo_superficie NVARCHAR(50)   NULL,
     precio_por_hora DECIMAL(10,2) NOT NULL CHECK (precio_por_hora > 0),
     activa          BIT           NOT NULL DEFAULT 1
 );
@@ -70,12 +70,12 @@ CREATE TABLE dbo.Reserva (
     fecha           DATE          NOT NULL,
     hora_inicio     TIME          NOT NULL,
     hora_fin        TIME          NOT NULL,
-    estado_reserva  VARCHAR(20)   NOT NULL DEFAULT 'Pendiente'
+    estado_reserva  NVARCHAR(20)   NOT NULL DEFAULT 'Pendiente'
         CHECK (estado_reserva IN ('Confirmada', 'Pendiente', 'Cancelada')),
-    estado_pago     VARCHAR(30)   NOT NULL DEFAULT 'Pendiente'
+    estado_pago     NVARCHAR(30)   NOT NULL DEFAULT 'Pendiente'
         CHECK (estado_pago IN ('Pendiente', 'Parcialmente abonado', 'Abonado')),
     -- Asistencia del cliente al turno (NULL = sin registrar). Permite contar las ausencias.
-    asistencia      VARCHAR(10)   NULL
+    asistencia      NVARCHAR(10)   NULL
         CONSTRAINT CK_Reserva_Asistencia CHECK (asistencia IS NULL OR asistencia IN ('Presente', 'Ausente')),
     observaciones   NVARCHAR(MAX) NULL,
     fecha_creacion  DATETIME2     NOT NULL DEFAULT SYSDATETIME(),
@@ -104,7 +104,7 @@ CREATE TABLE dbo.Pago (
     id_reserva      INT           NOT NULL,
     id_usuario      INT           NULL,     -- usuario que registró el cobro (auditoría)
     monto           DECIMAL(10,2) NOT NULL CHECK (monto > 0),
-    metodo_pago     VARCHAR(30)   NOT NULL,
+    metodo_pago     NVARCHAR(30)   NOT NULL,
     fecha_pago      DATE          NOT NULL DEFAULT CAST(GETDATE() AS DATE),
     observaciones   NVARCHAR(MAX) NULL,
     CONSTRAINT FK_Pago_Reserva FOREIGN KEY (id_reserva) REFERENCES dbo.Reserva(id_reserva),
@@ -138,7 +138,7 @@ CREATE TABLE dbo.Devolucion (
     id_cancelacion  INT           NOT NULL UNIQUE,
     id_usuario      INT           NULL,     -- usuario que registró la devolución (auditoría)
     monto_devuelto  DECIMAL(10,2) NOT NULL CHECK (monto_devuelto > 0),
-    metodo          VARCHAR(30)   NOT NULL,
+    metodo          NVARCHAR(30)   NOT NULL,
     fecha           DATE          NOT NULL DEFAULT CAST(GETDATE() AS DATE),
     observaciones   NVARCHAR(MAX) NULL,
     CONSTRAINT FK_Devolucion_Cancelacion FOREIGN KEY (id_cancelacion) REFERENCES dbo.Cancelacion(id_cancelacion),
@@ -155,7 +155,7 @@ GO
 CREATE TABLE dbo.Notificacion (
     id_notificacion INT IDENTITY(1,1) PRIMARY KEY,
     id_usuario      INT           NOT NULL,
-    tipo            VARCHAR(50)   NOT NULL,
+    tipo            NVARCHAR(50)   NOT NULL,
     id_referencia   INT           NULL,     -- reserva, partido o cancelación que originó el aviso
     mensaje         NVARCHAR(MAX) NOT NULL,
     leida           BIT           NOT NULL DEFAULT 0,
@@ -175,11 +175,11 @@ GO
 -- =========================================================
 CREATE TABLE dbo.Torneo (
     id_torneo    INT IDENTITY(1,1) PRIMARY KEY,
-    nombre       VARCHAR(150) NOT NULL,
+    nombre       NVARCHAR(150) NOT NULL,
     fecha_inicio DATE         NOT NULL,
     fecha_fin    DATE         NOT NULL,
-    categoria    VARCHAR(50)  NULL,
-    estado       VARCHAR(20)  NOT NULL DEFAULT 'Planificado'
+    categoria    NVARCHAR(50)  NULL,
+    estado       NVARCHAR(20)  NOT NULL DEFAULT 'Planificado'
         CHECK (estado IN ('Planificado', 'En curso', 'Finalizado')),
     CONSTRAINT CK_Torneo_Fechas CHECK (fecha_fin >= fecha_inicio)
 );
@@ -191,9 +191,9 @@ GO
 CREATE TABLE dbo.Equipo (
     id_equipo         INT IDENTITY(1,1) PRIMARY KEY,
     id_torneo         INT          NOT NULL,
-    nombre            VARCHAR(150) NOT NULL,
-    contacto_nombre   VARCHAR(150) NULL,
-    contacto_telefono VARCHAR(20)  NULL,
+    nombre            NVARCHAR(150) NOT NULL,
+    contacto_nombre   NVARCHAR(150) NULL,
+    contacto_telefono NVARCHAR(20)  NULL,
     CONSTRAINT FK_Equipo_Torneo FOREIGN KEY (id_torneo) REFERENCES dbo.Torneo(id_torneo),
     CONSTRAINT UQ_Equipo_Torneo_Nombre UNIQUE (id_torneo, nombre)
 );
@@ -208,8 +208,8 @@ GO
 CREATE TABLE dbo.Integrante (
     id_integrante   INT IDENTITY(1,1) PRIMARY KEY,
     id_equipo       INT          NOT NULL,
-    nombre_completo VARCHAR(150) NOT NULL,
-    dni             VARCHAR(15)  NOT NULL,
+    nombre_completo NVARCHAR(150) NOT NULL,
+    dni             NVARCHAR(15)  NOT NULL,
     CONSTRAINT FK_Integrante_Equipo FOREIGN KEY (id_equipo) REFERENCES dbo.Equipo(id_equipo),
     CONSTRAINT UQ_Integrante_Equipo_Dni UNIQUE (id_equipo, dni)
 );
@@ -231,7 +231,7 @@ CREATE TABLE dbo.Partido (
     hora_inicio         TIME        NOT NULL,
     goles_local         INT         NULL CHECK (goles_local >= 0),
     goles_visitante     INT         NULL CHECK (goles_visitante >= 0),
-    estado              VARCHAR(20) NOT NULL DEFAULT 'Programado'
+    estado              NVARCHAR(20) NOT NULL DEFAULT 'Programado'
         CHECK (estado IN ('Programado', 'Jugado')),
     CONSTRAINT FK_Partido_Torneo           FOREIGN KEY (id_torneo)           REFERENCES dbo.Torneo(id_torneo),
     CONSTRAINT FK_Partido_EquipoLocal       FOREIGN KEY (id_equipo_local)     REFERENCES dbo.Equipo(id_equipo),
@@ -257,7 +257,7 @@ CREATE TABLE dbo.Auditoria (
     id_auditoria    INT IDENTITY(1,1) PRIMARY KEY,
     fecha_hora      DATETIME2     NOT NULL DEFAULT SYSDATETIME(),
     id_usuario      INT           NULL,     -- NULL: operación del propio sistema
-    entidad         VARCHAR(30)   NOT NULL, -- Reserva, Cliente, Pago...
+    entidad         NVARCHAR(30)   NOT NULL, -- Reserva, Cliente, Pago...
     id_registro     INT           NOT NULL,
     accion          NVARCHAR(20)  NOT NULL
         CONSTRAINT CK_Auditoria_Accion CHECK (accion IN (N'Alta', N'Modificación', N'Baja')),
@@ -276,8 +276,8 @@ GO
 -- =========================================================
 CREATE TABLE dbo.Parametro (
     id_parametro    INT IDENTITY(1,1) PRIMARY KEY,
-    clave           VARCHAR(50)   NOT NULL UNIQUE,
-    valor           VARCHAR(100)  NOT NULL,
+    clave           NVARCHAR(50)   NOT NULL UNIQUE,
+    valor           NVARCHAR(100)  NOT NULL,
     descripcion     NVARCHAR(200) NULL
 );
 GO

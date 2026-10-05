@@ -14,7 +14,7 @@ atributos y clases coincidan exactamente con el código.
 | 07 y 08 | Diagrama de Flujo de Datos (nivel 0 y nivel 1) |
 | 05_clases_dominio | Diagrama de Clases |
 | 09 a 12 | Diagramas de Secuencia |
-| Diagramas_Entrega_A3.pdf | Todos los diagramas en A3 apaisado, numerados y con epígrafe |
+| Diagramas_Entrega_A3.pdf | Las 13 láminas A3 apaisadas que se imprimen aparte; cada una indica su número de figura en el libro integrador |
 
 Incluyen las tablas Auditoria (quién, cuándo y qué cambió) y Parametro (minutos de inactividad),
 la asistencia de cada reserva y el usuario responsable de pagos y devoluciones (actualización del 26/09/2026).
@@ -23,3 +23,8 @@ Cada diagrama está en .png (para Word), .svg (vectorial) y .pdf (para imprimir)
 
 Para regenerarlos: `cd fuente && python3 d01_relacional.py` (y así con cada script).
 Requiere Python 3 con `shapely`, `cairosvg`, `pillow` y la fuente DejaVu Sans.
+
+Actualización del 05/10/2026: el diagrama de casos de uso separa «CU-06 Inscribir equipos en un torneo»
+(empleado) de «CU-13 Crear y editar torneo» (solo administrador), como funciona el sistema; el diagrama
+de secuencia de la reserva muestra también el aviso «La cancha está reservada por torneo».
+

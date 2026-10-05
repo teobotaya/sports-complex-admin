@@ -136,5 +136,5 @@
 <text x="1722.7" y="1572.0" font-size="12" text-anchor="end" fill="#1f2933" >24. 200 OK</text>
 <text x="529.7" y="1618.0" font-size="12" text-anchor="end" fill="#1f2933" >25. la devolución figura Realizada</text>
 <text x="40.0" y="44.0" font-size="22" text-anchor="start" fill="#1f2933" font-weight="bold">Diagrama de Secuencia — CU-02 Cancelar reserva y CU-04 Registrar devolución</text>
-<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >UML · la devolución es opcional: sólo corresponde si la reserva cancelada tenía pagos (extensión del CU-02)</text>
+<text x="40.0" y="70.0" font-size="13" text-anchor="start" fill="#52606d" >UML · la devolución es opcional: solo corresponde si la reserva cancelada tenía pagos (extensión del CU-02)</text>
 </svg>

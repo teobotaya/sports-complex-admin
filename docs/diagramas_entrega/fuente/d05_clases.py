@@ -1,4 +1,4 @@
-import sys, re; sys.path.insert(0, "/home/claude/diagkit")
+import sys, re; sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from diagkit import *
 from d02_der import near_label
 

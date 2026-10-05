@@ -490,7 +490,7 @@ class Diagram:
                 shared = {a.src, a.dst} & {b.src, b.dst}
                 d = La.distance(Lb)
                 if d < self.min_gap:
-                    # permitir cercanía sólo junto a una forma compartida
+                    # permitir cercanía solo junto a una forma compartida
                     ok = False
                     if shared:
                         zone = unary_union([self.shapes[s].poly().buffer(24) for s in shared])
@@ -580,7 +580,7 @@ class Diagram:
 # ---------------------------------------------------------------- utilidades
 def ortho(*pts):
     """Construye una polilínea ortogonal. Acepta puntos (x,y) o ('x', valor) / ('y', valor)
-    para moverse sólo en un eje desde el último punto."""
+    para moverse solo en un eje desde el último punto."""
     out = []
     for p in pts:
         if isinstance(p[0], str):

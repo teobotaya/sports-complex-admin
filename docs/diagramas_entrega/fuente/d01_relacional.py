@@ -1,4 +1,4 @@
-import sys; sys.path.insert(0, "/home/claude/diagkit")
+import sys; sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from diagkit import *
 from model import TABLES, FKS
 
@@ -75,7 +75,7 @@ def build():
         (lambda x, y: Text("U1", x + 20, y + 4, 11, bold=True, color=ACCENT).svg(), "Combinación única entre las columnas marcadas U1 (*)"),
         (lambda x, y: Text("NULL", x + 18, y + 4, 10, color=MUTED).svg(), "Admite valores nulos (el resto es NOT NULL)"),
     ], w=820)
-    d.text("(*) En Reserva: cancha + fecha + hora de inicio, única sólo entre reservas no canceladas.",
+    d.text("(*) En Reserva: cancha + fecha + hora de inicio, única solo entre reservas no canceladas.",
            lx, ly + 36 + 30 * 7 + 30, 12, color=MUTED)
     d.text("     En Notificacion: usuario + tipo + referencia, única cuando hay referencia (índices filtrados).",
            lx, ly + 36 + 30 * 7 + 50, 12, color=MUTED)

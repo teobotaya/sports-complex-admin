@@ -1,5 +1,5 @@
 """Diccionario de datos generado desde el modelo real de la base (EF Core) → HTML → PDF."""
-import sys, json, html, re; sys.path.insert(0, "/home/claude/diagkit")
+import sys, json, html, re; sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from model import TABLES, FKS
 D = json.load(open("/home/claude/diagkit/descripciones.json"))
 ORDER = ["Cliente", "Usuario", "Cancha", "Reserva", "Pago", "Cancelacion", "Devolucion", "Notificacion",
@@ -21,7 +21,7 @@ def restr(table, name, tags):
     for k, u in enumerate(TABLES[table]["uniq_multi"], 1):
         if name in u["cols"]:
             txt = "UNIQUE (" + " + ".join(u["cols"]) + ")"
-            if u["filter"]: txt += " sólo entre reservas no canceladas"
+            if u["filter"]: txt += " solo entre reservas no canceladas"
             out.append(txt)
     for ck, sql in TABLES[table]["checks"]:
         if re.search(r"\b%s\b" % name, sql): out.append(f"CHECK ({sql})")

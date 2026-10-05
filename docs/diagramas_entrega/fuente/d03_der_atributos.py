@@ -1,4 +1,4 @@
-import sys, math; sys.path.insert(0, "/home/claude/diagkit")
+import sys, math; sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from diagkit import *
 from d02_der import DER, near_label, EW, EH, DW, DH, der_legend
 from model import TABLES

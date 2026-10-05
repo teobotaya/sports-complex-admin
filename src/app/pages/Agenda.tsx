@@ -95,7 +95,10 @@ const Agenda: React.FC = () => {
                           </div>
                         ) : p ? (
                           <div className="agenda-slot agenda-slot-partido" title={`Reservada por torneo — ${p.torneoNombre}: ${p.equipoLocalNombre} vs ${p.equipoVisitanteNombre}`}>
-                            Torneo · {p.equipoLocalNombre} vs {p.equipoVisitanteNombre}
+                            <span className="agenda-slot-lineas">
+                              <span>Torneo</span>
+                              <span className="agenda-slot-sub">{p.equipoLocalNombre} vs {p.equipoVisitanteNombre}</span>
+                            </span>
                           </div>
                         ) : (
                           <button type="button" className="agenda-slot agenda-slot-free" onClick={() => irANuevaReserva(c.idCancha, hora)}>

@@ -1401,6 +1401,8 @@ a:hover { color: var(--sc-blue-dark); }
 .agenda-slot-pendiente { background: var(--sc-warning); }
 .agenda-slot-cancelada { background: var(--sc-danger); opacity: 0.65; }
 .agenda-slot-partido { background: var(--sc-blue); }
+.agenda-slot-lineas { display: flex; flex-direction: column; align-items: center; min-width: 0; max-width: 100%; line-height: 1.2; }
+.agenda-slot-sub { font-size: 10.5px; font-weight: 500; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .agenda-slot-free {
   background: var(--sc-surface-secondary);
   border: 1px dashed var(--sc-border-strong);

@@ -1,4 +1,4 @@
-import sys, math; sys.path.insert(0, "/home/claude/diagkit")
+import sys, math; sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from diagkit import *
 
 STORES = {"D1": "Usuarios", "D2": "Clientes", "D3": "Canchas", "D4": "Reservas", "D5": "Pagos",
