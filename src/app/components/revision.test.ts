@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { ocupaFranja, partidoEnFranja } from './horarios';
+import { ocupaFranja, partidoEnFranja, finPartido } from './horarios';
 import { aCsv } from './exportarCsv';
 
 describe('grilla de la agenda', () => {
@@ -12,6 +12,10 @@ describe('grilla de la agenda', () => {
   it('un partido ocupa solo su hora de inicio', () => {
     expect(partidoEnFranja({ horaInicio: '20:00' }, '20:00')).toBe(true);
     expect(partidoEnFranja({ horaInicio: '20:00' }, '21:00')).toBe(false);
+  });
+  it('en el listado de reservas un partido figura de su hora de inicio a una hora después', () => {
+    expect(finPartido('21:00')).toBe('22:00');
+    expect(finPartido('09:00:00')).toBe('10:00');
   });
 });
 

@@ -26,6 +26,10 @@ export const ocupaFranja = (r: { estadoReserva: string; horaInicio: string; hora
 /** Un partido de torneo ocupa la cancha 1 hora desde su hora de inicio. */
 export const partidoEnFranja = (p: { horaInicio: string }, hora: string): boolean => p.horaInicio.slice(0, 5) === hora;
 
+/** Hora de fin de un partido: ocupa la cancha una hora desde su inicio. */
+export const finPartido = (horaInicio: string): string =>
+  `${String(parseInt(horaInicio, 10) + 1).padStart(2, '0')}:00`;
+
 export const esHoraEntera = (hora: string): boolean => /^\d{2}:00(:00)?$/.test(hora);
 
 /** Dado un inicio, sugiere un fin 1 hora después (o conserva el actual si sigue siendo válido). */

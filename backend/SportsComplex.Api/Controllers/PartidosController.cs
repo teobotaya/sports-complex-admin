@@ -17,10 +17,13 @@ public class PartidosController : ControllerBase
         _service = service;
     }
 
-    /// <summary>Partidos de un día (la agenda los muestra como turnos ocupados).</summary>
+    /// <summary>Partidos de un día (?fecha=) o de un rango (?desde=&amp;hasta=, ambos opcionales).
+    /// La agenda y el listado de reservas los muestran como canchas reservadas por torneo.</summary>
     [HttpGet]
-    public async Task<ActionResult<List<PartidoDto>>> GetByFecha([FromQuery] DateOnly fecha) =>
-        Ok(await _service.GetByFechaAsync(fecha));
+    public async Task<ActionResult<List<PartidoDto>>> Get([FromQuery] DateOnly? fecha, [FromQuery] DateOnly? desde, [FromQuery] DateOnly? hasta) =>
+        Ok(fecha.HasValue
+            ? await _service.GetByFechaAsync(fecha.Value)
+            : await _service.GetEnRangoAsync(desde, hasta));
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<PartidoDto>> GetById(int id) => Ok(await _service.GetByIdAsync(id));

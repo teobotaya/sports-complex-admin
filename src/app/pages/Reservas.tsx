@@ -13,7 +13,7 @@ import { pagosApi, Pago } from '../api/pagos';
 import { partidosApi, Partido } from '../api/torneos';
 import { HistorialItem } from '../api/auditoria';
 import HistorialCambios from '../components/HistorialCambios';
-import { HORAS_GRILLA, opcionesInicio, opcionesFin, ajustarFin, ocupaFranja, partidoEnFranja } from '../components/horarios';
+import { HORAS_GRILLA, opcionesInicio, opcionesFin, ajustarFin, ocupaFranja, partidoEnFranja, finPartido } from '../components/horarios';
 import { descargarCsv } from '../components/exportarCsv';
 
 const HORAS = HORAS_GRILLA;
@@ -41,6 +41,15 @@ function lunesDeLaSemana(fechaIso: string): string[] {
 }
 
 const NOMBRES_DIA = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+
+export const RESERVADA_POR_TORNEO = 'Reservada por torneo';
+
+/** Filas del listado: reservas de clientes y partidos de torneo (canchas reservadas por torneo). */
+type Fila =
+  | { tipo: 'reserva'; clave: string; fecha: string; hora: string; r: Reserva }
+  | { tipo: 'partido'; clave: string; fecha: string; hora: string; p: Partido };
+
+const textoPartido = (p: Partido) => `${p.torneoNombre}: ${p.equipoLocalNombre} vs ${p.equipoVisitanteNombre}`;
 
 /** La asistencia se marca el día del turno o después, y nunca en una reserva cancelada. */
 export const puedeMarcarAsistencia = (r: Reserva, hoy: string): boolean =>
@@ -71,6 +80,7 @@ const Reservas: React.FC = () => {
   const [errorModal, setErrorModal] = useState<string | null>(null);
   const [pagina, setPagina] = useState(1);
   const [semanaItems, setSemanaItems] = useState<Reserva[]>([]);
+  const [semanaPartidos, setSemanaPartidos] = useState<Partido[]>([]);
   const [cargandoSemana, setCargandoSemana] = useState(false);
   const [mensajeExito, setMensajeExito] = useState<string | null>(
     () => (history.location.state as { successMessage?: string } | undefined)?.successMessage ?? null
@@ -94,7 +104,12 @@ const Reservas: React.FC = () => {
     const pedidoReservas = vista === 'tabla'
       ? reservasApi.getAll({ desde: desde || undefined, hasta: hasta || undefined })
       : reservasApi.getAll({ fecha });
-    const pedidoPartidos = vista === 'agenda' ? partidosApi.getByFecha(fecha) : Promise.resolve([] as Partido[]);
+    // Los partidos de torneo también ocupan canchas: se listan junto con las reservas.
+    const pedidoPartidos = vista === 'agenda'
+      ? partidosApi.getByFecha(fecha)
+      : vista === 'tabla'
+        ? partidosApi.getEnRango(desde || undefined, hasta || undefined)
+        : Promise.resolve([] as Partido[]);
     Promise.all([pedidoReservas, canchasApi.getAll(), pedidoPartidos])
       .then(([r, c, p]) => { setItems(r); setCanchas(c); setPartidosDia(p); })
       .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar reservas.'))
@@ -111,8 +126,9 @@ const Reservas: React.FC = () => {
   useEffect(() => {
     if (vista !== 'semana') return;
     setCargandoSemana(true);
-    Promise.all(diasSemana.map((d) => reservasApi.getAll({ fecha: d })))
-      .then((porDia) => setSemanaItems(porDia.flat()))
+    Promise.all([Promise.all(diasSemana.map((d) => reservasApi.getAll({ fecha: d }))),
+      partidosApi.getEnRango(diasSemana[0], diasSemana[6])])
+      .then(([porDia, ps]) => { setSemanaItems(porDia.flat()); setSemanaPartidos(ps); })
       .catch((e) => setError(e instanceof ApiError ? e.message : 'Error al cargar la semana.'))
       .finally(() => setCargandoSemana(false));
   }, [vista, diasSemana]);
@@ -129,15 +145,36 @@ const Reservas: React.FC = () => {
     [items, canchaFiltro, estadoFiltro, busqueda]
   );
 
+  const aplicarFiltrosPartidos = (lista: Partido[]) =>
+    lista
+      .filter((p) => canchaFiltro === 'todas' || p.idCancha === Number(canchaFiltro))
+      .filter(() => estadoFiltro === 'todos' || estadoFiltro === RESERVADA_POR_TORNEO)
+      .filter((p) => textoPartido(p).toLowerCase().includes(busqueda.toLowerCase()));
+
+  // Listado de la vista Tabla: reservas + partidos de torneo, ordenados por fecha y hora.
+  const filas = useMemo<Fila[]>(() => {
+    const deReservas: Fila[] = filtradas.map((r) => ({ tipo: 'reserva', clave: `r${r.idReserva}`, fecha: r.fecha, hora: r.horaInicio, r }));
+    const dePartidos: Fila[] = (vista === 'tabla' ? aplicarFiltrosPartidos(partidosDia) : [])
+      .map((p) => ({ tipo: 'partido', clave: `p${p.idPartido}`, fecha: p.fecha, hora: p.horaInicio, p }));
+    return [...deReservas, ...dePartidos].sort((a, b) => a.fecha.localeCompare(b.fecha) || a.hora.localeCompare(b.hora));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtradas, partidosDia, vista, canchaFiltro, estadoFiltro, busqueda]);
+
+  const semanaPartidosFiltrados = useMemo(
+    () => aplicarFiltrosPartidos(semanaPartidos),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [semanaPartidos, canchaFiltro, estadoFiltro, busqueda]
+  );
+
   const semanaFiltradas = useMemo(
     () => aplicarFiltros(semanaItems),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [semanaItems, canchaFiltro, estadoFiltro, busqueda]
   );
 
-  const totalPaginas = Math.max(1, Math.ceil(filtradas.length / POR_PAGINA));
+  const totalPaginas = Math.max(1, Math.ceil(filas.length / POR_PAGINA));
   const paginaActual = Math.min(pagina, totalPaginas);
-  const paginadas = filtradas.slice((paginaActual - 1) * POR_PAGINA, paginaActual * POR_PAGINA);
+  const paginadas = filas.slice((paginaActual - 1) * POR_PAGINA, paginaActual * POR_PAGINA);
 
   const abrirVer = (r: Reserva) => {
     setSeleccion(r); setModalMode('ver'); setPagosSeleccion(null); setHistorialSeleccion(null); setErrorModal(null);
@@ -162,8 +199,11 @@ const Reservas: React.FC = () => {
     const nombre = `reservas_${desde || 'inicio'}_a_${hasta || 'hoy'}.csv`;
     descargarCsv(nombre,
       ['N.º', 'Cliente', 'Cancha', 'Fecha', 'Inicio', 'Fin', 'Estado', 'Pago', 'Asistencia', 'Observaciones'],
-      filtradas.map((r) => [r.idReserva, r.clienteNombre, r.canchaNombre, r.fecha, r.horaInicio, r.horaFin,
-        r.estadoReserva, r.estadoPago, r.asistencia ?? 'Sin registrar', r.observaciones ?? '']));
+      filas.map((f) => f.tipo === 'reserva'
+        ? [f.r.idReserva, f.r.clienteNombre, f.r.canchaNombre, f.r.fecha, f.r.horaInicio, f.r.horaFin,
+          f.r.estadoReserva, f.r.estadoPago, f.r.asistencia ?? 'Sin registrar', f.r.observaciones ?? '']
+        : [`Partido ${f.p.idPartido}`, textoPartido(f.p), f.p.canchaNombre, f.p.fecha, f.p.horaInicio.slice(0, 5),
+          finPartido(f.p.horaInicio), RESERVADA_POR_TORNEO, '—', '—', '']));
   };
   const abrirEditar = (r: Reserva) => { setSeleccion({ ...r }); setErrorModal(null); setModalMode('editar'); };
   const abrirCancelar = (r: Reserva) => { setSeleccion(r); setMotivo(''); setErrorModal(null); setModalMode('cancelar'); };
@@ -207,7 +247,7 @@ const Reservas: React.FC = () => {
         action={
           <div className="d-flex gap-2">
             {vista === 'tabla' && (
-              <button type="button" className="btn btn-outline-secondary no-print" onClick={exportarListado} disabled={filtradas.length === 0}>
+              <button type="button" className="btn btn-outline-secondary no-print" onClick={exportarListado} disabled={filas.length === 0}>
                 Exportar listado
               </button>
             )}
@@ -260,11 +300,12 @@ const Reservas: React.FC = () => {
                 <option value="Confirmada">Confirmada</option>
                 <option value="Pendiente">Pendiente</option>
                 <option value="Cancelada">Cancelada</option>
+                <option value={RESERVADA_POR_TORNEO}>{RESERVADA_POR_TORNEO}</option>
               </select>
             </div>
             <div className={`col-6 ${vista === 'tabla' ? 'col-md-2' : 'col-md-3'}`}>
               <label className="form-label small text-muted-sc mb-1">Buscar cliente</label>
-              <input type="text" className="form-control form-control-sm" placeholder="Nombre del cliente" value={busqueda} onChange={(e) => setBusqueda(e.target.value)} />
+              <input type="text" className="form-control form-control-sm" placeholder="Cliente, torneo o equipo" value={busqueda} onChange={(e) => setBusqueda(e.target.value)} />
             </div>
             <div className={`col-12 ${vista === 'tabla' ? 'col-md-2' : 'col-md-3'} d-flex justify-content-md-end gap-2 mt-2 mt-md-0`}>
               <div className="btn-group btn-group-sm" role="group">
@@ -304,20 +345,36 @@ const Reservas: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {filtradas.length === 0 && (
+                {filas.length === 0 && (
                   <tr>
                     <td colSpan={8}>
                       <EmptyState
                         title="No hay reservas"
-                        message="No se encontraron reservas con los filtros aplicados."
+                        message="No se encontraron reservas ni partidos de torneo con los filtros aplicados."
                         actionLabel="Limpiar filtros"
                         onAction={() => { setCanchaFiltro('todas'); setEstadoFiltro('todos'); setBusqueda(''); }}
                       />
                     </td>
                   </tr>
                 )}
-                {paginadas.map((r) => (
-                  <tr key={r.idReserva}>
+                {paginadas.map((f) => f.tipo === 'partido' ? (
+                  <tr key={f.clave} className="fila-torneo">
+                    <td>
+                      <div className="fw-600">{f.p.torneoNombre}</div>
+                      <div className="text-muted-sc" style={{ fontSize: 12 }}>{f.p.equipoLocalNombre} vs {f.p.equipoVisitanteNombre}</div>
+                    </td>
+                    <td>{f.p.canchaNombre}</td>
+                    <td>{f.p.fecha}</td>
+                    <td>{f.p.horaInicio.slice(0, 5)}</td>
+                    <td>{finPartido(f.p.horaInicio)}</td>
+                    <td><StatusBadge label={RESERVADA_POR_TORNEO} tone="info" /></td>
+                    <td><span className="text-muted-sc">—</span></td>
+                    <td>
+                      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => history.push(`/torneos/${f.p.idTorneo}`)}>Ver torneo</button>
+                    </td>
+                  </tr>
+                ) : (({ r }) => (
+                  <tr key={f.clave}>
                     <td>{r.clienteNombre}</td>
                     <td>{r.canchaNombre}</td>
                     <td>{r.fecha}</td>
@@ -333,13 +390,13 @@ const Reservas: React.FC = () => {
                       </div>
                     </td>
                   </tr>
-                ))}
+                ))(f))}
               </tbody>
             </table>
           </div>
-          {filtradas.length > POR_PAGINA && (
+          {filas.length > POR_PAGINA && (
             <div className="d-flex justify-content-between align-items-center p-2 no-print" style={{ borderTop: '1px solid var(--sc-border)' }}>
-              <span className="text-muted-sc" style={{ fontSize: 12.5 }}>Página {paginaActual} de {totalPaginas} · {filtradas.length} reservas</span>
+              <span className="text-muted-sc" style={{ fontSize: 12.5 }}>Página {paginaActual} de {totalPaginas} · {filas.length} turnos</span>
               <div className="d-flex gap-1">
                 <button type="button" className="btn btn-sm btn-outline-secondary" disabled={paginaActual <= 1} onClick={() => setPagina((p) => p - 1)}>Anterior</button>
                 <button type="button" className="btn btn-sm btn-outline-secondary" disabled={paginaActual >= totalPaginas} onClick={() => setPagina((p) => p + 1)}>Siguiente</button>
@@ -419,9 +476,10 @@ const Reservas: React.FC = () => {
                         <td className="text-muted-sc">{hora}</td>
                         {diasSemana.map((d) => {
                           const delDia = semanaFiltradas.filter((x) => x.fecha === d && ocupaFranja(x, hora));
+                          const partidosHora = semanaPartidosFiltrados.filter((x) => x.fecha === d && partidoEnFranja(x, hora));
                           return (
                             <td key={d}>
-                              {delDia.length === 0 ? (
+                              {delDia.length === 0 && partidosHora.length === 0 ? (
                                 <span className="text-muted-sc" style={{ fontSize: 12 }}>—</span>
                               ) : (
                                 <div className="d-flex flex-column gap-1">
@@ -435,6 +493,11 @@ const Reservas: React.FC = () => {
                                     >
                                       {r.clienteNombre} · {r.canchaNombre}
                                     </button>
+                                  ))}
+                                  {partidosHora.map((x) => (
+                                    <span key={`p${x.idPartido}`} className="badge-sc badge-info" title={textoPartido(x)} style={{ fontSize: 11.5, whiteSpace: 'normal' }}>
+                                      {RESERVADA_POR_TORNEO} · {x.canchaNombre}
+                                    </span>
                                   ))}
                                 </div>
                               )}

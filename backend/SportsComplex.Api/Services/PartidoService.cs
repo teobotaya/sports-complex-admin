@@ -31,6 +31,18 @@ public class PartidoService
             .Select(p => ToDto(p)).ToListAsync();
     }
 
+    public async Task<List<PartidoDto>> GetEnRangoAsync(DateOnly? desde, DateOnly? hasta)
+    {
+        if (desde.HasValue && hasta.HasValue && hasta < desde)
+            throw new BusinessRuleException("La fecha de inicio debe ser anterior a la fecha de fin.");
+
+        var query = Query();
+        if (desde.HasValue) query = query.Where(p => p.Fecha >= desde.Value);
+        if (hasta.HasValue) query = query.Where(p => p.Fecha <= hasta.Value);
+        return await query.OrderBy(p => p.Fecha).ThenBy(p => p.HoraInicio)
+            .Select(p => ToDto(p)).ToListAsync();
+    }
+
     public async Task<PartidoDto> GetByIdAsync(int id)
     {
         var partido = await Query().FirstOrDefaultAsync(p => p.IdPartido == id)

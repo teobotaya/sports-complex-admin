@@ -49,4 +49,28 @@ public class TorneoReservaTests
         Assert.Contains("Copa Primavera", ex.Message);
         Assert.Contains("20:00", ex.Message);
     }
+
+    [Fact]
+    public async Task Partidos_En_Rango_De_Fechas_Se_Listan_Para_Mostrarlos_En_Reservas()
+    {
+        await using var db = TestDbFactory.Create();
+        var cancha = new Cancha { Nombre = "Cancha 4", PrecioPorHora = 45000, Activa = true };
+        var torneo = new Torneo { Nombre = "Copa Primavera", FechaInicio = new(2030, 10, 1), FechaFin = new(2030, 11, 30), Estado = "En curso" };
+        var a = new Equipo { Torneo = torneo, Nombre = "Los Leones" };
+        var b = new Equipo { Torneo = torneo, Nombre = "Las Águilas" };
+        db.AddRange(cancha, torneo, a, b);
+        await db.SaveChangesAsync();
+        foreach (var dia in new[] { new DateOnly(2030, 10, 10), new DateOnly(2030, 10, 20), new DateOnly(2030, 11, 25) })
+            db.Partidos.Add(new Partido { IdTorneo = torneo.IdTorneo, IdEquipoLocal = a.IdEquipo, IdEquipoVisitante = b.IdEquipo,
+                IdCancha = cancha.IdCancha, Fecha = dia, HoraInicio = new(21, 0), Estado = "Programado" });
+        await db.SaveChangesAsync();
+        var servicio = new PartidoService(db, new DisponibilidadService(db));
+
+        var enRango = await servicio.GetEnRangoAsync(new(2030, 10, 14), new(2030, 11, 11));
+
+        var unico = Assert.Single(enRango);
+        Assert.Equal(new DateOnly(2030, 10, 20), unico.Fecha);
+        Assert.Equal("Copa Primavera", unico.TorneoNombre);
+        await Assert.ThrowsAsync<BusinessRuleException>(() => servicio.GetEnRangoAsync(new(2030, 11, 11), new(2030, 10, 14)));
+    }
 }

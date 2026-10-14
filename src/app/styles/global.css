@@ -1456,3 +1456,4 @@ a:hover { color: var(--sc-blue-dark); }
 .equipo-registrado:hover{background:var(--sc-success-bg)}
 .equipo-registrado.activo{background:var(--sc-success-bg);box-shadow:inset 3px 0 0 var(--sc-success)}
 .badge-torneo{background:var(--sc-success-bg);color:var(--sc-success-text);border:1px solid rgba(14,138,85,.18);font-weight:600}
+.fila-torneo td { background: var(--sc-info-bg); }

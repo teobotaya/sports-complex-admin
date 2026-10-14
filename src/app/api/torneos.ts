@@ -110,6 +110,14 @@ export const partidosApi = {
   getById: (id: number) => api.get<Partido>(`/partidos/${id}`),
   /** Partidos de un día: ocupan la cancha 1 hora desde su hora de inicio. */
   getByFecha: (fecha: string) => api.get<Partido[]>(`/partidos?fecha=${fecha}`),
+  /** Partidos entre dos fechas (ambas opcionales: vacío = sin límite). */
+  getEnRango: (desde?: string, hasta?: string) => {
+    const qs = new URLSearchParams();
+    if (desde) qs.set('desde', desde);
+    if (hasta) qs.set('hasta', hasta);
+    const q = qs.toString();
+    return api.get<Partido[]>(`/partidos${q ? `?${q}` : ''}`);
+  },
   registrarResultado: (id: number, golesLocal: number, golesVisitante: number) =>
     api.post<Partido>(`/partidos/${id}/resultado`, { golesLocal, golesVisitante }),
 };
